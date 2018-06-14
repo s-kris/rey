@@ -5,3 +5,10 @@ import App from './App';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 // registerServiceWorker();
+
+if (module.hot) {
+  module.hot.accept('./App', () => {
+    const HApp = require('./App').default;
+    ReactDOM.render(<HApp />, document.getElementById('root'));
+  });
+}

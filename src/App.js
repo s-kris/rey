@@ -1,12 +1,14 @@
 import React from 'react';
-import { View, Text } from 'react-primitives';
+import { View } from 'react-primitives';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+import Routes from './config/Routes';
 
 class App extends React.Component {
   render() {
     return (
       <View>
-        <Text>Rey Music</Text>
+        <Routes />
       </View>
     );
   }
