@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-primitives';
-import YoutubePlayer from 'react-player/lib/players/YouTube';
+import { View, StyleSheet } from 'react-primitives';
 
 import './../styles/media-player.css';
 import MediaPlayer from './mediaplayer/';
@@ -25,17 +24,6 @@ class Player extends React.Component {
   render() {
     return (
       <View style={styles.rootContainer}>
-        {/* <YoutubePlayer
-          width="100%"
-          height={200}
-          url="https://www.youtube.com/watch?v=hCt-H4-5wco"
-          onProgress={result => {
-            // console.log(result.playedSeconds);
-          }}
-          config={{
-            youtube: { playerVars: { modestBranding: 1 } },
-          }}
-        /> */}
         <MediaPlayer />
       </View>
     );

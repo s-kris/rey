@@ -20,8 +20,8 @@ const styles = StyleSheet.create({
   },
   modulesContainer: {
     backgroundColor: 'white',
-    width: '80%',
-    height: '80%',
+    width: '75%',
+    height: '75%',
     borderRadius: borderRadiusLarge,
   },
   playerContainer: {

@@ -2,8 +2,7 @@
     width:100%;
     height: 100%;
     display: flex;
-    flex-flow: column;
-    background-color: #8bb955;
+    flex-direction: column;
 }
 .media-player{
     width:100%;
@@ -86,8 +85,8 @@
     margin:0 12px;
     border:0;
     position:absolute;
-    top:7px;
-    left:12px;
+    /* top:7px; */
+    /* left:12px; */
     background-color:#373d3f;
     color:#434a4d
 }
@@ -329,7 +328,7 @@ input[type=range]::-webkit-slider-thumb{
 }
 .media-playlist-track{
     padding:12px;
-    cursor:pointer
+    /* cursor:pointer */
 }
 .media-playlist-track+.media-playlist-track{
     border-top:1px solid #373d3f

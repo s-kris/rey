@@ -1,8 +1,11 @@
 import React from 'react';
+import { view } from 'react-easy-state';
+
+import PlaylistItem from './PlaylistItem';
 
 class Playlist extends React.Component {
-  _handleTrackClick(track) {
-    this.props.onTrackClick(track);
+  _handleTrackClick(track, position) {
+    this.props.onTrackClick(track, position);
   }
 
   render() {
@@ -15,24 +18,25 @@ class Playlist extends React.Component {
         <div
           style={{
             height: '100%',
-            overflowY: 'scroll',
+            overflow: 'scroll',
+            paddingBottom: 30,
           }}
         >
-          <ul className="media-playlist-tracks">
-            {tracks.map(track => (
-              <li
-                key={track.label}
-                className={`media-playlist-track ${track === currentTrack ? 'is-active' : ''}`}
-                onClick={this._handleTrackClick.bind(this, track)}
-              >
-                {track.label}
-              </li>
+          <div className="media-playlist-tracks">
+            {tracks.map((track, position) => (
+              <PlaylistItem
+                key={track.label + position}
+                track={track}
+                position={position}
+                currentTrack={currentTrack}
+                onItemClick={() => this._handleTrackClick(track, position)}
+              />
             ))}
-          </ul>
+          </div>
         </div>
       </div>
     );
   }
 }
 
-export default Playlist;
+export default view(Playlist);
