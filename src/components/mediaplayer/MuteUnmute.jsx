@@ -19,7 +19,7 @@ class MuteUnmute extends Component {
 
   render() {
     const {
-      media: { isMuted, volume },
+      media: { volume },
       className,
     } = this.props;
     return (

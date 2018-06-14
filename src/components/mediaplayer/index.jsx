@@ -18,7 +18,7 @@ class Index extends Component {
         queueId: 0,
       },
       repeatTrack: false,
-      autoPlay: true,
+      autoPlay: false,
     };
   }
 
@@ -38,7 +38,7 @@ class Index extends Component {
         <MediaPlayer
           ref={c => (this._mediaPlayer = c)}
           src={`${currentTrack.src}&=${queueId}`} // player won't render if url is same
-          autoPlay
+          autoPlay={autoPlay}
           loop={repeatTrack}
           currentTrack={currentTrack.label}
           repeatTrack={repeatTrack}

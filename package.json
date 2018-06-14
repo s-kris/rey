@@ -16,7 +16,8 @@
     "react-scripts": "1.1.4",
     "react-tabs": "^2.2.2",
     "reactstrap": "^6.1.0",
-    "shortid": "^2.2.8"
+    "shortid": "^2.2.8",
+    "youtube-search": "^1.1.1"
   },
   "scripts": {
     "start": "react-scripts start",

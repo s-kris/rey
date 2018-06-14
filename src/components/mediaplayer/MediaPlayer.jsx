@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Media, Player, controls, utils } from 'react-media-player';
+import { Media, Player, controls } from 'react-media-player';
 import PlayPause from './PlayPause';
 import MuteUnmute from './MuteUnmute';
 import Repeat from './Repeat';
 
-const { CurrentTime, Progress, SeekBar, Duration, Volume } = controls;
-const { keyboardControls } = utils;
+const { CurrentTime, Progress, SeekBar, Duration } = controls;
+// const { keyboardControls } = utils;
 
 const PrevTrack = props => (
   <svg width="10px" height="12px" viewBox="0 0 10 12" {...props}>
