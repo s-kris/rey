@@ -45,7 +45,7 @@ class SearchTab extends React.Component {
       data: [],
       empty: false,
     };
-
+    // this._searchYoutube('trending songs', 50);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -57,7 +57,7 @@ class SearchTab extends React.Component {
           isLoading: true,
         },
         () => {
-          this._searchYoutube(searchTerm);
+          this._searchYoutube(searchTerm, YOUTUBE_SEARCH_RESULTS_MAX);
         }
       );
     } else {
@@ -65,9 +65,18 @@ class SearchTab extends React.Component {
     }
   };
 
-  _searchYoutube = searchTerm => {
+  _cleanSearchResults = results => {
+    const filteredResults = [];
+    results.forEach(element => {
+      // currently no support for playlists, so filter them out
+      if (element.kind === 'youtube#video') filteredResults.push(element);
+    });
+    return filteredResults;
+  };
+
+  _searchYoutube = (searchTerm, limit) => {
     const opts = {
-      maxResults: YOUTUBE_SEARCH_RESULTS_MAX,
+      maxResults: limit,
       key: YOUTUBE_API_KEY,
     };
 
@@ -77,7 +86,7 @@ class SearchTab extends React.Component {
       if (results.length === 0) {
         this.setState({ empty: true });
       } else {
-        this._renderData(results);
+        this._renderData(this._cleanSearchResults(results));
       }
     });
   };
