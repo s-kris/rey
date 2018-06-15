@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-primitives';
 import youtubeHelper from 'youtube-search';
 import StackGrid from 'react-stack-grid';
-import { GridLoader } from 'react-spinners';
+import { ScaleLoader } from 'react-spinners';
 import SimpleInput from 'react-simple-input';
 
 import { YOUTUBE_API_KEY, YOUTUBE_SEARCH_RESULTS_MAX } from './../../config/Constants';
@@ -122,7 +122,7 @@ class SearchTab extends React.Component {
         <View style={styles.contentContainer}>
           {this.state.isLoading ? (
             <View style={styles.loaderContainer}>
-              <GridLoader color="#8bb955" loading />
+              <ScaleLoader color="#8bb955" loading />
             </View>
           ) : (
             <StackGrid columnWidth={200}>{this.state.data}</StackGrid>
