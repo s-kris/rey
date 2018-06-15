@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-primitives';
 import youtubeHelper from 'youtube-search';
 import StackGrid from 'react-stack-grid';
 import { GridLoader } from 'react-spinners';
+import SimpleInput from 'react-simple-input';
 
 import { YOUTUBE_API_KEY, YOUTUBE_SEARCH_RESULTS_MAX } from './../../config/Constants';
 import './../../styles/input.css';
@@ -100,7 +101,14 @@ class SearchTab extends React.Component {
     return (
       <View style={styles.rootContainer}>
         <View>
-          <input type="text" name="search" placeholder="Type to search" onChange={this.handleChange} />
+          {/* <input type="text" name="search" placeholder="Type to search" onChange={this.handleChange} /> */}
+          <SimpleInput
+            className="fluid"
+            placeholder="search"
+            changeTimeout={250}
+            onChange={this.handleChange}
+            clearButton
+          />
         </View>
         <View style={styles.contentContainer}>
           {this.state.isLoading ? (

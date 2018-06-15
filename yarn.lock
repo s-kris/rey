@@ -6246,6 +6246,12 @@ react-scripts@1.1.4:
   optionalDependencies:
     fsevents "^1.1.3"
 
+react-simple-input@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/react-simple-input/-/react-simple-input-0.4.1.tgz#4d8239ff9e0b9509c42a1d0f9194c411b8355131"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-sizeme@^2.2.0:
   version "2.4.4"
   resolved "https://registry.yarnpkg.com/react-sizeme/-/react-sizeme-2.4.4.tgz#437c2ae82da744dbe40dc589f595e6f70039961d"
