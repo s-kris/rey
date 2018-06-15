@@ -5,18 +5,26 @@ import Player from '../components/Player';
 import bg1 from './../assets/images/bg1.jpg';
 import { borderRadiusLarge } from '../config/Constants';
 import TabsContainer from '../components/tabs/TabsContainer';
+import Header from '../components/Header';
 
 const styles = StyleSheet.create({
   rootContainer: {
     backgroundImage: `url(${bg1})`,
     // filter: `blur(3px)`,
-    boxShadow: 'inset 0 0 0 1000px rgba(0,0,0,.4)',
+    boxShadow: 'inset 0 0 0 1000px rgba(0,0,0,.5)',
     backgroundPosition: 'center center',
     width: '100vw',
     height: '100vh',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    justifyContent: 'center',
+  },
+  headerContainer: {
+    width: '75%',
+    paddingBottom: 15,
+    display: 'flex',
+    flexDirection: 'row',
     justifyContent: 'center',
   },
   modulesContainer: {
@@ -40,6 +48,9 @@ class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.rootContainer}>
+        <View style={styles.headerContainer}>
+          <Header />
+        </View>
         <View style={styles.modulesContainer}>
           <View style={styles.playerContainer}>
             <Player />

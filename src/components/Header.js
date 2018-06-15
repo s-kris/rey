@@ -1,33 +1,26 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-primitives';
-import { borderRadiusLarge } from '../config/Constants';
+
+import logo from './../assets/images/logo-min.png';
 
 const styles = StyleSheet.create({
   rootContainer: {
-    borderRadius: borderRadiusLarge,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  logoText: {
+    color: '#FFFFFF',
+    letterSpacing: 2,
   },
 });
 
 class Header extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      isOpen: false,
-    };
-  }
-
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen,
-    });
-  }
-
   render() {
     return (
       <View style={styles.rootContainer}>
-        <Text> Header </Text>
+        <img src={logo} width="75" height="75" alt="rey music player" />
+        <Text style={styles.logoText}> REimagined Youtube music player</Text>
       </View>
     );
   }
