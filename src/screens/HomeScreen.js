@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-primitives';
+import { View, StyleSheet } from 'react-primitives';
 
 import Player from '../components/Player';
 import bg1 from './../assets/images/bg1.jpg';

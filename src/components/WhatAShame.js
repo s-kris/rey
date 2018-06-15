@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-primitives';
+import { View, StyleSheet } from 'react-primitives';
 
 const styles = StyleSheet.create({
   container: {
