@@ -30,7 +30,28 @@ class PlaylistItem extends React.Component {
   };
 
   _onClickRemove = () => {
+    const { track, position } = this.props;
+    const nowPlayingTrack = musicStore.getCurrentTrack();
+    const nowPlayingList = musicStore.getNowPlayingList();
     musicStore.removeFromNowPlayingList(this.props.position);
+
+    if (track.id === nowPlayingTrack.id) {
+      if (nowPlayingList.length === 0) {
+        musicStore.setCurrentTrack({
+          src: '',
+        });
+        return;
+      }
+
+      switch (position) {
+        case nowPlayingList.length:
+          musicStore.setCurrentTrack(nowPlayingList[position - 1]);
+          break;
+        default:
+          musicStore.setCurrentTrack(nowPlayingList[position]);
+          break;
+      }
+    }
   };
 
   render() {
