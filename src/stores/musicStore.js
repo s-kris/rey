@@ -1,6 +1,7 @@
 import { store } from 'react-easy-state';
 import shortId from 'shortid';
 import Cookies from 'js-cookie';
+import ReactGA from 'react-ga';
 
 import { KEY_CURRENT_TRACK, KEY_NOW_PLAYING_LIST } from './../config/Constants';
 
@@ -38,6 +39,11 @@ const musicStore = store({
     Cookies.set(KEY_NOW_PLAYING_LIST, musicStore.getNowPlayingList());
   },
   setCurrentTrack(item) {
+    ReactGA.event({
+      category: 'Player',
+      action: 'Song Played',
+      value: 1,
+    });
     if (!item.id) item.id = shortId.generate();
     musicStore.currentTrack = item;
     Cookies.set(KEY_CURRENT_TRACK, item);
@@ -46,6 +52,12 @@ const musicStore = store({
     return musicStore.currentTrack;
   },
   playTrack(item) {
+    ReactGA.event({
+      category: 'Player',
+      action: 'Song Played',
+      value: 1,
+    });
+
     musicStore.setCurrentTrack(item);
     musicStore.addToNowPlayingList(item);
   },
