@@ -18,21 +18,27 @@ const playlistStore = store({
     playlistStore.playlist.push(item);
   },
   insertToPlaylist(item, position) {
-    playlistStore.playlist.splice(position, 0, item);
+    const newItem = {
+      id: shortId.generate(), // diff ids for same song(multiple) in queue
+      src: item.src,
+      label: item.label,
+    };
+    playlistStore.playlist.splice(position + 1, 0, newItem);
   },
   removeFromPlaylist(position) {
     playlistStore.playlist.splice(position, 1);
   },
   setCurrentTrack(item) {
-    item.id = shortId.generate();
+    // save data here cause this is called everytime i guess
+    if (!item.id) item.id = shortId.generate();
     playlistStore.currentTrack = item;
   },
   getCurrentTrack() {
     return playlistStore.currentTrack;
   },
   playTrack(item) {
-    item.id = shortId.generate();
-    playlistStore.currentTrack = item;
+    playlistStore.setCurrentTrack(item);
+    // playlistStore.currentTrack = item;
     playlistStore.playlist.push(item);
   },
 });
