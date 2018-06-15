@@ -10,7 +10,6 @@ const mod = (num, max) => ((num % max) + max) % max;
 class Index extends Component {
   constructor(props) {
     super(props);
-    this.playlist = playlistStore.getPlaylist();
     this.state = {
       repeatTrack: false,
       autoPlay: true,
@@ -18,15 +17,15 @@ class Index extends Component {
   }
 
   _handleTrackClick = track => {
-    //  this.setState({ currentTrack: track });
     playlistStore.setCurrentTrack(track);
   };
 
   _navigatePlaylist = direction => {
     const currentTrack = playlistStore.getCurrentTrack();
-    const newIndex = mod(this.playlist.indexOf(currentTrack) + direction, this.playlist.length);
-    // this.setState({ currentTrack: this.playlist[newIndex] });
-    playlistStore.setCurrentTrack(this.playlist[newIndex]);
+    const playlist = playlistStore.getPlaylist();
+
+    const newIndex = mod(playlist.indexOf(currentTrack) + direction, playlist.length);
+    playlistStore.setCurrentTrack(playlist[newIndex]);
   };
 
   render() {

@@ -5,7 +5,6 @@ import { view } from 'react-easy-state';
 import PlayPause from './PlayPause';
 import MuteUnmute from './MuteUnmute';
 import Repeat from './Repeat';
-import playlistStore from '../../stores/playlistStore';
 
 const { CurrentTime, Progress, SeekBar, Duration } = controls;
 // const { keyboardControls } = utils;

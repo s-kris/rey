@@ -24,7 +24,7 @@ const playlistStore = store({
     playlistStore.playlist.splice(position, 1);
   },
   setCurrentTrack(item) {
-    // item.id = shortId.generate();
+    item.id = shortId.generate();
     playlistStore.currentTrack = item;
   },
   getCurrentTrack() {
