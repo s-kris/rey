@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-primitives';
 import { ScaleLoader } from 'react-spinners';
 
-import playlistStore from '../../stores/playlistStore';
+import musicStore from '../../stores/musicStore';
 import { themeColor } from './../../config/Colors';
 
 const styles = StyleSheet.create({
@@ -26,11 +26,11 @@ const styles = StyleSheet.create({
 
 class PlaylistItem extends React.Component {
   _onClickAdd = () => {
-    playlistStore.insertToPlaylist(this.props.track, this.props.position);
+    musicStore.insertToNowPlayingList(this.props.track, this.props.position);
   };
 
   _onClickRemove = () => {
-    playlistStore.removeFromPlaylist(this.props.position);
+    musicStore.removeFromNowPlayingList(this.props.position);
   };
 
   render() {

@@ -5,12 +5,12 @@ import './../styles/song-item.css';
 import playIcon from './../assets/images/icons/play.png';
 import queueIcon from './../assets/images/icons/queue.png';
 import { colorPalette } from './../config/Colors';
-import playlistStore from './../stores/playlistStore';
+import musicStore from './../stores/musicStore';
 
 class SongItem extends React.Component {
   _onClickPlay = () => {
     const { name, videoUrl } = this.props;
-    playlistStore.playTrack({
+    musicStore.playTrack({
       src: videoUrl,
       label: this._formatLabel(name),
     });
@@ -18,7 +18,7 @@ class SongItem extends React.Component {
 
   _onClickQueue = () => {
     const { name, videoUrl } = this.props;
-    playlistStore.addToPlaylist({
+    musicStore.addToNowPlayingList({
       src: videoUrl,
       label: this._formatLabel(name),
     });

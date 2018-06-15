@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import { view } from 'react-easy-state';
+import Cookies from 'js-cookie';
 
 import MediaPlayer from './MediaPlayer';
 import Playlist from './Playlist';
-import playlistStore from '../../stores/playlistStore';
+import musicStore from '../../stores/musicStore';
+import { KEY_CURRENT_TRACK, KEY_NOW_PLAYING_LIST } from '../../config/Constants';
 
 const mod = (num, max) => ((num % max) + max) % max;
 
 class Index extends Component {
   constructor(props) {
     super(props);
+
+    this._initData();
     this.state = {
       repeatTrack: false,
       autoPlay: true,
@@ -17,20 +21,25 @@ class Index extends Component {
   }
 
   _handleTrackClick = track => {
-    playlistStore.setCurrentTrack(track);
+    musicStore.setCurrentTrack(track);
+  };
+
+  _initData = () => {
+    musicStore.setCurrentTrack(Cookies.getJSON(KEY_CURRENT_TRACK));
+    musicStore.setNowPlayingList(Cookies.getJSON(KEY_NOW_PLAYING_LIST));
   };
 
   _navigatePlaylist = direction => {
-    const currentTrack = playlistStore.getCurrentTrack();
-    const playlist = playlistStore.getPlaylist();
+    const currentTrack = musicStore.getCurrentTrack();
+    const nowPlayingList = musicStore.getNowPlayingList();
 
-    const newIndex = mod(playlist.indexOf(currentTrack) + direction, playlist.length);
-    playlistStore.setCurrentTrack(playlist[newIndex]);
+    const newIndex = mod(nowPlayingList.indexOf(currentTrack) + direction, nowPlayingList.length);
+    musicStore.setCurrentTrack(nowPlayingList[newIndex]);
   };
 
   render() {
     const { repeatTrack, autoPlay } = this.state;
-    const currentTrack = playlistStore.getCurrentTrack();
+    const currentTrack = musicStore.getCurrentTrack();
     return (
       <div className="media-player-wrapper">
         <MediaPlayer
@@ -52,7 +61,7 @@ class Index extends Component {
           }}
         />
         <Playlist
-          tracks={playlistStore.getPlaylist()}
+          tracks={musicStore.getNowPlayingList()}
           currentTrack={currentTrack}
           onTrackClick={this._handleTrackClick}
         />
