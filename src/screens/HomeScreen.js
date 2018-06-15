@@ -1,11 +1,13 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-primitives';
+import { View, Text, StyleSheet } from 'react-primitives';
 
 import Player from '../components/Player';
 import bg1 from './../assets/images/bg1.jpg';
 import { borderRadiusLarge } from '../config/Constants';
 import TabsContainer from '../components/tabs/TabsContainer';
 import Header from '../components/Header';
+import { isMobileDevice } from './../utils/utils';
+import WhatAShame from '../components/WhatAShame';
 
 const styles = StyleSheet.create({
   rootContainer: {
@@ -45,20 +47,33 @@ const styles = StyleSheet.create({
 });
 
 class HomeScreen extends React.Component {
+  _renderPlayer = () => {
+    if (isMobileDevice()) {
+      return (
+        <View style={styles.modulesContainer}>
+          <WhatAShame message="Rey is only for desktop at the moment" giphyId="RFDXes97gboYg" />
+        </View>
+      );
+    }
+    return (
+      <View style={styles.modulesContainer}>
+        <View style={styles.playerContainer}>
+          <Player />
+        </View>
+        <View style={styles.tabsContainer}>
+          <TabsContainer />
+        </View>
+      </View>
+    );
+  };
+
   render() {
     return (
       <View style={styles.rootContainer}>
         <View style={styles.headerContainer}>
           <Header />
         </View>
-        <View style={styles.modulesContainer}>
-          <View style={styles.playerContainer}>
-            <Player />
-          </View>
-          <View style={styles.tabsContainer}>
-            <TabsContainer />
-          </View>
-        </View>
+        {this._renderPlayer()}
       </View>
     );
   }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-primitives';
+import { View, Text, StyleSheet } from 'react-primitives';
 
 const styles = StyleSheet.create({
   container: {
@@ -31,6 +31,7 @@ class WhatAShame extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        {this.props.message && <p> {this.props.message}</p>}
         <iframe
           title="ss"
           src={this.state.giphyUrl}
