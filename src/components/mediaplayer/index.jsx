@@ -13,17 +13,16 @@ class Index extends Component {
     this.playlist = playlistStore.getPlaylist();
     this.state = {
       currentTrack: {
-        src: this.playlist[0].src,
-        label: this.playlist[0].label,
-        queueId: 0,
+        src: this.playlist[0] ? this.playlist[0].src : '',
+        label: this.playlist[0] ? this.playlist[0].label : '',
       },
       repeatTrack: false,
-      autoPlay: false,
+      autoPlay: true,
     };
   }
 
-  _handleTrackClick = (track, position) => {
-    this.setState({ currentTrack: track, queueId: position });
+  _handleTrackClick = track => {
+    this.setState({ currentTrack: track });
   };
 
   _navigatePlaylist = direction => {
@@ -32,12 +31,12 @@ class Index extends Component {
   };
 
   render() {
-    const { currentTrack, repeatTrack, autoPlay, queueId } = this.state;
+    const { currentTrack, repeatTrack, autoPlay } = this.state;
     return (
       <div className="media-player-wrapper">
         <MediaPlayer
           ref={c => (this._mediaPlayer = c)}
-          src={`${currentTrack.src}&=${queueId}`} // player won't render if url is same
+          src={`${currentTrack.src}&=${currentTrack.id}`} // player won't render if url is same
           autoPlay={autoPlay}
           loop={repeatTrack}
           currentTrack={currentTrack.label}
@@ -50,7 +49,6 @@ class Index extends Component {
           onPlay={() => !autoPlay && this.setState({ autoPlay: true })}
           onPause={() => this.setState({ autoPlay: false })}
           onEnded={() => {
-            this.setState({ queueId: queueId + 1 });
             !repeatTrack && this._navigatePlaylist(1);
           }}
         />

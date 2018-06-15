@@ -4,8 +4,8 @@ import { view } from 'react-easy-state';
 import PlaylistItem from './PlaylistItem';
 
 class Playlist extends React.Component {
-  _handleTrackClick(track, position) {
-    this.props.onTrackClick(track, position);
+  _handleTrackClick(track) {
+    this.props.onTrackClick(track);
   }
 
   render() {
@@ -29,7 +29,7 @@ class Playlist extends React.Component {
                 track={track}
                 position={position}
                 currentTrack={currentTrack}
-                onItemClick={() => this._handleTrackClick(track, position)}
+                onItemClick={() => this._handleTrackClick(track)}
               />
             ))}
           </div>

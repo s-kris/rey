@@ -5,14 +5,23 @@ import './../styles/song-item.css';
 import playIcon from './../assets/images/icons/play.png';
 import queueIcon from './../assets/images/icons/queue.png';
 import { colorPalette } from './../config/Colors';
+import playlistStore from './../stores/playlistStore';
 
 class SongItem extends React.Component {
   _onClickPlay = () => {
-    console.log('play');
+    const { name, videoUrl } = this.props;
+    playlistStore.setCurrentTrack({
+      src: videoUrl,
+      label: this._formatLabel(name),
+    });
   };
 
   _onClickQueue = () => {
-    console.log('queue');
+    const { name, videoUrl } = this.props;
+    playlistStore.addToPlaylist({
+      src: videoUrl,
+      label: this._formatLabel(name),
+    });
   };
 
   _getRandomColor = () => {
@@ -20,8 +29,10 @@ class SongItem extends React.Component {
     return colorPalette[index];
   };
 
+  _formatLabel = name => name.substring(0, 20);
+
   render() {
-    const { thumbnailUrl, name, length } = this.props;
+    const { thumbnailUrl, name } = this.props;
     return (
       <div
         className="container"
