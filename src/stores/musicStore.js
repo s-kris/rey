@@ -20,7 +20,7 @@ const musicStore = store({
     musicStore.nowPlayingList = array.slice(0);
   },
   addToNowPlayingList(item) {
-    item.id = shortId.generate();
+    if (!item.id) item.id = shortId.generate();
     musicStore.nowPlayingList.push(item);
     Cookies.set(KEY_NOW_PLAYING_LIST, musicStore.getNowPlayingList());
   },
@@ -47,8 +47,7 @@ const musicStore = store({
   },
   playTrack(item) {
     musicStore.setCurrentTrack(item);
-    // musicStore.currentTrack = item;
-    musicStore.nowPlayingList.push(item);
+    musicStore.addToNowPlayingList(item);
   },
 });
 
