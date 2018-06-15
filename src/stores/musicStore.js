@@ -23,7 +23,7 @@ const musicStore = store({
   addToNowPlayingList(item) {
     if (!item.id) item.id = shortId.generate();
     musicStore.nowPlayingList.push(item);
-    Cookies.set(KEY_NOW_PLAYING_LIST, musicStore.getNowPlayingList());
+    Cookies.set(KEY_NOW_PLAYING_LIST, musicStore.getNowPlayingList(), { expires: 300 });
   },
   insertToNowPlayingList(item, position) {
     const newItem = {
@@ -32,11 +32,11 @@ const musicStore = store({
       label: item.label,
     };
     musicStore.nowPlayingList.splice(position + 1, 0, newItem);
-    Cookies.set(KEY_NOW_PLAYING_LIST, musicStore.getNowPlayingList());
+    Cookies.set(KEY_NOW_PLAYING_LIST, musicStore.getNowPlayingList(), { expires: 300 });
   },
   removeFromNowPlayingList(position) {
     musicStore.nowPlayingList.splice(position, 1);
-    Cookies.set(KEY_NOW_PLAYING_LIST, musicStore.getNowPlayingList());
+    Cookies.set(KEY_NOW_PLAYING_LIST, musicStore.getNowPlayingList(), { expires: 300 });
   },
   setCurrentTrack(item) {
     ReactGA.event({
@@ -46,7 +46,7 @@ const musicStore = store({
     });
     if (!item.id) item.id = shortId.generate();
     musicStore.currentTrack = item;
-    Cookies.set(KEY_CURRENT_TRACK, item);
+    Cookies.set(KEY_CURRENT_TRACK, item, { expires: 300 });
   },
   getCurrentTrack() {
     return musicStore.currentTrack;
