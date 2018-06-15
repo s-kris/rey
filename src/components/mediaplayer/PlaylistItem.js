@@ -57,7 +57,7 @@ class PlaylistItem extends React.Component {
   render() {
     const { track, currentTrack } = this.props;
     return (
-      <div className={`media-playlist-track ${track.id === currentTrack.id ? 'is-active' : ''}`}>
+      <div id={track.id} className={`media-playlist-track ${track.id === currentTrack.id ? 'is-active' : ''}`}>
         <View style={styles.row}>
           <Text style={styles.pointer} onClick={() => this.props.onItemClick(track)}>
             {track.label} &nbsp; &nbsp;

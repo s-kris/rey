@@ -8,6 +8,11 @@ class Playlist extends React.Component {
     this.props.onTrackClick(track);
   }
 
+  _focusNowPlayingItem = id => {
+    //console.log(document.getElementById(id));
+    // document.getElementById(id).scrollTop = 10;
+  };
+
   render() {
     const { tracks, currentTrack } = this.props;
     return (
@@ -32,6 +37,7 @@ class Playlist extends React.Component {
                 onItemClick={() => this._handleTrackClick(track)}
               />
             ))}
+            {this._focusNowPlayingItem(currentTrack.id)}
           </div>
         </div>
       </div>
