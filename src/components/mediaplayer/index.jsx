@@ -25,8 +25,13 @@ class Index extends Component {
   };
 
   _initData = () => {
-    musicStore.setCurrentTrack(Cookies.getJSON(KEY_CURRENT_TRACK));
-    musicStore.setNowPlayingList(Cookies.getJSON(KEY_NOW_PLAYING_LIST));
+    const currentTrack = Cookies.getJSON(KEY_CURRENT_TRACK);
+    const nowPlayingList = Cookies.getJSON(KEY_NOW_PLAYING_LIST);
+
+    if (currentTrack && nowPlayingList) {
+      musicStore.setCurrentTrack();
+      musicStore.setNowPlayingList();
+    }
   };
 
   _navigatePlaylist = direction => {
