@@ -12,12 +12,28 @@ const styles = StyleSheet.create({
 });
 
 class WhatAShame extends React.Component {
+  constructor(props) {
+    super(props);
+
+    const { giphyId } = this.props;
+    let giphyUrl;
+    if (giphyId) {
+      giphyUrl = `https://giphy.com/embed/${giphyId}`;
+    } else {
+      giphyUrl = 'https://giphy.com/embed/PEtL0mS2JXMBi';
+    }
+
+    this.state = {
+      giphyUrl,
+    };
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <iframe
           title="ss"
-          src="https://giphy.com/embed/PEtL0mS2JXMBi"
+          src={this.state.giphyUrl}
           width="100%"
           height="100%"
           frameBorder="0"

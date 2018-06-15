@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-primitives';
 
 import SearchTab from './SearchTab';
+import WhatAShame from '../WhatAShame';
 
 const styles = StyleSheet.create({
   rootContainer: {
@@ -59,15 +60,15 @@ class TabsContainer extends React.Component {
       case 'SEARCH':
         return <SearchTab />;
       case 'POPULAR':
-        return <Text> Popular </Text>;
+        return <WhatAShame giphyId="26ufd1zhcpm30DWrC" />;
       case 'FAVOURITES':
-        return <Text> Fav </Text>;
+        return <WhatAShame giphyId="26ufd1zhcpm30DWrC" />;
       case 'PLAYLISTS':
-        return <Text> Playlists </Text>;
+        return <WhatAShame giphyId="26ufd1zhcpm30DWrC" />;
       case 'PROFILE':
-        return <Text> Profile </Text>;
+        return <WhatAShame giphyId="26ufd1zhcpm30DWrC" />;
       default:
-        return <Text> hhh </Text>;
+        return <WhatAShame giphyId="26ufd1zhcpm30DWrC" />;
     }
   };
 

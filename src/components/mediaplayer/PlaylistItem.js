@@ -57,12 +57,12 @@ class PlaylistItem extends React.Component {
   render() {
     const { track, currentTrack } = this.props;
     return (
-      <div className={`media-playlist-track ${track === currentTrack ? 'is-active' : ''}`}>
+      <div className={`media-playlist-track ${track.id === currentTrack.id ? 'is-active' : ''}`}>
         <View style={styles.row}>
           <Text style={styles.pointer} onClick={() => this.props.onItemClick(track)}>
             {track.label} &nbsp; &nbsp;
             <View>
-              <ScaleLoader height={10} width={1} color={themeColor} loading={track === currentTrack} />
+              <ScaleLoader height={10} width={1} color={themeColor} loading={track.id === currentTrack.id} />
             </View>
           </Text>
           <View style={styles.actions}>
