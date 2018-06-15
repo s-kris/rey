@@ -4,7 +4,6 @@ import { View, StyleSheet } from 'react-primitives';
 import Player from '../components/Player';
 import bg1 from './../assets/images/bg1.jpg';
 import { borderRadiusLarge } from '../config/Constants';
-import './../styles/react-tabs.css';
 import TabsContainer from '../components/tabs/TabsContainer';
 
 const styles = StyleSheet.create({
