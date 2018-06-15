@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { Media, Player, controls } from 'react-media-player';
+import { view } from 'react-easy-state';
+
 import PlayPause from './PlayPause';
 import MuteUnmute from './MuteUnmute';
 import Repeat from './Repeat';
+import playlistStore from '../../stores/playlistStore';
 
 const { CurrentTime, Progress, SeekBar, Duration } = controls;
 // const { keyboardControls } = utils;
@@ -80,4 +83,4 @@ class MediaPlayer extends Component {
   }
 }
 
-export default MediaPlayer;
+export default view(MediaPlayer);

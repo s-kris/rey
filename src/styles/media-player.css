@@ -53,10 +53,11 @@
     position:absolute;
     bottom:0;
     left:0;
-    z-index:2147483647
+    z-index:2147483647;
 }
 .media-controls--full{
-    flex-direction:column
+    flex-direction:column;
+    cursor: pointer;
 }
 .media-controls--full .media-control-group--seek{
     width:100%;

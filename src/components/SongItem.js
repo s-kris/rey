@@ -10,7 +10,7 @@ import playlistStore from './../stores/playlistStore';
 class SongItem extends React.Component {
   _onClickPlay = () => {
     const { name, videoUrl } = this.props;
-    playlistStore.setCurrentTrack({
+    playlistStore.playTrack({
       src: videoUrl,
       label: this._formatLabel(name),
     });

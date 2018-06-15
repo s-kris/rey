@@ -12,31 +12,31 @@ class Index extends Component {
     super(props);
     this.playlist = playlistStore.getPlaylist();
     this.state = {
-      currentTrack: {
-        src: this.playlist[0] ? this.playlist[0].src : '',
-        label: this.playlist[0] ? this.playlist[0].label : '',
-      },
       repeatTrack: false,
       autoPlay: true,
     };
   }
 
   _handleTrackClick = track => {
-    this.setState({ currentTrack: track });
+    //  this.setState({ currentTrack: track });
+    playlistStore.setCurrentTrack(track);
   };
 
   _navigatePlaylist = direction => {
-    const newIndex = mod(this.playlist.indexOf(this.state.currentTrack) + direction, this.playlist.length);
-    this.setState({ currentTrack: this.playlist[newIndex] });
+    const currentTrack = playlistStore.getCurrentTrack();
+    const newIndex = mod(this.playlist.indexOf(currentTrack) + direction, this.playlist.length);
+    // this.setState({ currentTrack: this.playlist[newIndex] });
+    playlistStore.setCurrentTrack(this.playlist[newIndex]);
   };
 
   render() {
-    const { currentTrack, repeatTrack, autoPlay } = this.state;
+    const { repeatTrack, autoPlay } = this.state;
+    const currentTrack = playlistStore.getCurrentTrack();
     return (
       <div className="media-player-wrapper">
         <MediaPlayer
           ref={c => (this._mediaPlayer = c)}
-          src={`${currentTrack.src}&=${currentTrack.id}`} // player won't render if url is same
+          src={`${currentTrack.src}&tmpid=${currentTrack.id}`} // player won't render if url is same
           autoPlay={autoPlay}
           loop={repeatTrack}
           currentTrack={currentTrack.label}
