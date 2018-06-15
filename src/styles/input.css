@@ -1,0 +1,12 @@
+input[type=text] {
+    padding:5px; 
+    border:1px solid #ccc; 
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+}
+
+input[type=text]:focus {
+    border:2px solid #8bb955; 
+}
+
+textarea, select, input, button { outline: none; }

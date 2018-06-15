@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    backgroundColor: '#EDEDED',
+    backgroundColor: '#F2F2F2',
   },
   headerContainer: {
     width: '100%',
