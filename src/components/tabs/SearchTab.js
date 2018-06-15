@@ -2,10 +2,12 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-primitives';
 import youtubeHelper from 'youtube-search';
 import StackGrid from 'react-stack-grid';
+import { GridLoader } from 'react-spinners';
 
-import { YOUTUBE_API_KEY } from './../../config/Constants';
+import { YOUTUBE_API_KEY, YOUTUBE_SEARCH_RESULTS_MAX } from './../../config/Constants';
 import './../../styles/input.css';
 import SongItem from '../SongItem';
+import WhatAShame from '../WhatAShame';
 
 const styles = StyleSheet.create({
   rootContainer: {
@@ -14,6 +16,15 @@ const styles = StyleSheet.create({
     // backgroundColor: 'grey',
     display: 'flex',
     flexDirection: 'column',
+  },
+  loaderContainer: {
+    width: '100%',
+    height: '100%',
+    // backgroundColor: 'grey',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   contentContainer: {
     width: '100%',
@@ -26,40 +37,85 @@ const styles = StyleSheet.create({
 });
 
 class SearchTab extends React.Component {
-  _renderData = () => {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: false,
+      data: [],
+      empty: false,
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange = event => {
+    const searchTerm = event.target.value;
+    if (searchTerm && searchTerm.length > 4) {
+      this.setState(
+        {
+          isLoading: true,
+        },
+        () => {
+          this._searchYoutube(searchTerm);
+        }
+      );
+    } else {
+      this.setState({ data: [] });
+    }
+  };
+
+  _searchYoutube = searchTerm => {
+    const opts = {
+      maxResults: YOUTUBE_SEARCH_RESULTS_MAX,
+      key: YOUTUBE_API_KEY,
+    };
+
+    youtubeHelper(searchTerm, opts, (err, results) => {
+      if (err) return console.log(err);
+
+      if (results.length === 0) {
+        this.setState({ empty: true });
+      } else {
+        this._renderData(results);
+      }
+    });
+  };
+
+  _renderData = songs => {
     const tiles = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < songs.length; i++) {
       tiles.push(
         <SongItem
-          thumbnailUrl="https://i.ytimg.com/vi/oR2v4fIMeo0/movieposter.jpg"
-          name="some name of the song lengthy test"
-          length={4.5}
+          thumbnailUrl={songs[i].thumbnails.medium.url}
+          name={songs[i].title}
+          videoUrl={songs[i].link}
           key={i}
         />
       );
     }
-    return tiles;
+    this.setState({ empty: false, data: tiles, isLoading: false });
   };
 
   render() {
-    // const opts = {
-    //   maxResults: 10,
-    //   key: YOUTUBE_API_KEY,
-    // };
-
-    // youtubeHelper('cheliya', opts, (err, results) => {
-    //   if (err) return console.log(err);
-
-    //   console.dir(results);
-    // });
-
     return (
       <View style={styles.rootContainer}>
         <View>
-          <input type="text" name="search" placeholder="Type to search" />
+          <input type="text" name="search" placeholder="Type to search" onChange={this.handleChange} />
         </View>
         <View style={styles.contentContainer}>
-          <StackGrid columnWidth={200}>{this._renderData()}</StackGrid>
+          {this.state.isLoading ? (
+            <View style={styles.loaderContainer}>
+              <GridLoader color="#8bb955" loading />
+            </View>
+          ) : (
+            <StackGrid columnWidth={200}>{this.state.data}</StackGrid>
+          )}
+          {this.state.empty && (
+            <View style={styles.loaderContainer}>
+              <Text style={{ fontSize: 24, color: '#8bb955' }}> No Results </Text>
+              <WhatAShame />
+            </View>
+          )}
         </View>
       </View>
     );
