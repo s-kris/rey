@@ -17,6 +17,10 @@ const musicStore = store({
   getNowPlayingList() {
     return musicStore.nowPlayingList;
   },
+  clearNowPlayingList() {
+    musicStore.setNowPlayingList([]);
+    musicStore.setCurrentTrack({});
+  },
   setNowPlayingList(array) {
     musicStore.nowPlayingList = array.slice(0);
   },
