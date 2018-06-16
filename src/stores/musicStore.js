@@ -20,6 +20,7 @@ const musicStore = store({
   clearNowPlayingList() {
     musicStore.setNowPlayingList([]);
     musicStore.setCurrentTrack({});
+    Cookies.set(KEY_NOW_PLAYING_LIST, [], { expires: 300 });
   },
   setNowPlayingList(array) {
     musicStore.nowPlayingList = array.slice(0);
