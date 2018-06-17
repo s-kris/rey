@@ -18,8 +18,4 @@ export const isMobileDevice = () => {
   return isMobile;
 };
 
-export const showAlert = msg => {
-  Alert.success(msg, {
-    position: 'bottom-left',
-  });
-};
+export const showAlert = msg => {};

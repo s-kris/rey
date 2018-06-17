@@ -1,6 +1,5 @@
 import React from 'react';
 import 'normalize.css';
-import Alert from 'react-s-alert';
 import 'react-s-alert/dist/s-alert-default.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -13,7 +12,6 @@ class App extends React.Component {
     return (
       <div>
         <Routes />
-        <Alert stack={{ limit: 3 }} />
       </div>
     );
   }
