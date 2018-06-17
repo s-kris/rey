@@ -3,6 +3,7 @@ import { view } from 'react-easy-state';
 
 import PlaylistItem from './PlaylistItem';
 import musicStore from './../../stores/musicStore';
+import deleteIcon from './../../assets/images/icons/delete.png';
 
 const styles = {
   row: {
@@ -40,14 +41,12 @@ class Playlist extends React.Component {
         <div className="media-playlist-header">
           <div className="media-playlist-title" style={styles.row}>
             <div>QUEUE</div>
-            <div
+            <img
               style={styles.pointer}
-              onClick={() => {
-                musicStore.clearNowPlayingList();
-              }}
-            >
-              Clear All
-            </div>
+              src={deleteIcon}
+              alt="clear all"
+              onClick={() => musicStore.clearNowPlayingList()}
+            />
           </div>
         </div>
         <div
