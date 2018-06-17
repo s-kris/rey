@@ -21,7 +21,6 @@
     "react-spinners": "^0.3.2",
     "react-stack-grid": "^0.7.1",
     "react-svg": "^4.0.17",
-    "react-tooltip": "^3.6.1",
     "shortid": "^2.2.8",
     "youtube-search": "^1.1.1"
   },

@@ -1,13 +1,11 @@
 import React from 'react';
 import ReactSVG from 'react-svg';
 import randomColor from 'randomcolor';
-import ReactTooltip from 'react-tooltip';
 
 import './../styles/song-item.css';
 import playIcon from './../assets/images/icons/play.svg';
 import queueIcon from './../assets/images/icons/queue_add.svg';
 import musicStore from './../stores/musicStore';
-import { DELAY_SHOW_TOOL_TIP } from './../config/Constants';
 
 class SongItem extends React.Component {
   _onClickPlay = () => {
@@ -52,7 +50,6 @@ class SongItem extends React.Component {
             }}
           /> */}
           <ReactSVG
-            data-tip="tooltip"
             path={queueIcon}
             evalScripts="always"
             svgClassName="action"
@@ -61,7 +58,6 @@ class SongItem extends React.Component {
               this._onClickQueue();
             }}
           />
-          <ReactTooltip delayShow={DELAY_SHOW_TOOL_TIP} />
         </div>
       </div>
     );

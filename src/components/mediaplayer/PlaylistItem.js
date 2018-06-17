@@ -1,12 +1,10 @@
 import React from 'react';
 import { ScaleLoader } from 'react-spinners';
-import ReactTooltip from 'react-tooltip';
 
 import musicStore from '../../stores/musicStore';
 import { themeColor } from './../../config/Colors';
 import deleteIcon from './../../assets/images/icons/delete.png';
 import copyIcon from './../../assets/images/icons/copy.png';
-import { DELAY_SHOW_TOOL_TIP } from './../../config/Constants';
 
 const styles = {
   row: {
@@ -70,22 +68,9 @@ class PlaylistItem extends React.Component {
             </div>
           </div>
           <div style={styles.actions}>
-            <img
-              style={styles.pointer}
-              src={copyIcon}
-              alt="add"
-              data-tip="re-add to queue"
-              onClick={() => this._onClickAdd()}
-            />
+            <img style={styles.pointer} src={copyIcon} alt="add" onClick={() => this._onClickAdd()} />
             &nbsp;
-            <img
-              style={styles.pointer}
-              src={deleteIcon}
-              alt="remove"
-              data-tip="remove from queue"
-              onClick={() => this._onClickRemove()}
-            />
-            <ReactTooltip delayShow={DELAY_SHOW_TOOL_TIP} />
+            <img style={styles.pointer} src={deleteIcon} alt="remove" onClick={() => this._onClickRemove()} />
           </div>
         </div>
       </div>
