@@ -26,5 +26,6 @@ export const showAlert = msg => {
     closeOnClick: true,
     pauseOnHover: true,
     draggable: false,
+    draggablePercent: 50,
   });
 };

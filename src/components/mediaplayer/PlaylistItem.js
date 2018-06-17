@@ -1,4 +1,5 @@
 import React from 'react';
+import { View, Text } from 'react-native-web';
 import { ScaleLoader } from 'react-spinners';
 
 import musicStore from '../../stores/musicStore';
@@ -59,21 +60,21 @@ class PlaylistItem extends React.Component {
   render() {
     const { track, currentTrack } = this.props;
     return (
-      <div id={track.id} className={`media-playlist-track ${track.id === currentTrack.id ? 'is-active' : ''}`}>
-        <div style={styles.row}>
-          <div style={styles.pointer} onClick={() => this.props.onItemClick(track)}>
-            <div style={styles.row}>
-              {this._formatLabel(track.label)} &nbsp;
+      <View id={track.id} className={`media-playlist-track ${track.id === currentTrack.id ? 'is-active' : ''}`}>
+        <View style={styles.row}>
+          <View style={styles.pointer} onClick={() => this.props.onItemClick(track)}>
+            <View style={styles.row}>
+              <Text numberOfLines={1}>{this._formatLabel(track.label)} &nbsp;</Text>
               <ScaleLoader height={10} width={2} color={themeColor} loading={track.id === currentTrack.id} />
-            </div>
-          </div>
-          <div style={styles.actions}>
+            </View>
+          </View>
+          <View style={styles.actions}>
             <img style={styles.pointer} src={copyIcon} alt="add" onClick={() => this._onClickAdd()} />
-            &nbsp;
+            <Text>&nbsp;</Text>
             <img style={styles.pointer} src={deleteIcon} alt="remove" onClick={() => this._onClickRemove()} />
-          </div>
-        </div>
-      </div>
+          </View>
+        </View>
+      </View>
     );
   }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { View, Text, FlatList } from 'react-native-web';
 import { view } from 'react-easy-state';
 
 import PlaylistItem from './PlaylistItem';
@@ -6,18 +7,15 @@ import musicStore from './../../stores/musicStore';
 import deleteIcon from './../../assets/images/icons/delete.png';
 
 const styles = {
-  row: {
+  nowPlaying: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '5px 5px 5px 10px',
-  },
-  actions: {
-    width: 40,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    paddingLeft: 5,
+    paddingTop: 5,
+    paddingBottom: 5,
+    backgroundColor: '#373d3f',
   },
   pointer: {
     cursor: 'pointer',
@@ -37,39 +35,44 @@ class Playlist extends React.Component {
   render() {
     const { tracks, currentTrack } = this.props;
     return (
-      <div className="media-playlist">
-        <div className="media-playlist-header">
-          <div className="media-playlist-title" style={styles.row}>
-            <div>QUEUE</div>
-            <img
-              style={styles.pointer}
-              src={deleteIcon}
-              alt="clear all"
-              onClick={() => musicStore.clearNowPlayingList()}
-            />
-          </div>
-        </div>
-        <div
-          style={{
-            height: '100%',
-            overflow: 'scroll',
-            paddingBottom: 30,
-          }}
-        >
-          <div className="media-playlist-tracks">
-            {tracks.map((track, position) => (
-              <PlaylistItem
-                key={track.label + position}
-                track={track}
-                position={position}
-                currentTrack={currentTrack}
-                onItemClick={() => this._handleTrackClick(track)}
-              />
-            ))}
-            {this._focusNowPlayingItem(currentTrack.id)}
-          </div>
-        </div>
-      </div>
+      <View className="media-playlist">
+        <View style={styles.nowPlaying}>
+          <Text style={{ fontStyle: 'bold', fontWeight: 600 }}>NOW PLAYING</Text>
+          <img
+            style={styles.pointer}
+            src={deleteIcon}
+            alt="clear all"
+            onClick={() => musicStore.clearNowPlayingList()}
+          />
+        </View>
+        {
+          <FlatList
+            style={{ marginTop: 0 }}
+            keyExtractor={(item, index) => item.id + index}
+            data={tracks}
+            renderItem={(
+              { item, index } // console.log(index)
+            ) => (
+              <View
+                style={{
+                  borderBottomWidth: 1,
+                  borderBottomStyle: 'solid',
+                  borderBottomColor: '#373d3f',
+                }}
+              >
+                <PlaylistItem
+                  key={item.id + index}
+                  track={item}
+                  position={index}
+                  currentTrack={currentTrack}
+                  onItemClick={() => this._handleTrackClick(item)}
+                />
+              </View>
+            )}
+          />
+        }
+        {this._focusNowPlayingItem(currentTrack.id)}
+      </View>
     );
   }
 }
