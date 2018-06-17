@@ -54,7 +54,7 @@ class PlaylistItem extends React.Component {
     }
   };
 
-  _formatLabel = name => name.substring(0, 25);
+  _formatLabel = name => name.substring(0, 22);
 
   render() {
     const { track, currentTrack } = this.props;

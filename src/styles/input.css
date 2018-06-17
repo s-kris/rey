@@ -1,8 +1,8 @@
 input[type=text] {
-    padding:5px; 
-    border:1px solid #ccc; 
+    padding:8px; 
+    border:2px solid #ccc; 
     -webkit-border-radius: 2px;
-    border-radius: 2px;
+    border-radius: 5px;
 }
 
 input[type=text]:focus {

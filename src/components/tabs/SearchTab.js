@@ -39,7 +39,18 @@ const styles = {
     overflow: 'scroll',
     // backgroundColor: 'grey',
   },
-  searchContainer: { width: '100%', marginTop: 20 },
+  searchWrapper: {
+    width: '100%',
+    marginTop: 10,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    // backgroundColor: 'grey',
+  },
+
+  searchContainer: {
+    width: '100%',
+  },
 };
 
 class SearchTab extends React.Component {
@@ -106,14 +117,16 @@ class SearchTab extends React.Component {
   render() {
     return (
       <div style={styles.rootContainer}>
-        <div style={styles.searchContainer}>
-          <SimpleInput
-            className="fluid"
-            placeholder="search"
-            changeTimeout={250}
-            onChange={this.handleChange}
-            clearButton
-          />
+        <div style={styles.searchWrapper}>
+          <div style={styles.searchContainer}>
+            <SimpleInput
+              className="fluid"
+              placeholder="search from youtube"
+              changeTimeout={250}
+              onChange={this.handleChange}
+              clearButton
+            />
+          </div>
         </div>
         <div style={styles.contentContainer}>
           {this.state.isLoading ? (
