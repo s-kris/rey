@@ -1,9 +1,11 @@
 import React from 'react';
 import { view } from 'react-easy-state';
+import ReactTooltip from 'react-tooltip';
 
 import PlaylistItem from './PlaylistItem';
 import musicStore from './../../stores/musicStore';
 import deleteIcon from './../../assets/images/icons/delete.png';
+import { DELAY_SHOW_TOOL_TIP } from './../../config/Constants';
 
 const styles = {
   row: {
@@ -45,8 +47,10 @@ class Playlist extends React.Component {
               style={styles.pointer}
               src={deleteIcon}
               alt="clear all"
+              data-tip="clear queue"
               onClick={() => musicStore.clearNowPlayingList()}
             />
+            <ReactTooltip delayShow={DELAY_SHOW_TOOL_TIP} />
           </div>
         </div>
         <div

@@ -51,7 +51,7 @@ const styles = {
   },
 };
 
-const menuItems = ['SEARCH', 'POPULAR', 'PLAYLISTS', 'PROFILE'];
+const menuItems = ['SEARCH', 'SIMILAR', 'POPULAR', 'PLAYLISTS', 'PROFILE'];
 
 class TabsContainer extends React.Component {
   state = {
