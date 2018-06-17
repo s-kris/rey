@@ -1,4 +1,5 @@
 import React from 'react';
+import { View, Text } from 'react-native-web';
 
 import logo from './../assets/images/logo-min.png';
 
@@ -10,7 +11,7 @@ const styles = {
   },
   logoText: {
     color: '#FFFFFF',
-    letterSpacing: 2,
+    letterSpacing: 3,
     fontSize: 14,
     textTransform: 'uppercase',
   },
@@ -19,10 +20,12 @@ const styles = {
 class Header extends React.Component {
   render() {
     return (
-      <div style={styles.rootContainer}>
+      <View style={styles.rootContainer}>
         <img src={logo} width="75" height="75" alt="rey music player" />
-        <div style={styles.logoText}> Re-imagined youtube music player</div>
-      </div>
+        <View>
+          <Text style={styles.logoText}>Re-imagined youtube music player</Text>
+        </View>
+      </View>
     );
   }
 }

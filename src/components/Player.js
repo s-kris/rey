@@ -1,4 +1,5 @@
 import React from 'react';
+import { View } from 'react-native-web';
 
 import './../styles/media-player.css';
 import MediaPlayer from './mediaplayer/';
@@ -10,21 +11,13 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
   },
-  controlsContainer: {
-    height: 70,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    // backgroundColor: 'grey',
-  },
 };
 class Player extends React.Component {
   render() {
     return (
-      <div style={styles.rootContainer}>
+      <View style={styles.rootContainer}>
         <MediaPlayer />
-      </div>
+      </View>
     );
   }
 }

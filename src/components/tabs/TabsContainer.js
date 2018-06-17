@@ -1,4 +1,5 @@
 import React from 'react';
+import { View, Text } from 'react-native-web';
 
 import SearchTab from './SearchTab';
 import WhatAShame from '../WhatAShame';
@@ -7,11 +8,11 @@ const styles = {
   rootContainer: {
     width: '100%',
     height: '100%',
-    // display: 'flex',
-    // flexDirection: 'column',
-    // alignItems: 'center',
-    // backgroundColor: '#FFFFFF',
-    // padding: 20,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    padding: 10,
   },
   headerContainer: {
     width: '100%',
@@ -19,14 +20,10 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    // backgroundColor: 'grey',
-    padding: 10,
   },
   menuText: {
-    display: 'inline-block',
-    width: '100',
-    fontStyle: 'bold',
-    fontWeight: '600',
+    // fontStyle: 'bold',
+    fontWeight: '500',
     letterSpacing: 2,
     fontSize: 16,
     color: '#373d3f',
@@ -34,9 +31,8 @@ const styles = {
     textTransform: 'uppercase',
   },
   menuTextActive: {
-    display: 'inline-block',
-    fontStyle: 'bold',
-    fontWeight: '600',
+    // fontStyle: 'bold',
+    fontWeight: '500',
     letterSpacing: 2,
     fontSize: 16,
     color: '#65AB12',
@@ -44,9 +40,9 @@ const styles = {
     textTransform: 'uppercase',
   },
   contentContainer: {
+    flex: 1,
     width: '100%',
     height: '100%',
-    padding: 15,
     // backgroundColor: 'grey',
   },
 };
@@ -83,22 +79,22 @@ class TabsContainer extends React.Component {
     array.map(
       item =>
         this.state.activeTab === item ? (
-          <div key={item} style={styles.menuTextActive} onClick={() => this._onClickMenuItem(item)}>
-            {item}
-          </div>
+          <View key={item} onClick={() => this._onClickMenuItem(item)}>
+            <Text style={styles.menuTextActive}>{item}</Text>
+          </View>
         ) : (
-          <div key={item} style={styles.menuText} onClick={() => this._onClickMenuItem(item)}>
-            {item}
-          </div>
+          <View key={item} onClick={() => this._onClickMenuItem(item)}>
+            <Text style={styles.menuText}>{item}</Text>
+          </View>
         )
     );
 
   render() {
     return (
-      <div style={styles.rootContainer}>
-        <div style={styles.headerContainer}>{this._renderMenu(menuItems)}</div>
-        <div style={styles.contentContainer}>{this._renderContent()}</div>
-      </div>
+      <View style={styles.rootContainer}>
+        <View style={styles.headerContainer}>{this._renderMenu(menuItems)}</View>
+        <View style={styles.contentContainer}>{this._renderContent()}</View>
+      </View>
     );
   }
 }

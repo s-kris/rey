@@ -1,7 +1,7 @@
 import React from 'react';
+import { View, Text, FlatList } from 'react-native-web';
 import youtubeHelper from 'youtube-search';
 import { ScaleLoader } from 'react-spinners';
-import SimpleInput from 'react-simple-input';
 
 import { YOUTUBE_API_KEY, YOUTUBE_SEARCH_RESULTS_MAX, SEARCH_MIN_LETTERS } from './../../config/Constants';
 import './../../styles/input.css';
@@ -12,44 +12,20 @@ const styles = {
   rootContainer: {
     width: '100%',
     height: '100%',
-    //   backgroundColor: 'grey',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
   },
-  loaderContainer: {
+  searchBoxContainer: {
+    marginTop: 15,
+  },
+  searchResultsContainer: {
+    marginTop: 15,
+  },
+  centerContainer: {
     width: '100%',
     height: '100%',
-    // backgroundColor: 'grey',
     display: 'flex',
     flexDirection: 'column',
+    justifyContent: 'center',
     alignItems: 'center',
-    justifyContent: 'center',
-  },
-  contentContainer: {
-    width: '100%',
-    height: '100%',
-    marginTop: 20,
-    // backgroundColor: 'grey',
-    overflow: 'hidden',
-  },
-  searchList: {
-    width: '100%',
-    height: 500,
-    overflow: 'hidden',
-    // backgroundColor: 'grey',
-  },
-  searchWrapper: {
-    width: '100%',
-    marginTop: 10,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    // backgroundColor: 'grey',
-  },
-
-  searchContainer: {
-    width: '100%',
   },
 };
 
@@ -61,7 +37,7 @@ class SearchTab extends React.Component {
       data: [],
       empty: false,
     };
-    // this._searchYoutube('telugu songs', 10);
+    // this._searchYoutube('telugu songs', 20);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -102,48 +78,54 @@ class SearchTab extends React.Component {
       if (results.length === 0) {
         this.setState({ empty: true });
       } else {
-        this._renderData(this._cleanSearchResults(results));
+        const cleanData = this._cleanSearchResults(results);
+        this.setState({
+          data: cleanData,
+          empty: false,
+          isLoading: false,
+        });
       }
     });
   };
 
-  _renderData = songs => {
-    const songsList = songs.map(s => (
-      <SongItem thumbnailUrl={s.thumbnails.medium.url} name={s.title} videoUrl={s.link} key={s.id} />
-    ));
-    this.setState({ empty: false, data: songsList, isLoading: false });
-  };
+  // _renderData = songs => {
+  //   const songsList = songs.map(s => (
+  //     <SongItem thumbnailUrl={s.thumbnails.medium.url} name={s.title} videoUrl={s.link} key={s.id} />
+  //   ));
+  //   this.setState({ empty: false, data: songsList, isLoading: false });
+  // };
 
   render() {
     return (
-      <div style={styles.rootContainer}>
-        <div style={styles.searchWrapper}>
-          <div style={styles.searchContainer}>
-            <SimpleInput
-              className="fluid"
-              placeholder="search from youtube"
-              changeTimeout={250}
-              onChange={this.handleChange}
-              clearButton
-            />
-          </div>
-        </div>
-        <div style={styles.contentContainer}>
-          {this.state.isLoading ? (
-            <div style={styles.loaderContainer}>
-              <ScaleLoader color="#8bb955" loading />
-            </div>
-          ) : (
-            <div style={styles.searchList}>{this.state.data}</div>
+      <View style={styles.rootContainer}>
+        <View style={styles.searchBoxContainer}>
+          <input type="text" placeholder="search your heart out" onChange={this.handleChange} />
+        </View>
+
+        <FlatList
+          style={{ marginTop: 15 }}
+          keyExtractor={item => item.id}
+          data={this.state.data}
+          renderItem={({ item }) => (
+            <SongItem key={item.id} thumbnailUrl={item.thumbnails.medium.url} name={item.title} videoUrl={item.link} />
           )}
-          {this.state.empty && (
-            <div style={styles.loaderContainer}>
-              <div style={{ fontSize: 24, color: '#8bb955' }}> No Results </div>
-              <WhatAShame />
-            </div>
-          )}
-        </div>
-      </div>
+        />
+
+        {this.state.isLoading && (
+          <View style={styles.centerContainer}>
+            <ScaleLoader color="#8bb955" loading />
+          </View>
+        )}
+
+        {this.state.empty && (
+          <View style={styles.centerContainer}>
+            <View>
+              <Text style={{ fontSize: 24, color: '#8bb955' }}>No Results</Text>
+            </View>
+            <WhatAShame />
+          </View>
+        )}
+      </View>
     );
   }
 }

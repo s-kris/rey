@@ -10,7 +10,3 @@ input[type=text]:focus {
 }
 
 textarea, select, input, button { outline: none; }
-
-.fluid {
-    width: 100% ;
-}

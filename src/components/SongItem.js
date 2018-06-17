@@ -1,4 +1,5 @@
 import React from 'react';
+import { View, Text } from 'react-native-web';
 import ReactSVG from 'react-svg';
 import randomColor from 'randomcolor';
 
@@ -24,23 +25,24 @@ class SongItem extends React.Component {
     });
   };
 
-  _formatLabel = name => name.substring(0, 72);
-
+  _formatLabel = name => name;
   render() {
     return (
-      <div
+      <View
         className="song-item-container"
         style={{
-          borderLeft: `4px solid ${randomColor({
+          borderLeftWidth: 4,
+          borderLeftStyle: 'solid',
+          borderLeftColor: randomColor({
             luminosity: 'bright',
             hue: 'blue',
-          })}`,
+          }),
         }}
       >
-        <div className="title" onClick={() => this._onClickPlay()}>
+        <Text className="title" onClick={() => this._onClickPlay()} numberOfLines={1}>
           {this._formatLabel(this.props.name)}
-        </div>
-        <div className="actions-container">
+        </Text>
+        <View className="actions-container">
           {/* <ReactSVG
             path={playIcon}
             evalScripts="always"
@@ -59,8 +61,8 @@ class SongItem extends React.Component {
               this._onClickQueue();
             }}
           />
-        </div>
-      </div>
+        </View>
+      </View>
     );
   }
 }

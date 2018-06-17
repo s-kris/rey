@@ -1,4 +1,5 @@
 import React from 'react';
+import { View } from 'react-native-web';
 
 import Player from '../components/Player';
 import bg1 from './../assets/images/bg1.jpg';
@@ -49,31 +50,31 @@ class HomeScreen extends React.Component {
   _renderPlayer = () => {
     if (isMobileDevice()) {
       return (
-        <div style={styles.modulesContainer}>
+        <View style={styles.modulesContainer}>
           <WhatAShame message="Rey is only for desktop at the moment" giphyId="RFDXes97gboYg" />
-        </div>
+        </View>
       );
     }
     return (
-      <div style={styles.modulesContainer}>
-        <div style={styles.playerContainer}>
+      <View style={styles.modulesContainer}>
+        <View style={styles.playerContainer}>
           <Player />
-        </div>
-        <div style={styles.tabsContainer}>
+        </View>
+        <View style={styles.tabsContainer}>
           <TabsContainer />
-        </div>
-      </div>
+        </View>
+      </View>
     );
   };
 
   render() {
     return (
-      <div style={styles.rootContainer}>
-        <div style={styles.headerContainer}>
+      <View style={styles.rootContainer}>
+        <View style={styles.headerContainer}>
           <Header />
-        </div>
+        </View>
         {this._renderPlayer()}
-      </div>
+      </View>
     );
   }
 }
