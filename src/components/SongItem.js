@@ -3,7 +3,7 @@ import ReactSVG from 'react-svg';
 import randomColor from 'randomcolor';
 
 import './../styles/song-item.css';
-import playIcon from './../assets/images/icons/play.svg';
+// import playIcon from './../assets/images/icons/play.svg';
 import queueIcon from './../assets/images/icons/queue_add.svg';
 import musicStore from './../stores/musicStore';
 
@@ -33,6 +33,7 @@ class SongItem extends React.Component {
         style={{
           borderLeft: `4px solid ${randomColor({
             luminosity: 'bright',
+            hue: 'blue',
           })}`,
         }}
       >
