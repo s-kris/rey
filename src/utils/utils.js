@@ -1,4 +1,4 @@
-import Alert from 'react-s-alert';
+import { toast } from 'react-toastify';
 
 export const isMobileDevice = () => {
   let isMobile = false; // initiate as false
@@ -18,4 +18,13 @@ export const isMobileDevice = () => {
   return isMobile;
 };
 
-export const showAlert = msg => {};
+export const showAlert = msg => {
+  toast.success(msg, {
+    position: 'top-right',
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: false,
+  });
+};
