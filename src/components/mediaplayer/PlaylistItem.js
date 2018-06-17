@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native-web';
 import { ScaleLoader } from 'react-spinners';
+import { view } from 'react-easy-state';
 
 import musicStore from '../../stores/musicStore';
 import { themeColor } from './../../config/Colors';
@@ -34,6 +35,7 @@ class PlaylistItem extends React.Component {
     const { track, position } = this.props;
     const nowPlayingTrack = musicStore.getCurrentTrack();
     const nowPlayingList = musicStore.getNowPlayingList();
+
     musicStore.removeFromNowPlayingList(this.props.position);
 
     if (track.id === nowPlayingTrack.id) {
@@ -59,12 +61,18 @@ class PlaylistItem extends React.Component {
 
   render() {
     const { track, currentTrack } = this.props;
+    const isActive = track.id === currentTrack.id;
+    if (isActive) {
+      this.props.focus();
+    }
     return (
-      <View id={track.id} className={`media-playlist-track ${track.id === currentTrack.id ? 'is-active' : ''}`}>
+      <View id={track.id} className={`media-playlist-track ${isActive ? 'is-active' : ''}`}>
         <View style={styles.row}>
           <View style={styles.pointer} onClick={() => this.props.onItemClick(track)}>
             <View style={styles.row}>
-              <Text numberOfLines={1}>{this._formatLabel(track.label)} &nbsp;</Text>
+              <Text numberOfLines={1} style={{ fontSize: 16 }}>
+                {this._formatLabel(track.label)} &nbsp;
+              </Text>
               <ScaleLoader height={10} width={2} color={themeColor} loading={track.id === currentTrack.id} />
             </View>
           </View>
@@ -79,4 +87,4 @@ class PlaylistItem extends React.Component {
   }
 }
 
-export default PlaylistItem;
+export default view(PlaylistItem);

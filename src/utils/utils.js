@@ -21,7 +21,7 @@ export const isMobileDevice = () => {
 export const showAlert = msg => {
   toast.success(msg, {
     position: 'top-right',
-    autoClose: 3000,
+    autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,

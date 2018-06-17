@@ -65,11 +65,13 @@
 }
 .media-row{
     display:flex;
+    flex-direction: row;
     justify-content:space-between;
     width:100%
 }
 .media-control-group{
     display:flex;
+    flex-direction: row;
     align-items:center;
     position:relative
 }
@@ -328,7 +330,7 @@ input[type=range]::-webkit-slider-thumb{
     border:1px solid #373d3f
 }
 .media-playlist-track{
-    padding:12px 12px 12px 5px;
+    padding:12px 12px 12px 12px;
     /* cursor:pointer */
 }
 .media-playlist-track+.media-playlist-track{

@@ -27,17 +27,26 @@ class Playlist extends React.Component {
     this.props.onTrackClick(track);
   }
 
-  _focusNowPlayingItem = id => {
+  _focusNowPlayingItem = position => {
+    // this.flatListRef.scrollToIndex({ index: position - 1 });
     // console.log(document.getElementById(id));
     // document.getElementById(id).scrollTop = 10;
   };
 
   render() {
     const { tracks, currentTrack } = this.props;
+    let playlistdata = [];
+    playlistdata = tracks.map((p, i) => {
+      // data needs a 'key' property for flatlist
+      playlistdata[i] = p;
+      playlistdata[i].key = p.id + i;
+      return playlistdata[i];
+    });
+
     return (
       <View className="media-playlist">
         <View style={styles.nowPlaying}>
-          <Text style={{ fontStyle: 'bold', fontWeight: 600 }}>NOW PLAYING</Text>
+          <Text style={{ fontStyle: 'bold', fontWeight: '600' }}>NOW PLAYING</Text>
           <img
             style={styles.pointer}
             src={deleteIcon}
@@ -48,7 +57,6 @@ class Playlist extends React.Component {
         {
           <FlatList
             style={{ marginTop: 0 }}
-            keyExtractor={(item, index) => item.id + index}
             data={tracks}
             renderItem={(
               { item, index } // console.log(index)
@@ -64,6 +72,7 @@ class Playlist extends React.Component {
                   key={item.id + index}
                   track={item}
                   position={index}
+                  focus={() => this._focusNowPlayingItem(index)}
                   currentTrack={currentTrack}
                   onItemClick={() => this._handleTrackClick(item)}
                 />
@@ -71,7 +80,6 @@ class Playlist extends React.Component {
             )}
           />
         }
-        {this._focusNowPlayingItem(currentTrack.id)}
       </View>
     );
   }

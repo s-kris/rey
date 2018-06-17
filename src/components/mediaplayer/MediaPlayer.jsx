@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { View, Text } from 'react-native-web';
 import { Media, Player, controls, utils } from 'react-media-player';
 import { view } from 'react-easy-state';
 
@@ -46,46 +47,46 @@ class MediaPlayer extends Component {
     return (
       <Media>
         {mediaProps => (
-          <div
+          <View
             className={`media-player${mediaProps.isFullscreen ? ' media-player--fullscreen' : ''}`}
             onKeyDown={keyboardControls.bind(null, mediaProps)}
             tabIndex="0"
           >
-            <div className="media-player-element" onClick={() => mediaProps.playPause()}>
+            <View className="media-player-element" onClick={() => mediaProps.playPause()}>
               <Player src={src} loop={repeatTrack} autoPlay={autoPlay} onEnded={this._handleEnded} />
-            </div>
-            <div className="media-controls media-controls--full">
-              <div className="media-row">
+            </View>
+            <View className="media-controls media-controls--full">
+              <View className="media-row">
                 <CurrentTime className="media-control media-control--current-time" />
-                {currentTrack && this._formatLabel(currentTrack)}
+                <Text>{currentTrack && this._formatLabel(currentTrack)}</Text>
                 <Duration className="media-control media-control--duration" />
-              </div>
-              <div className="media-control-group media-control-group--seek">
+              </View>
+              <View className="media-control-group media-control-group--seek">
                 <Progress className="media-control media-control--progress" />
                 <SeekBar className="media-control media-control--seekbar" />
-              </div>
-              <div className="media-row">
-                <div className="media-control-group">
+              </View>
+              <View className="media-row">
+                <View className="media-control-group">
                   <MuteUnmute className="media-control media-control--mute-unmute" />
-                </div>
-                <div className="media-control-group">
+                </View>
+                <View className="media-control-group">
                   <PrevTrack className="media-control media-control--prev-track" onClick={this._handlePrevTrack} />
                   <PlayPause className="media-control media-control--play-pause" />
                   <NextTrack className="media-control media-control--next-track" onClick={this._handleNextTrack} />
-                </div>
-                <div className="media-control-group">
+                </View>
+                <View className="media-control-group">
                   <Repeat
                     className="media-control media-control--repeat"
                     isActive={repeatTrack}
                     onClick={this._handleRepeatTrack}
                   />
-                </div>
-                {/* <div className="media-control-group">
+                </View>
+                {/* <View className="media-control-group">
                   <FullScreen className="media-control media-control--repeat" />
-                </div> */}
-              </div>
-            </div>
-          </div>
+                </View> */}
+              </View>
+            </View>
+          </View>
         )}
       </Media>
     );
