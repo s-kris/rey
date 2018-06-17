@@ -3,6 +3,7 @@ import shortId from 'shortid';
 import Cookies from 'js-cookie';
 import ReactGA from 'react-ga';
 
+import { showAlert } from './../utils/utils';
 import { KEY_CURRENT_TRACK, KEY_NOW_PLAYING_LIST } from './../config/Constants';
 
 const musicStore = store({
@@ -21,16 +22,19 @@ const musicStore = store({
     musicStore.setNowPlayingList([]);
     musicStore.setCurrentTrack({});
     Cookies.set(KEY_NOW_PLAYING_LIST, [], { expires: 300 });
+    showAlert('All cleared');
   },
   setNowPlayingList(array) {
     musicStore.nowPlayingList = array.slice(0);
   },
   addToNowPlayingList(item) {
+    showAlert('Added to queue');
     if (!item.id) item.id = shortId.generate();
     musicStore.nowPlayingList.push(item);
     Cookies.set(KEY_NOW_PLAYING_LIST, musicStore.getNowPlayingList(), { expires: 300 });
   },
   insertToNowPlayingList(item, position) {
+    showAlert('Added to queue');
     const newItem = {
       id: shortId.generate(), // diff ids for same song(multiple) in queue
       src: item.src,
@@ -40,6 +44,8 @@ const musicStore = store({
     Cookies.set(KEY_NOW_PLAYING_LIST, musicStore.getNowPlayingList(), { expires: 300 });
   },
   removeFromNowPlayingList(position) {
+    showAlert('Removed from queue');
+
     musicStore.nowPlayingList.splice(position, 1);
     Cookies.set(KEY_NOW_PLAYING_LIST, musicStore.getNowPlayingList(), { expires: 300 });
   },
