@@ -1,14 +1,13 @@
 import React from 'react';
-import { View, Text } from 'react-primitives';
 import Header from './../components/Header';
 
 class SettingsScreen extends React.Component {
   render() {
     return (
-      <View>
+      <div>
         <Header />
-        <Text>SettingsScreen</Text>
-      </View>
+        <div>SettingsScreen</div>
+      </div>
     );
   }
 }

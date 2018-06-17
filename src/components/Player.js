@@ -1,10 +1,9 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-primitives';
 
 import './../styles/media-player.css';
 import MediaPlayer from './mediaplayer/';
 
-const styles = StyleSheet.create({
+const styles = {
   rootContainer: {
     height: '100%',
     width: '100%',
@@ -19,13 +18,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     // backgroundColor: 'grey',
   },
-});
+};
 class Player extends React.Component {
   render() {
     return (
-      <View style={styles.rootContainer}>
+      <div style={styles.rootContainer}>
         <MediaPlayer />
-      </View>
+      </div>
     );
   }
 }

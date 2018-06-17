@@ -1,3 +1,5 @@
+import Alert from 'react-s-alert';
+
 export const isMobileDevice = () => {
   let isMobile = false; // initiate as false
   // device detection
@@ -14,4 +16,10 @@ export const isMobileDevice = () => {
     isMobile = true;
   }
   return isMobile;
+};
+
+export const showAlert = msg => {
+  Alert.success(msg, {
+    position: 'bottom-left',
+  });
 };

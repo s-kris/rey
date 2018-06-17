@@ -1,10 +1,10 @@
 import React from 'react';
-import random from 'random-js';
+import ReactSVG from 'react-svg';
+import randomColor from 'randomcolor';
 
 import './../styles/song-item.css';
-import playIcon from './../assets/images/icons/play.png';
-import queueIcon from './../assets/images/icons/queue.png';
-import { colorPalette } from './../config/Colors';
+import playIcon from './../assets/images/icons/play.svg';
+import queueIcon from './../assets/images/icons/queue_add.svg';
 import musicStore from './../stores/musicStore';
 
 class SongItem extends React.Component {
@@ -24,30 +24,40 @@ class SongItem extends React.Component {
     });
   };
 
-  _getRandomColor = () => {
-    const index = random().integer(0, colorPalette.length - 1);
-    return colorPalette[index];
-  };
-
-  _formatLabel = name => name.substring(0, 20);
+  _formatLabel = name => name.substring(0, 72);
 
   render() {
-    const { thumbnailUrl, name } = this.props;
     return (
       <div
-        className="container"
+        className="song-item-container"
         style={{
-          background: `url(${thumbnailUrl})`,
-          backgroundSize: 'cover',
-          boxShadow: 'inset 0 0 0 1000px rgba(0,0,0,.4)',
+          borderLeft: `4px solid ${randomColor({
+            luminosity: 'bright',
+          })}`,
         }}
       >
-        <img src={playIcon} alt="queue" className="queue" onClick={() => this._onClickPlay()} />
-        <div className="bottom-row" style={{ backgroundColor: this._getRandomColor() }}>
-          <div className="title">{name}</div>
-          <div className="action">
-            <img src={queueIcon} height="100%" alt="more" onClick={() => this._onClickQueue()} />
-          </div>
+        <div className="title" onClick={() => this._onClickPlay()}>
+          {this._formatLabel(this.props.name)}
+        </div>
+        <div className="actions-container">
+          {/* <ReactSVG
+            path={playIcon}
+            evalScripts="always"
+            svgClassName="action"
+            svgStyle={{ fill: '#373d3f' }}
+            onClick={() => {
+              this._onClickPlay();
+            }}
+          /> */}
+          <ReactSVG
+            path={queueIcon}
+            evalScripts="always"
+            svgClassName="action"
+            svgStyle={{ fill: '#373d3f' }}
+            onClick={() => {
+              this._onClickQueue();
+            }}
+          />
         </div>
       </div>
     );

@@ -1,22 +1,21 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-primitives';
 import youtubeHelper from 'youtube-search';
-import StackGrid from 'react-stack-grid';
 import { ScaleLoader } from 'react-spinners';
 import SimpleInput from 'react-simple-input';
 
-import { YOUTUBE_API_KEY, YOUTUBE_SEARCH_RESULTS_MAX } from './../../config/Constants';
+import { YOUTUBE_API_KEY, YOUTUBE_SEARCH_RESULTS_MAX, SEARCH_MIN_LETTERS } from './../../config/Constants';
 import './../../styles/input.css';
 import SongItem from '../SongItem';
 import WhatAShame from '../WhatAShame';
 
-const styles = StyleSheet.create({
+const styles = {
   rootContainer: {
     width: '100%',
     height: '100%',
-    // backgroundColor: 'grey',
+    //   backgroundColor: 'grey',
     display: 'flex',
     flexDirection: 'column',
+    alignItems: 'flex-start',
   },
   loaderContainer: {
     width: '100%',
@@ -29,13 +28,19 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     width: '100%',
-    flex: 1,
-    marginTop: 12,
+    height: '100%',
+    marginTop: 20,
     // backgroundColor: 'grey',
-    display: 'flex',
-    overflowY: 'scroll',
+    overflow: 'hidden',
   },
-});
+  searchList: {
+    width: '100%',
+    height: 500,
+    overflow: 'scroll',
+    // backgroundColor: 'grey',
+  },
+  searchContainer: { width: '100%', marginTop: 20 },
+};
 
 class SearchTab extends React.Component {
   constructor(props) {
@@ -45,13 +50,13 @@ class SearchTab extends React.Component {
       data: [],
       empty: false,
     };
-    // this._searchYoutube('trending songs', 50);
+    // this._searchYoutube('telugu songs', 10);
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange = event => {
     const searchTerm = event.target.value;
-    if (searchTerm && searchTerm.length > 4) {
+    if (searchTerm && searchTerm.length > SEARCH_MIN_LETTERS - 1) {
       this.setState(
         {
           isLoading: true,
@@ -92,25 +97,16 @@ class SearchTab extends React.Component {
   };
 
   _renderData = songs => {
-    const tiles = [];
-    for (let i = 0; i < songs.length; i++) {
-      tiles.push(
-        <SongItem
-          thumbnailUrl={songs[i].thumbnails.medium.url}
-          name={songs[i].title}
-          videoUrl={songs[i].link}
-          key={i}
-        />
-      );
-    }
-    this.setState({ empty: false, data: tiles, isLoading: false });
+    const songsList = songs.map(s => (
+      <SongItem thumbnailUrl={s.thumbnails.medium.url} name={s.title} videoUrl={s.link} key={s.id} />
+    ));
+    this.setState({ empty: false, data: songsList, isLoading: false });
   };
 
   render() {
     return (
-      <View style={styles.rootContainer}>
-        <View>
-          {/* <input type="text" name="search" placeholder="Type to search" onChange={this.handleChange} /> */}
+      <div style={styles.rootContainer}>
+        <div style={styles.searchContainer}>
           <SimpleInput
             className="fluid"
             placeholder="search"
@@ -118,23 +114,23 @@ class SearchTab extends React.Component {
             onChange={this.handleChange}
             clearButton
           />
-        </View>
-        <View style={styles.contentContainer}>
+        </div>
+        <div style={styles.contentContainer}>
           {this.state.isLoading ? (
-            <View style={styles.loaderContainer}>
+            <div style={styles.loaderContainer}>
               <ScaleLoader color="#8bb955" loading />
-            </View>
+            </div>
           ) : (
-            <StackGrid columnWidth={200}>{this.state.data}</StackGrid>
+            <div style={styles.searchList}>{this.state.data}</div>
           )}
           {this.state.empty && (
-            <View style={styles.loaderContainer}>
-              <Text style={{ fontSize: 24, color: '#8bb955' }}> No Results </Text>
+            <div style={styles.loaderContainer}>
+              <div style={{ fontSize: 24, color: '#8bb955' }}> No Results </div>
               <WhatAShame />
-            </View>
+            </div>
           )}
-        </View>
-      </View>
+        </div>
+      </div>
     );
   }
 }

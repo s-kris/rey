@@ -39,7 +39,7 @@ class Playlist extends React.Component {
       <div className="media-playlist">
         <div className="media-playlist-header">
           <div className="media-playlist-title" style={styles.row}>
-            QUEUE{' '}
+            <div>QUEUE</div>
             <div
               style={styles.pointer}
               onClick={() => {

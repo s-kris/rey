@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-primitives';
 
-const styles = StyleSheet.create({
+const styles = {
   container: {
     flex: 1,
     alignItems: 'center',
@@ -9,7 +8,7 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'center',
   },
-});
+};
 
 class WhatAShame extends React.Component {
   constructor(props) {
@@ -30,7 +29,7 @@ class WhatAShame extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <div style={styles.container}>
         {this.props.message && <p> {this.props.message}</p>}
         <iframe
           title="ss"
@@ -41,10 +40,7 @@ class WhatAShame extends React.Component {
           className="giphy-embed"
           allowFullScreen
         />
-        <p>
-          <a href="https://giphy.com/gifs/reaction-wizard-klux-PEtL0mS2JXMBi">via GIPHY</a>
-        </p>
-      </View>
+      </div>
     );
   }
 }

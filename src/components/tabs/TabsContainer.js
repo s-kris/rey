@@ -1,50 +1,57 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-primitives';
 
 import SearchTab from './SearchTab';
 import WhatAShame from '../WhatAShame';
 
-const styles = StyleSheet.create({
+const styles = {
   rootContainer: {
     width: '100%',
     height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
+    // display: 'flex',
+    // flexDirection: 'column',
+    // alignItems: 'center',
+    // backgroundColor: '#FFFFFF',
+    // padding: 20,
   },
   headerContainer: {
     width: '100%',
+    display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
+    alignItems: 'center',
     // backgroundColor: 'grey',
-    padding: 20,
+    padding: 10,
   },
   menuText: {
+    display: 'inline-block',
+    width: '100',
     fontStyle: 'bold',
-    fontWeight: '700',
+    fontWeight: '600',
     letterSpacing: 2,
-    fontSize: 14,
+    fontSize: 16,
     color: '#373d3f',
     cursor: 'pointer',
+    textTransform: 'uppercase',
   },
   menuTextActive: {
+    display: 'inline-block',
     fontStyle: 'bold',
-    fontWeight: '700',
+    fontWeight: '600',
     letterSpacing: 2,
-    fontSize: 14,
+    fontSize: 16,
     color: '#65AB12',
     cursor: 'pointer',
+    textTransform: 'uppercase',
   },
   contentContainer: {
-    flex: 1,
     width: '100%',
+    height: '100%',
     padding: 15,
+    // backgroundColor: 'grey',
   },
-});
+};
 
-const menu = ['SEARCH', 'POPULAR', 'FAVOURITES', 'PLAYLISTS', 'PROFILE'];
+const menuItems = ['SEARCH', 'POPULAR', 'PLAYLISTS', 'PROFILE'];
 
 class TabsContainer extends React.Component {
   state = {
@@ -72,26 +79,26 @@ class TabsContainer extends React.Component {
     }
   };
 
-  _renderMenu = () =>
-    menu.map(
+  _renderMenu = array =>
+    array.map(
       item =>
         this.state.activeTab === item ? (
-          <Text key={item} style={styles.menuTextActive} onClick={() => this._onClickMenuItem(item)}>
+          <div key={item} style={styles.menuTextActive} onClick={() => this._onClickMenuItem(item)}>
             {item}
-          </Text>
+          </div>
         ) : (
-          <Text key={item} style={styles.menuText} onClick={() => this._onClickMenuItem(item)}>
+          <div key={item} style={styles.menuText} onClick={() => this._onClickMenuItem(item)}>
             {item}
-          </Text>
+          </div>
         )
     );
 
   render() {
     return (
-      <View style={styles.rootContainer}>
-        <View style={styles.headerContainer}>{this._renderMenu()}</View>
-        <View style={styles.contentContainer}>{this._renderContent()}</View>
-      </View>
+      <div style={styles.rootContainer}>
+        <div style={styles.headerContainer}>{this._renderMenu(menuItems)}</div>
+        <div style={styles.contentContainer}>{this._renderContent()}</div>
+      </div>
     );
   }
 }

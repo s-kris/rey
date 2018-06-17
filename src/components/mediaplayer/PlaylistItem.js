@@ -54,6 +54,8 @@ class PlaylistItem extends React.Component {
     }
   };
 
+  _formatLabel = name => name.substring(0, 25);
+
   render() {
     const { track, currentTrack } = this.props;
     return (
@@ -61,7 +63,7 @@ class PlaylistItem extends React.Component {
         <div style={styles.row}>
           <div style={styles.pointer} onClick={() => this.props.onItemClick(track)}>
             <div style={styles.row}>
-              {track.label} &nbsp;
+              {this._formatLabel(track.label)} &nbsp;
               <ScaleLoader height={10} width={2} color={themeColor} loading={track.id === currentTrack.id} />
             </div>
           </div>

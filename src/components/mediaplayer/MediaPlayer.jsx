@@ -39,6 +39,8 @@ class MediaPlayer extends Component {
     this.props.onEnded();
   };
 
+  _formatLabel = name => name.substring(0, 20);
+
   render() {
     const { src, currentTrack, repeatTrack, autoPlay } = this.props;
     return (
@@ -50,12 +52,12 @@ class MediaPlayer extends Component {
             tabIndex="0"
           >
             <div className="media-player-element" onClick={() => mediaProps.playPause()}>
-              <Player src={src} loop={repeatTrack} autoPlay={autoPlay} onEnded={this._handleEnded} isFullScreen />
+              <Player src={src} loop={repeatTrack} autoPlay={autoPlay} onEnded={this._handleEnded} />
             </div>
             <div className="media-controls media-controls--full">
               <div className="media-row">
                 <CurrentTime className="media-control media-control--current-time" />
-                {currentTrack}
+                {currentTrack && this._formatLabel(currentTrack)}
                 <Duration className="media-control media-control--duration" />
               </div>
               <div className="media-control-group media-control-group--seek">

@@ -1,9 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-primitives';
 
 import logo from './../assets/images/logo-min.png';
 
-const styles = StyleSheet.create({
+const styles = {
   rootContainer: {
     display: 'flex',
     flexDirection: 'column',
@@ -12,16 +11,18 @@ const styles = StyleSheet.create({
   logoText: {
     color: '#FFFFFF',
     letterSpacing: 2,
+    fontSize: 14,
+    textTransform: 'uppercase',
   },
-});
+};
 
 class Header extends React.Component {
   render() {
     return (
-      <View style={styles.rootContainer}>
+      <div style={styles.rootContainer}>
         <img src={logo} width="75" height="75" alt="rey music player" />
-        <Text style={styles.logoText}> REimagined Youtube music player</Text>
-      </View>
+        <div style={styles.logoText}> Re-imagined youtube music player</div>
+      </div>
     );
   }
 }
