@@ -36,7 +36,7 @@ const styles = {
   searchList: {
     width: '100%',
     height: 500,
-    overflow: 'scroll',
+    overflow: 'hidden',
     // backgroundColor: 'grey',
   },
   searchWrapper: {
