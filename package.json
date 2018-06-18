@@ -22,6 +22,7 @@
     "react-svg": "^4.0.17",
     "react-toastify": "^4.1.0",
     "shortid": "^2.2.8",
+    "store": "^2.0.12",
     "youtube-search": "^1.1.1"
   },
   "scripts": {

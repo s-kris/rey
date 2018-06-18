@@ -1,10 +1,10 @@
 import { store } from 'react-easy-state';
 import shortId from 'shortid';
-import Cookies from 'js-cookie';
 import ReactGA from 'react-ga';
 
 import { showAlert } from './../utils/utils';
 import { KEY_CURRENT_TRACK, KEY_NOW_PLAYING_LIST } from './../config/Constants';
+import { saveDataToStorage } from './../api/storage';
 
 const musicStore = store({
   nowPlayingList: [
@@ -21,7 +21,7 @@ const musicStore = store({
   clearNowPlayingList() {
     musicStore.setNowPlayingList([]);
     musicStore.setCurrentTrack({});
-    Cookies.set(KEY_NOW_PLAYING_LIST, [], { expires: 300 });
+    saveDataToStorage(KEY_NOW_PLAYING_LIST, []);
     showAlert('All cleared');
   },
   setNowPlayingList(array) {
@@ -31,7 +31,7 @@ const musicStore = store({
     showAlert('Added to queue');
     if (!item.id) item.id = shortId.generate();
     musicStore.nowPlayingList.push(item);
-    Cookies.set(KEY_NOW_PLAYING_LIST, musicStore.getNowPlayingList(), { expires: 300 });
+    saveDataToStorage(KEY_NOW_PLAYING_LIST, musicStore.getNowPlayingList());
   },
   insertToNowPlayingList(item, position) {
     showAlert('Added to queue');
@@ -41,13 +41,13 @@ const musicStore = store({
       label: item.label,
     };
     musicStore.nowPlayingList.splice(position + 1, 0, newItem);
-    Cookies.set(KEY_NOW_PLAYING_LIST, musicStore.getNowPlayingList(), { expires: 300 });
+    saveDataToStorage(KEY_NOW_PLAYING_LIST, musicStore.getNowPlayingList());
   },
   removeFromNowPlayingList(position) {
     showAlert('Removed from queue');
 
     musicStore.nowPlayingList.splice(position, 1);
-    Cookies.set(KEY_NOW_PLAYING_LIST, musicStore.getNowPlayingList(), { expires: 300 });
+    saveDataToStorage(KEY_NOW_PLAYING_LIST, musicStore.getNowPlayingList());
   },
   setCurrentTrack(item) {
     ReactGA.event({
@@ -57,7 +57,7 @@ const musicStore = store({
     });
     if (!item.id) item.id = shortId.generate();
     musicStore.currentTrack = item;
-    Cookies.set(KEY_CURRENT_TRACK, item, { expires: 300 });
+    saveDataToStorage(KEY_CURRENT_TRACK, item);
   },
   getCurrentTrack() {
     return musicStore.currentTrack;

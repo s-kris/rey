@@ -7,6 +7,7 @@ import MediaPlayer from './MediaPlayer';
 import Playlist from './Playlist';
 import musicStore from '../../stores/musicStore';
 import { KEY_CURRENT_TRACK, KEY_NOW_PLAYING_LIST } from '../../config/Constants';
+import { saveDataToStorage, getDataFromStorage } from './../../api/storage';
 
 const mod = (num, max) => ((num % max) + max) % max;
 
@@ -43,8 +44,20 @@ class Index extends Component {
   };
 
   _initData = () => {
-    const currentTrack = Cookies.getJSON(KEY_CURRENT_TRACK);
-    const nowPlayingList = Cookies.getJSON(KEY_NOW_PLAYING_LIST);
+    const cookieTrack = Cookies.getJSON(KEY_CURRENT_TRACK);
+    const cookieNowPlaying = Cookies.getJSON(KEY_NOW_PLAYING_LIST);
+
+    if (cookieTrack) {
+      saveDataToStorage(KEY_CURRENT_TRACK);
+      Cookies.remove(KEY_CURRENT_TRACK);
+    }
+    if (cookieNowPlaying) {
+      saveDataToStorage(KEY_NOW_PLAYING_LIST);
+      Cookies.remove(KEY_NOW_PLAYING_LIST);
+    }
+
+    const currentTrack = getDataFromStorage(KEY_CURRENT_TRACK);
+    const nowPlayingList = getDataFromStorage(KEY_NOW_PLAYING_LIST);
 
     if (currentTrack && nowPlayingList) {
       musicStore.setCurrentTrack(currentTrack);
