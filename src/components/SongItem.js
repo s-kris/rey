@@ -39,7 +39,7 @@ class SongItem extends React.Component {
           }),
         }}
       >
-        <Text className="title" onClick={() => this._onClickPlay()} numberOfLines={1}>
+        <Text className="title font" onClick={() => this._onClickPlay()} numberOfLines={1}>
           {this._formatLabel(this.props.name)}
         </Text>
         <View className="actions-container">

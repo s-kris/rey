@@ -23,7 +23,7 @@ class Header extends React.Component {
       <View style={styles.rootContainer}>
         <img src={logo} width="75" height="75" alt="rey music player" />
         <View>
-          <Text style={styles.logoText}>Re-imagined youtube music player</Text>
+          <Text className="font"  style={styles.logoText}>Re-imagined youtube music player</Text>
         </View>
       </View>
     );

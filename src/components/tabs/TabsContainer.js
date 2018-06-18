@@ -20,11 +20,12 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    paddingTop: 5,
   },
   menuText: {
     fontStyle: 'bold',
-    // fontWeight: '500',
-    letterSpacing: 2,
+    fontWeight: '900',
+    letterSpacing: 1,
     fontSize: 16,
     color: '#373d3f',
     cursor: 'pointer',
@@ -32,8 +33,8 @@ const styles = {
   },
   menuTextActive: {
     fontStyle: 'bold',
-    // fontWeight: '500',
-    letterSpacing: 2,
+    fontWeight: '900',
+    letterSpacing: 1,
     fontSize: 16,
     color: '#65AB12',
     cursor: 'pointer',
@@ -80,11 +81,15 @@ class TabsContainer extends React.Component {
       item =>
         this.state.activeTab === item ? (
           <View key={item} onClick={() => this._onClickMenuItem(item)}>
-            <Text style={styles.menuTextActive}>{item}</Text>
+            <Text className="font" style={styles.menuTextActive}>
+              {item}
+            </Text>
           </View>
         ) : (
           <View key={item} onClick={() => this._onClickMenuItem(item)}>
-            <Text style={styles.menuText}>{item}</Text>
+            <Text className="font" style={styles.menuText}>
+              {item}
+            </Text>
           </View>
         )
     );

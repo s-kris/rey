@@ -46,7 +46,7 @@ class Playlist extends React.Component {
     return (
       <View className="media-playlist">
         <View style={styles.nowPlaying}>
-          <Text>NOW PLAYING</Text>
+          <Text className="font" >NOW PLAYING</Text>
           <img
             style={styles.pointer}
             src={deleteIcon}

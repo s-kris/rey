@@ -58,7 +58,7 @@ class MediaPlayer extends Component {
             <View className="media-controls media-controls--full">
               <View className="media-row">
                 <CurrentTime className="media-control media-control--current-time" />
-                <Text>{currentTrack && this._formatLabel(currentTrack)}</Text>
+                <Text className="font" >{currentTrack && this._formatLabel(currentTrack)}</Text>
                 <Duration className="media-control media-control--duration" />
               </View>
               <View className="media-control-group media-control-group--seek">

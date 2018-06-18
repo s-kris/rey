@@ -17,7 +17,7 @@ const styles = {
     marginTop: 30,
   },
   searchResultsContainer: {
-    marginTop: 15,
+    marginTop: 20,
   },
   centerContainer: {
     width: '100%',
@@ -119,7 +119,7 @@ class SearchTab extends React.Component {
         {this.state.empty && (
           <View style={styles.centerContainer}>
             <View>
-              <Text style={{ fontSize: 24, color: '#8bb955' }}>No Results</Text>
+              <Text className="font"  style={{ fontSize: 24, color: '#8bb955' }}>No Results</Text>
             </View>
             <WhatAShame />
           </View>

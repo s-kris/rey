@@ -1,5 +1,3 @@
-body{
-}
 *:focus {
     outline: none;
 }
@@ -18,14 +16,9 @@ html {
     -moz-user-select: -moz-none;
     -o-user-select: none;
     user-select: none;
-
-    /* font-family: 'Oxygen', sans-serif;
-    font-family: 'Montserrat', sans-serif;
     font-family: 'Encode Sans Semi Expanded', sans-serif;
-    font-family: 'Source Sans Pro', sans-serif;
-    font-family: 'PT Sans', sans-serif;
-    font-family: 'Noto Sans', sans-serif; */
-    /* font-family: 'Quicksand', sans-serif; */
+}
 
-
+.font {
+    font-family: 'Encode Sans Semi Expanded', sans-serif;
 }

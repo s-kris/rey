@@ -70,7 +70,7 @@ class PlaylistItem extends React.Component {
         <View style={styles.row}>
           <View style={styles.pointer} onClick={() => this.props.onItemClick(track)}>
             <View style={styles.row}>
-              <Text numberOfLines={1} style={{ fontSize: 16, letterSpacing: 0 }}>
+              <Text className="font" numberOfLines={1} style={{ fontSize: 16, letterSpacing: 0 }}>
                 {this._formatLabel(track.label)} &nbsp;
               </Text>
               <ScaleLoader height={10} width={2} color={themeColor} loading={track.id === currentTrack.id} />
@@ -78,7 +78,7 @@ class PlaylistItem extends React.Component {
           </View>
           <View style={styles.actions}>
             <img style={styles.pointer} src={copyIcon} alt="add" onClick={() => this._onClickAdd()} />
-            <Text>&nbsp;</Text>
+            <Text className="font">&nbsp;</Text>
             <img style={styles.pointer} src={deleteIcon} alt="remove" onClick={() => this._onClickRemove()} />
           </View>
         </View>
