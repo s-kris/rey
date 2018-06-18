@@ -33,10 +33,13 @@ class Index extends Component {
 
   _formatYoutubeUrl = track => {
     const { src, id } = track;
-    if (src.indexOf('youtube') !== -1) {
-      return `${src}&tmp=${id}`;
+    if (src) {
+      if (src.indexOf('youtube') !== -1) {
+        return `${src}&tmp=${id}`;
+      }
+      return `https://www.youtube.com/watch?v=${src}&tmp=${id}`;
     }
-    return `https://www.youtube.com/watch?v=${src}&tmp=${id}`;
+    return '';
   };
 
   _initData = () => {

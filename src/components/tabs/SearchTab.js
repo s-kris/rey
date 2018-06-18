@@ -98,7 +98,7 @@ class SearchTab extends React.Component {
     return (
       <View style={styles.rootContainer}>
         <View style={styles.searchBoxContainer}>
-          <input type="text" placeholder="search your heart out" onChange={this.handleChange} />
+          <input type="text" placeholder="start typing to search" onChange={this.handleChange} />
         </View>
 
         <FlatList

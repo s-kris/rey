@@ -29,3 +29,13 @@ export const showAlert = msg => {
     draggablePercent: 50,
   });
 };
+
+export const getYoutubeId = url => {
+  // eslint-disable-next-line
+  const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+  const match = url.match(regExp);
+  if (match && match[2].length === 11) {
+    return match[2];
+  }
+  console.log('error parsing youtube link');
+};
