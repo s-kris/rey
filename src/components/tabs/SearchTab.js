@@ -71,7 +71,6 @@ class SearchTab extends React.Component {
       maxResults: limit,
       key: YOUTUBE_API_KEY,
     };
-
     youtubeHelper(searchTerm, opts, (err, results) => {
       if (err) return console.log(err);
 
