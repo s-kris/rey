@@ -12,7 +12,7 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingLeft: 5,
+    paddingLeft: 10,
     paddingTop: 5,
     paddingBottom: 5,
     backgroundColor: '#373d3f',
@@ -46,7 +46,7 @@ class Playlist extends React.Component {
     return (
       <View className="media-playlist">
         <View style={styles.nowPlaying}>
-          <Text style={{ fontStyle: 'bold', fontWeight: '600' }}>NOW PLAYING</Text>
+          <Text>NOW PLAYING</Text>
           <img
             style={styles.pointer}
             src={deleteIcon}

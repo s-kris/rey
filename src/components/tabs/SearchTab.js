@@ -14,7 +14,7 @@ const styles = {
     height: '100%',
   },
   searchBoxContainer: {
-    marginTop: 15,
+    marginTop: 30,
   },
   searchResultsContainer: {
     marginTop: 15,

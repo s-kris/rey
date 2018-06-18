@@ -22,8 +22,8 @@ const styles = {
     alignItems: 'center',
   },
   menuText: {
-    // fontStyle: 'bold',
-    fontWeight: '500',
+    fontStyle: 'bold',
+    // fontWeight: '500',
     letterSpacing: 2,
     fontSize: 16,
     color: '#373d3f',
@@ -31,8 +31,8 @@ const styles = {
     textTransform: 'uppercase',
   },
   menuTextActive: {
-    // fontStyle: 'bold',
-    fontWeight: '500',
+    fontStyle: 'bold',
+    // fontWeight: '500',
     letterSpacing: 2,
     fontSize: 16,
     color: '#65AB12',
