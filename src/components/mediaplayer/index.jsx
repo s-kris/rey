@@ -31,6 +31,14 @@ class Index extends Component {
     return 'Rey';
   };
 
+  _formatYoutubeUrl = track => {
+    const { src, id } = track;
+    if (src.indexOf('youtube') !== -1) {
+      return `${src}&tmp=${id}`;
+    }
+    return `https://www.youtube.com/watch?v=${src}&tmp=${id}`;
+  };
+
   _initData = () => {
     const currentTrack = Cookies.getJSON(KEY_CURRENT_TRACK);
     const nowPlayingList = Cookies.getJSON(KEY_NOW_PLAYING_LIST);
@@ -57,7 +65,7 @@ class Index extends Component {
         <div className="media-player-wrapper">
           <MediaPlayer
             ref={c => (this._mediaPlayer = c)}
-            src={`${currentTrack.src}&tmpid=${currentTrack.id}`} // player won't render if url is same
+            src={this._formatYoutubeUrl(currentTrack)} // player won't render if url is same
             autoPlay={autoPlay}
             loop={repeatTrack}
             currentTrack={currentTrack.label}

@@ -107,7 +107,7 @@ class SearchTab extends React.Component {
           keyExtractor={item => item.id}
           data={this.state.data}
           renderItem={({ item }) => (
-            <SongItem key={item.id} thumbnailUrl={item.thumbnails.medium.url} name={item.title} videoUrl={item.link} />
+            <SongItem key={item.id} thumbnailUrl={item.thumbnails.medium.url} name={item.title} videoUrl={item.id} /> // item.link uses too much data
           )}
         />
 
