@@ -25,7 +25,7 @@ const styles = {
   menuText: {
     fontStyle: 'bold',
     fontWeight: '900',
-    letterSpacing: 1,
+    letterSpacing: 2,
     fontSize: 16,
     color: '#373d3f',
     cursor: 'pointer',
@@ -34,7 +34,7 @@ const styles = {
   menuTextActive: {
     fontStyle: 'bold',
     fontWeight: '900',
-    letterSpacing: 1,
+    letterSpacing: 2,
     fontSize: 16,
     color: '#65AB12',
     cursor: 'pointer',
