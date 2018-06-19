@@ -89,22 +89,27 @@ class SaveAsPlaylist extends React.Component {
             value={this.state.textInput}
           />
         </View>
-        <Text className="font" style={styles.messageText}>
-          or add to an existing Playlist
-        </Text>
-        <View>
-          <Picker
-            style={{ height: 50 }}
-            selectedValue={this.state.selectedOption}
-            onValueChange={itemValue => this.setState({ textInput: '', selectedOption: itemValue })}
-          >
-            <Picker.Item label="Select" value="select" />
-            {allPlaylists &&
-              allPlaylists.map(p => (
-                <Picker.Item key={p.id} label={`${p.name} (${p.data.length} Songs)`} value={p.id} />
-              ))}
-          </Picker>
-        </View>
+        {allPlaylists.length > 0 && (
+          <Text className="font" style={styles.messageText}>
+            or add to an existing Playlist
+          </Text>
+        )}
+        {allPlaylists.length > 0 && (
+          <View>
+            <Picker
+              style={{ height: 50 }}
+              selectedValue={this.state.selectedOption}
+              onValueChange={itemValue => this.setState({ textInput: '', selectedOption: itemValue })}
+            >
+              <Picker.Item label={allPlaylists.length > 0 ? 'Select' : 'None'} value="select" />
+              {allPlaylists &&
+                allPlaylists.map(p => (
+                  <Picker.Item key={p.id} label={`${p.name} (${p.data.length} Songs)`} value={p.id} />
+                ))}
+            </Picker>
+          </View>
+        )}
+
         <View style={styles.buttonContainer}>
           <View style={styles.button} onClick={() => this._onClickSave()}>
             <Text className="font" style={styles.buttonText}>

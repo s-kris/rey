@@ -23,7 +23,7 @@ const styles = {
     alignItems: 'center',
   },
   actionsContainer: {
-    width: 72,
+    width: 70,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -103,7 +103,7 @@ class PlaylistItem extends React.Component {
         <View style={styles.row}>
           <View style={styles.pointer} onClick={() => this.props.onItemClick(track)}>
             <View style={styles.row}>
-              <Text className="font" numberOfLines={1} style={{ fontSize: 16, letterSpacing: 0 }}>
+              <Text className="font" numberOfLines={1} style={{ fontSize: 14, letterSpacing: 0 }}>
                 {this._formatLabel(track.label)} &nbsp;
               </Text>
               <ScaleLoader height={10} width={2} color={themeColor} loading={isActive} />

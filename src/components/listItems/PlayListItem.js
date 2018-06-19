@@ -15,13 +15,17 @@ import { showToast } from '../../utils/utils';
 class PlaylistItem extends React.Component {
   _onClickPlay = () => {
     const { data, name } = this.props;
-    musicStore.playTrack({
-      src: data[0].src,
-      id: data[0].id,
-      label: this._formatLabel(data[0].label),
-    });
-    musicStore.setNowPlayingList(data);
-    showToast(`Playing '${name}'`);
+    if (data.length > 0) {
+      musicStore.playTrack({
+        src: data[0].src,
+        id: data[0].id,
+        label: this._formatLabel(data[0].label),
+      });
+      musicStore.setNowPlayingList(data);
+      showToast(`Playing '${name}'`);
+    } else {
+      showToast(`No songs in the playlist: '${name}'`);
+    }
   };
 
   _onClickQueue = () => {
