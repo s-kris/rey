@@ -13,11 +13,13 @@ import Playlists from '../../api/playlists';
 
 class PlaylistItem extends React.Component {
   _onClickPlay = () => {
-    const { name, videoUrl } = this.props;
+    const { data } = this.props;
     musicStore.playTrack({
-      src: videoUrl,
-      label: this._formatLabel(name),
+      src: data[0].src,
+      id: data[0].id,
+      label: this._formatLabel(data[0].label),
     });
+    musicStore.setNowPlayingList(data);
   };
 
   _onClickQueue = () => {

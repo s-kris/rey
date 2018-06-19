@@ -25,6 +25,7 @@ class Playlists {
       data: musicStore.getNowPlayingList(),
       created: moment().format(),
     });
+    saveDataToStorage(KEY_PLAYLISTS, musicStore.playlists);
     musicStore.setPlaylists(playlists);
     showToast('New playlist saved');
   }
