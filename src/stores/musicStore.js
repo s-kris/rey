@@ -31,7 +31,9 @@ const musicStore = store({
   },
   addToNowPlayingList(item) {
     showToast('Added to queue');
-    if (!item.id) item.id = shortId.generate();
+    if (!item.id) {
+      item.id = shortId.generate();
+    }
     const list = musicStore.getNowPlayingList();
     list.push(item);
     saveDataToStorage(KEY_NOW_PLAYING_LIST, list);
@@ -82,16 +84,25 @@ const musicStore = store({
     return musicStore.playlists;
   },
   setPlaylists(array) {
-    saveDataToStorage(KEY_PLAYLISTS, array);
     musicStore.playlists = array.slice(0);
+    saveDataToStorage(KEY_PLAYLISTS, musicStore.playlists);
   },
   queuePlaylistToNowPlaying(array) {
-    const joinedArray = musicStore.getNowPlayingList().concat(array);
-    const newIdsArray = joinedArray.map(item => {
-      item.id = shortId.generate();
-      return item;
+    const newArray = [];
+    array.forEach(element => {
+      console.log(element.id);
+      newArray.push({
+        id: shortId.generate(),
+        key: shortId.generate(),
+        label: element.label,
+        src: element.src,
+      });
     });
-    musicStore.setNowPlayingList(newIdsArray);
+
+    newArray.forEach(element => {
+      console.log(element.id);
+      musicStore.addToNowPlayingList(element);
+    });
   },
 });
 

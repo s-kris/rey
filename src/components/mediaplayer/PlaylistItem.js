@@ -73,7 +73,7 @@ class PlaylistItem extends React.Component {
               <Text className="font" numberOfLines={1} style={{ fontSize: 16, letterSpacing: 0 }}>
                 {this._formatLabel(track.label)} &nbsp;
               </Text>
-              <ScaleLoader height={10} width={2} color={themeColor} loading={track.id === currentTrack.id} />
+              <ScaleLoader height={10} width={2} color={themeColor} loading={isActive} />
             </View>
           </View>
           <View style={styles.actionsContainer}>
