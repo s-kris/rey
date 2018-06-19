@@ -7,6 +7,13 @@ import musicStore from './../stores/musicStore';
 import { showToast } from './../utils/utils';
 
 class Playlists {
+  static getAll() {
+    if (!getDataFromStorage(KEY_PLAYLISTS)) {
+      return [];
+    }
+    return getDataFromStorage(KEY_PLAYLISTS);
+  }
+
   static createNew(playlistName) {
     let playlists = getDataFromStorage(KEY_PLAYLISTS);
     if (!playlists) {
@@ -18,7 +25,7 @@ class Playlists {
       data: musicStore.getNowPlayingList(),
       created: moment().format(),
     });
-    saveDataToStorage(KEY_PLAYLISTS, playlists);
+    musicStore.setPlaylists(playlists);
     showToast('New playlist saved');
   }
 
@@ -29,15 +36,25 @@ class Playlists {
       if (p.id === playlistId) {
         const newData = p.data.concat(musicStore.getNowPlayingList());
         p.data = newData;
+        p.updated = moment().format();
         playlistName = p.name;
       }
     });
-    saveDataToStorage(KEY_PLAYLISTS, playlists);
+    musicStore.setPlaylists(playlists);
     showToast(`Added to ${playlistName}`);
   }
 
-  static getAll() {
-    return getDataFromStorage(KEY_PLAYLISTS);
+  static deletePlaylist(playlistId) {
+    const playlists = getDataFromStorage(KEY_PLAYLISTS);
+    let playlistName = '';
+    playlists.forEach((p, position) => {
+      if (p.id === playlistId) {
+        playlists.splice(position, 1);
+        playlistName = p.name;
+      }
+    });
+    musicStore.setPlaylists(playlists);
+    showToast(`${playlistName} deleted!`);
   }
 }
 

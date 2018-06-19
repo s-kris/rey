@@ -3,8 +3,9 @@ import shortId from 'shortid';
 import ReactGA from 'react-ga';
 
 import { showToast } from './../utils/utils';
-import { KEY_CURRENT_TRACK, KEY_NOW_PLAYING_LIST } from './../config/Constants';
+import { KEY_CURRENT_TRACK, KEY_NOW_PLAYING_LIST, KEY_PLAYLISTS } from './../config/Constants';
 import { saveDataToStorage } from './../api/storage';
+import Playlists from './../api/playlists';
 
 const musicStore = store({
   nowPlayingList: [
@@ -26,6 +27,7 @@ const musicStore = store({
   },
   setNowPlayingList(array) {
     musicStore.nowPlayingList = array.slice(0);
+    saveDataToStorage(KEY_NOW_PLAYING_LIST, musicStore.nowPlayingList);
   },
   addToNowPlayingList(item) {
     showToast('Added to queue');
@@ -74,6 +76,22 @@ const musicStore = store({
 
     musicStore.setCurrentTrack(item);
     musicStore.addToNowPlayingList(item);
+  },
+  playlists: Playlists.getAll(),
+  getAllPlaylists() {
+    return musicStore.playlists;
+  },
+  setPlaylists(array) {
+    saveDataToStorage(KEY_PLAYLISTS, array);
+    musicStore.playlists = array.slice(0);
+  },
+  queuePlaylistToNowPlaying(array) {
+    const joinedArray = musicStore.getNowPlayingList().concat(array);
+    const newIdsArray = joinedArray.map(item => {
+      item.id = shortId.generate();
+      return item;
+    });
+    musicStore.setNowPlayingList(newIdsArray);
   },
 });
 

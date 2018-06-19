@@ -1,0 +1,94 @@
+import React from 'react';
+import { View, Text } from 'react-native-web';
+import ReactSVG from 'react-svg';
+import randomColor from 'randomcolor';
+
+import './../../styles/song-item.css';
+import playIcon from './../../assets/images/icons/play.svg';
+import deleteIcon from './../../assets/images/icons/delete.svg';
+import editIcon from './../../assets/images/icons/edit.svg';
+import queueIcon from './../../assets/images/icons/queue_add.svg';
+import musicStore from './../../stores/musicStore';
+import Playlists from '../../api/playlists';
+
+class PlaylistItem extends React.Component {
+  _onClickPlay = () => {
+    const { name, videoUrl } = this.props;
+    musicStore.playTrack({
+      src: videoUrl,
+      label: this._formatLabel(name),
+    });
+  };
+
+  _onClickQueue = () => {
+    musicStore.queuePlaylistToNowPlaying(this.props.data);
+  };
+
+  _onClickEdit = () => {};
+
+  _onClickDelete = () => {
+    Playlists.deletePlaylist(this.props.id);
+  };
+
+  _formatLabel = name => name;
+  render() {
+    return (
+      <View
+        className="song-item-container"
+        style={{
+          borderLeftWidth: 4,
+          borderLeftStyle: 'solid',
+          borderLeftColor: randomColor({
+            luminosity: 'bright',
+            hue: 'blue',
+          }),
+        }}
+      >
+        <Text className="title font" numberOfLines={1}>
+          {this._formatLabel(this.props.name)} &nbsp; &nbsp; ({this.props.data.length} Songs)
+        </Text>
+        <View className="actions-container">
+          <ReactSVG
+            path={playIcon}
+            evalScripts="always"
+            svgClassName="action"
+            svgStyle={{ fill: '#373d3f' }}
+            onClick={() => {
+              this._onClickPlay();
+            }}
+          />
+          <ReactSVG
+            path={queueIcon}
+            evalScripts="always"
+            svgClassName="action"
+            svgStyle={{ fill: '#373d3f' }}
+            onClick={() => {
+              this._onClickQueue();
+            }}
+          />
+
+          <ReactSVG
+            path={editIcon}
+            evalScripts="always"
+            svgClassName="action"
+            svgStyle={{ fill: '#373d3f' }}
+            onClick={() => {
+              this._onClickEdit();
+            }}
+          />
+          <ReactSVG
+            path={deleteIcon}
+            evalScripts="always"
+            svgClassName="action"
+            svgStyle={{ fill: '#373d3f' }}
+            onClick={() => {
+              this._onClickDelete();
+            }}
+          />
+        </View>
+      </View>
+    );
+  }
+}
+
+export default PlaylistItem;

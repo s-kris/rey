@@ -5,7 +5,7 @@ import { ScaleLoader } from 'react-spinners';
 
 import { YOUTUBE_API_KEY, YOUTUBE_SEARCH_RESULTS_MAX, SEARCH_MIN_LETTERS } from './../../config/Constants';
 import './../../styles/input.css';
-import SongItem from '../SongItem';
+import SearchResultItem from '../listItems/SearchResultItem';
 import WhatAShame from '../WhatAShame';
 
 const styles = {
@@ -89,7 +89,7 @@ class SearchTab extends React.Component {
 
   // _renderData = songs => {
   //   const songsList = songs.map(s => (
-  //     <SongItem thumbnailUrl={s.thumbnails.medium.url} name={s.title} videoUrl={s.link} key={s.id} />
+  //     <SearchResultItem thumbnailUrl={s.thumbnails.medium.url} name={s.title} videoUrl={s.link} key={s.id} />
   //   ));
   //   this.setState({ empty: false, data: songsList, isLoading: false });
   // };
@@ -106,7 +106,12 @@ class SearchTab extends React.Component {
           keyExtractor={item => item.id}
           data={this.state.data}
           renderItem={({ item }) => (
-            <SongItem key={item.id} thumbnailUrl={item.thumbnails.medium.url} name={item.title} videoUrl={item.id} /> // item.link uses too much data
+            <SearchResultItem
+              key={item.id}
+              thumbnailUrl={item.thumbnails.medium.url}
+              name={item.title}
+              videoUrl={item.id}
+            /> // item.link uses too much data
           )}
         />
 

@@ -7,7 +7,7 @@ import queueIcon from './../assets/images/icons/queue.png';
 import { colorPalette } from './../config/Colors';
 import musicStore from './../stores/musicStore';
 
-class SongItem extends React.Component {
+class SearchResultItem extends React.Component {
   _onClickPlay = () => {
     const { name, videoUrl } = this.props;
     musicStore.playTrack({
@@ -54,4 +54,4 @@ class SongItem extends React.Component {
   }
 }
 
-export default SongItem;
+export default SearchResultItem;

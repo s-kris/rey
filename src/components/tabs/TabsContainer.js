@@ -3,6 +3,7 @@ import { View, Text } from 'react-native-web';
 
 import SearchTab from './SearchTab';
 import WhatAShame from '../WhatAShame';
+import PlaylistsTab from './PlaylistsTab';
 
 const styles = {
   rootContainer: {
@@ -68,7 +69,7 @@ class TabsContainer extends React.Component {
       case 'FAVOURITES':
         return <WhatAShame giphyId="26ufd1zhcpm30DWrC" />;
       case 'PLAYLISTS':
-        return <WhatAShame giphyId="26ufd1zhcpm30DWrC" />;
+        return <PlaylistsTab />;
       case 'PROFILE':
         return <WhatAShame giphyId="26ufd1zhcpm30DWrC" />;
       default:
