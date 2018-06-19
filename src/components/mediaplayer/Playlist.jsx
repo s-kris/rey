@@ -12,6 +12,7 @@ import deleteIcon from './../../assets/images/icons/delete.svg';
 import saveIcon from './../../assets/images/icons/save.svg';
 // import AlertBox from './../AlertBox';
 import SaveAsPlaylist from '../SaveAsPlaylist';
+import { showToast } from '../../utils/utils';
 
 const styles = {
   nowPlayingHeader: {
@@ -103,7 +104,10 @@ class Playlist extends React.Component {
               path={deleteIcon}
               evalScripts="always"
               svgClassName="action-icon-delete"
-              onClick={() => musicStore.clearNowPlayingList()}
+              onClick={() => {
+                musicStore.clearNowPlayingList();
+                showToast('Cleared Now Playing');
+              }}
             />
           </View>
         </View>

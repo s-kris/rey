@@ -7,6 +7,7 @@ import './../../styles/song-item.css';
 // import playIcon from './../assets/images/icons/play.svg';
 import queueIcon from './../../assets/images/icons/queue_add.svg';
 import musicStore from './../../stores/musicStore';
+import { showToast } from '../../utils/utils';
 
 class SearchResultItem extends React.Component {
   _onClickPlay = () => {
@@ -15,6 +16,7 @@ class SearchResultItem extends React.Component {
       src: videoUrl,
       label: this._formatLabel(name),
     });
+    showToast('Playing');
   };
 
   _onClickQueue = () => {
@@ -23,6 +25,7 @@ class SearchResultItem extends React.Component {
       src: videoUrl,
       label: this._formatLabel(name),
     });
+    showToast('Added to Now Playing');
   };
 
   _formatLabel = name => name;

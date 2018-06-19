@@ -10,20 +10,23 @@ import editIcon from './../../assets/images/icons/edit.svg';
 import queueIcon from './../../assets/images/icons/queue_add.svg';
 import musicStore from './../../stores/musicStore';
 import Playlists from '../../api/playlists';
+import { showToast } from '../../utils/utils';
 
 class PlaylistItem extends React.Component {
   _onClickPlay = () => {
-    const { data } = this.props;
+    const { data, name } = this.props;
     musicStore.playTrack({
       src: data[0].src,
       id: data[0].id,
       label: this._formatLabel(data[0].label),
     });
     musicStore.setNowPlayingList(data);
+    showToast(`Playing '${name}'`);
   };
 
   _onClickQueue = () => {
     musicStore.queuePlaylistToNowPlaying(this.props.data);
+    showToast('Added to Now Playing');
   };
 
   _onClickEdit = () => {};

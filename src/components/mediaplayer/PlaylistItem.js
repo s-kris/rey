@@ -9,6 +9,7 @@ import musicStore from '../../stores/musicStore';
 import { themeColor } from './../../config/Colors';
 import deleteIcon from './../../assets/images/icons/delete.svg';
 import copyIcon from './../../assets/images/icons/copy.svg';
+import { showToast } from '../../utils/utils';
 
 const styles = {
   row: {
@@ -28,6 +29,7 @@ const styles = {
 
 class PlaylistItem extends React.Component {
   _onClickAdd = () => {
+    showToast('Added to Now Playing');
     musicStore.insertToNowPlayingList(this.props.track, this.props.position);
   };
 
@@ -36,6 +38,7 @@ class PlaylistItem extends React.Component {
     const nowPlayingTrack = musicStore.getCurrentTrack();
     const nowPlayingList = musicStore.getNowPlayingList();
 
+    showToast('Removed from Now Playing');
     musicStore.removeFromNowPlayingList(this.props.position);
 
     if (track.id === nowPlayingTrack.id) {
