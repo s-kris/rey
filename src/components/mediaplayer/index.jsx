@@ -3,7 +3,7 @@ import { view } from 'react-easy-state';
 import DocumentTitle from 'react-document-title';
 
 import MediaPlayer from './MediaPlayer';
-import Playlist from './Playlist';
+import NowPlayingList from './NowPlayingList';
 import musicStore from '../../stores/musicStore';
 import { KEY_CURRENT_TRACK, KEY_NOW_PLAYING_LIST } from '../../config/Constants';
 import { getDataFromStorage } from './../../api/storage';
@@ -83,7 +83,7 @@ class Index extends Component {
               !repeatTrack && this._navigatePlaylist(1);
             }}
           />
-          <Playlist
+          <NowPlayingList
             tracks={musicStore.getNowPlayingList()}
             currentTrack={currentTrack}
             onTrackClick={this._handleTrackClick}

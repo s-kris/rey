@@ -6,7 +6,7 @@ import ReactSVG from 'react-svg';
 import Modal from 'react-responsive-modal';
 
 import './../../styles/playlist.css';
-import PlaylistItem from './PlaylistItem';
+import NowPlayingListItem from './NowPlayingListItem';
 import musicStore from './../../stores/musicStore';
 import deleteIcon from './../../assets/images/icons/delete.svg';
 import saveIcon from './../../assets/images/icons/save.svg';
@@ -125,7 +125,7 @@ class Playlist extends React.Component {
                   borderBottomColor: '#373d3f',
                 }}
               >
-                <PlaylistItem
+                <NowPlayingListItem
                   key={item.id + index}
                   track={item}
                   position={index}
