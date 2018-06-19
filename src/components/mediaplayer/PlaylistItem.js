@@ -19,7 +19,7 @@ const styles = {
     alignItems: 'center',
   },
   actionsContainer: {
-    width: 51,
+    width: 50,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',

@@ -330,8 +330,8 @@ input[type=range]::-webkit-slider-thumb{
     border:1px solid #373d3f
 }
 .media-playlist-track{
-    padding:12px 12px 12px 12px;
-    /* cursor:pointer */
+    padding: 12px;
+    cursor:pointer
 }
 .media-playlist-track+.media-playlist-track{
     border-top:1px solid #373d3f

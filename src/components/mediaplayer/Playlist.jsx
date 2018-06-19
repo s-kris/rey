@@ -10,14 +10,15 @@ import deleteIcon from './../../assets/images/icons/delete.svg';
 import saveIcon from './../../assets/images/icons/save.svg';
 
 const styles = {
-  nowPlaying: {
+  nowPlayingHeader: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingLeft: 10,
+    paddingLeft: 12,
     paddingTop: 5,
     paddingBottom: 5,
+    paddingRight: 12,
     backgroundColor: '#373d3f',
   },
   actionsContainer: {
@@ -25,7 +26,7 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: 51,
+    width: 50,
   },
 };
 
@@ -52,7 +53,7 @@ class Playlist extends React.Component {
 
     return (
       <View className="media-playlist">
-        <View style={styles.nowPlaying}>
+        <View style={styles.nowPlayingHeader}>
           <Text className="font">NOW PLAYING</Text>
           <View style={styles.actionsContainer}>
             <ReactSVG
