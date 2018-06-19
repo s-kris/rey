@@ -14,7 +14,7 @@ class Playlists {
     return getDataFromStorage(KEY_PLAYLISTS);
   }
 
-  static createNew(playlistName) {
+  static createNew(playlistName, array) {
     let playlists = getDataFromStorage(KEY_PLAYLISTS);
     if (!playlists) {
       playlists = [];
@@ -22,20 +22,20 @@ class Playlists {
     playlists.push({
       id: shortid.generate(),
       name: playlistName,
-      data: musicStore.getNowPlayingList(),
+      data: array,
       created: moment().format(),
     });
-    saveDataToStorage(KEY_PLAYLISTS, musicStore.playlists);
+    saveDataToStorage(KEY_PLAYLISTS, playlists);
     musicStore.setPlaylists(playlists);
     showToast('New playlist saved');
   }
 
-  static addToPlaylist(playlistId) {
+  static addToPlaylist(playlistId, array) {
     const playlists = getDataFromStorage(KEY_PLAYLISTS);
     let playlistName = '';
     playlists.forEach(p => {
       if (p.id === playlistId) {
-        const newData = p.data.concat(musicStore.getNowPlayingList());
+        const newData = p.data.concat(array);
         p.data = newData;
         p.updated = moment().format();
         playlistName = p.name;

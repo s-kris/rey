@@ -35,7 +35,7 @@ const styles = {
   },
 };
 
-class Playlist extends React.Component {
+class NowPlayingList extends React.Component {
   state = {
     open: false,
   };
@@ -86,7 +86,7 @@ class Playlist extends React.Component {
           showCloseIcon={false}
           classNames={{ overlay: 'custom-overlay', modal: 'custom-modal' }}
         >
-          <SaveAsPlaylist closeModal={() => this.closeModal()} />
+          <SaveAsPlaylist closeModal={() => this.closeModal()} dataToSave={musicStore.getNowPlayingList()} />
           {/* <AlertBox message="save now or not" yexText="yes" noText="close" onClickNo={() => this.closeModal()} /> */}
         </Modal>
         <View style={styles.nowPlayingHeader}>
@@ -142,4 +142,4 @@ class Playlist extends React.Component {
   }
 }
 
-export default view(Playlist);
+export default view(NowPlayingList);

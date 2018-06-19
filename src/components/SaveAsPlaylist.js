@@ -59,10 +59,10 @@ class SaveAsPlaylist extends React.Component {
   _onClickSave = () => {
     const { textInput, selectedOption } = this.state;
     if (textInput.length > 0) {
-      Playlists.createNew(textInput);
+      Playlists.createNew(textInput, this.props.dataToSave);
       this.props.closeModal();
     } else if (selectedOption !== 'select') {
-      Playlists.addToPlaylist(selectedOption);
+      Playlists.addToPlaylist(selectedOption, this.props.dataToSave);
       this.props.closeModal();
     } else {
       showToast('Enter a Playlist name');
