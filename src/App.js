@@ -1,8 +1,6 @@
 import React from 'react';
 import { View } from 'react-native-web';
 import 'normalize.css';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 import './styles/variables.css';
 import './styles/common.css';
@@ -13,7 +11,6 @@ class App extends React.Component {
     return (
       <View>
         <Routes />
-        <ToastContainer />
       </View>
     );
   }

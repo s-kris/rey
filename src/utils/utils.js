@@ -1,4 +1,4 @@
-import { toast } from 'react-toastify';
+import alertify from 'alertify.js';
 
 export const isMobileDevice = () => {
   let isMobile = false; // initiate as false
@@ -18,16 +18,10 @@ export const isMobileDevice = () => {
   return isMobile;
 };
 
-export const showAlert = msg => {
-  toast.success(msg, {
-    position: 'top-right',
-    autoClose: 2000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: false,
-    draggablePercent: 50,
-  });
+export const showToast = msg => {
+  const html = `<div class="toast">${msg}</div>`;
+  alertify.delay(1500); // duration to show toast
+  alertify.success(html);
 };
 
 export const getYoutubeId = url => {

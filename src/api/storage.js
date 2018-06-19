@@ -9,3 +9,7 @@ export const getDataFromStorage = key => {
   const data = store.get(key);
   return data;
 };
+
+export const clearAll = () => {
+  store.clearAll();
+};

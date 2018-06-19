@@ -2,7 +2,7 @@ import { store } from 'react-easy-state';
 import shortId from 'shortid';
 import ReactGA from 'react-ga';
 
-import { showAlert } from './../utils/utils';
+import { showToast } from './../utils/utils';
 import { KEY_CURRENT_TRACK, KEY_NOW_PLAYING_LIST } from './../config/Constants';
 import { saveDataToStorage } from './../api/storage';
 
@@ -22,20 +22,20 @@ const musicStore = store({
     musicStore.setNowPlayingList([]);
     musicStore.setCurrentTrack({});
     saveDataToStorage(KEY_NOW_PLAYING_LIST, []);
-    showAlert('All cleared');
+    showToast('All cleared');
   },
   setNowPlayingList(array) {
     musicStore.nowPlayingList = array.slice(0);
   },
   addToNowPlayingList(item) {
-    showAlert('Added to queue');
+    showToast('Added to queue');
     if (!item.id) item.id = shortId.generate();
     const list = musicStore.getNowPlayingList();
     list.push(item);
     saveDataToStorage(KEY_NOW_PLAYING_LIST, list);
   },
   insertToNowPlayingList(item, position) {
-    showAlert('Added to queue');
+    showToast('Added to queue');
     const newItem = {
       id: shortId.generate(), // diff ids for same song(multiple) in queue
       src: item.src,
@@ -46,7 +46,7 @@ const musicStore = store({
     saveDataToStorage(KEY_NOW_PLAYING_LIST, list);
   },
   removeFromNowPlayingList(position) {
-    showAlert('Removed from queue');
+    showToast('Removed from queue');
 
     const list = musicStore.getNowPlayingList();
     list.splice(position, 1);

@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "alertify.js": "^1.0.12",
+    "moment": "^2.22.2",
     "normalize.css": "^8.0.0",
     "randomcolor": "^0.5.3",
     "react": "^16.4.0",
@@ -14,11 +16,11 @@
     "react-media-player": "^0.7.1",
     "react-motion-ui-pack": "^0.10.3",
     "react-native-web": "^0.8.4",
+    "react-responsive-modal": "^3.0.3",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "react-spinners": "^0.3.2",
     "react-svg": "^4.0.17",
-    "react-toastify": "^4.1.0",
     "shortid": "^2.2.8",
     "store": "^2.0.12",
     "youtube-search": "^1.1.1"

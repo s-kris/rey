@@ -2,12 +2,16 @@ import React from 'react';
 import { View, Text, FlatList } from 'react-native-web';
 import { view } from 'react-easy-state';
 import ReactSVG from 'react-svg';
+// import alertify from 'alertify.js';
+import Modal from 'react-responsive-modal';
 
 import './../../styles/playlist.css';
 import PlaylistItem from './PlaylistItem';
 import musicStore from './../../stores/musicStore';
 import deleteIcon from './../../assets/images/icons/delete.svg';
 import saveIcon from './../../assets/images/icons/save.svg';
+// import AlertBox from './../AlertBox';
+import SaveAsPlaylist from '../SaveAsPlaylist';
 
 const styles = {
   nowPlayingHeader: {
@@ -31,6 +35,18 @@ const styles = {
 };
 
 class Playlist extends React.Component {
+  state = {
+    open: false,
+  };
+
+  openModal = () => {
+    this.setState({ open: true });
+  };
+
+  closeModal = () => {
+    this.setState({ open: false });
+  };
+
   _handleTrackClick(track) {
     this.props.onTrackClick(track);
   }
@@ -39,6 +55,10 @@ class Playlist extends React.Component {
     // this.flatListRef.scrollToIndex({ index: position - 1 });
     // console.log(document.getElementById(id));
     // document.getElementById(id).scrollTop = 10;
+  };
+
+  _saveNowPlayingList = () => {
+    this.openModal();
   };
 
   render() {
@@ -53,6 +73,21 @@ class Playlist extends React.Component {
 
     return (
       <View className="media-playlist">
+        <Modal
+          open={this.state.open}
+          onClose={this.closeModal}
+          center
+          styles={{
+            modal: {
+              padding: 0,
+            },
+          }}
+          showCloseIcon={false}
+          classNames={{ overlay: 'custom-overlay', modal: 'custom-modal' }}
+        >
+          <SaveAsPlaylist closeModal={() => this.closeModal()} />
+          {/* <AlertBox message="save now or not" yexText="yes" noText="close" onClickNo={() => this.closeModal()} /> */}
+        </Modal>
         <View style={styles.nowPlayingHeader}>
           <Text className="font">NOW PLAYING</Text>
           <View style={styles.actionsContainer}>
@@ -61,7 +96,7 @@ class Playlist extends React.Component {
               evalScripts="always"
               svgClassName="action-icon"
               onClick={() => {
-                this._onClickQueue();
+                this._saveNowPlayingList();
               }}
             />
             <ReactSVG
