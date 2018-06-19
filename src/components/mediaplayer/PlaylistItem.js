@@ -2,27 +2,27 @@ import React from 'react';
 import { View, Text } from 'react-native-web';
 import { ScaleLoader } from 'react-spinners';
 import { view } from 'react-easy-state';
+import ReactSVG from 'react-svg';
 
+import './../../styles/playlist.css';
 import musicStore from '../../stores/musicStore';
 import { themeColor } from './../../config/Colors';
-import deleteIcon from './../../assets/images/icons/delete.png';
-import copyIcon from './../../assets/images/icons/copy.png';
+import deleteIcon from './../../assets/images/icons/delete.svg';
+import copyIcon from './../../assets/images/icons/copy.svg';
 
 const styles = {
   row: {
+    width: '100%',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  actions: {
-    width: 40,
+  actionsContainer: {
+    width: 51,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-  },
-  pointer: {
-    cursor: 'pointer',
   },
 };
 
@@ -76,10 +76,24 @@ class PlaylistItem extends React.Component {
               <ScaleLoader height={10} width={2} color={themeColor} loading={track.id === currentTrack.id} />
             </View>
           </View>
-          <View style={styles.actions}>
-            <img style={styles.pointer} src={copyIcon} alt="add" onClick={() => this._onClickAdd()} />
+          <View style={styles.actionsContainer}>
+            <ReactSVG
+              path={copyIcon}
+              evalScripts="always"
+              svgClassName="action-icon"
+              onClick={() => {
+                this._onClickAdd();
+              }}
+            />
             <Text className="font">&nbsp;</Text>
-            <img style={styles.pointer} src={deleteIcon} alt="remove" onClick={() => this._onClickRemove()} />
+            <ReactSVG
+              path={deleteIcon}
+              evalScripts="always"
+              svgClassName="action-icon-delete"
+              onClick={() => {
+                this._onClickRemove();
+              }}
+            />
           </View>
         </View>
       </View>

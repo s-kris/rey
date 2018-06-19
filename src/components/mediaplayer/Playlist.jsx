@@ -1,10 +1,13 @@
 import React from 'react';
 import { View, Text, FlatList } from 'react-native-web';
 import { view } from 'react-easy-state';
+import ReactSVG from 'react-svg';
 
+import './../../styles/playlist.css';
 import PlaylistItem from './PlaylistItem';
 import musicStore from './../../stores/musicStore';
-import deleteIcon from './../../assets/images/icons/delete.png';
+import deleteIcon from './../../assets/images/icons/delete.svg';
+import saveIcon from './../../assets/images/icons/save.svg';
 
 const styles = {
   nowPlaying: {
@@ -17,8 +20,12 @@ const styles = {
     paddingBottom: 5,
     backgroundColor: '#373d3f',
   },
-  pointer: {
-    cursor: 'pointer',
+  actionsContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: 51,
   },
 };
 
@@ -46,13 +53,23 @@ class Playlist extends React.Component {
     return (
       <View className="media-playlist">
         <View style={styles.nowPlaying}>
-          <Text className="font" >NOW PLAYING</Text>
-          <img
-            style={styles.pointer}
-            src={deleteIcon}
-            alt="clear all"
-            onClick={() => musicStore.clearNowPlayingList()}
-          />
+          <Text className="font">NOW PLAYING</Text>
+          <View style={styles.actionsContainer}>
+            <ReactSVG
+              path={saveIcon}
+              evalScripts="always"
+              svgClassName="action-icon"
+              onClick={() => {
+                this._onClickQueue();
+              }}
+            />
+            <ReactSVG
+              path={deleteIcon}
+              evalScripts="always"
+              svgClassName="action-icon-delete"
+              onClick={() => musicStore.clearNowPlayingList()}
+            />
+          </View>
         </View>
         {
           <FlatList

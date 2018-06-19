@@ -4,6 +4,7 @@ import 'normalize.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import './styles/variables.css';
 import './styles/common.css';
 import Routes from './config/Routes';
 

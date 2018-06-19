@@ -1,0 +1,16 @@
+.action-icon {
+    cursor: pointer;
+    fill: white;
+}
+.action-icon :hover {
+    fill: var(--theme-color);
+}
+
+.action-icon-delete {
+    cursor: pointer;
+    fill: white;
+}
+
+.action-icon-delete :hover {
+    fill: red;
+}
