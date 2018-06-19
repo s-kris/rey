@@ -60,7 +60,7 @@ class SearchTab extends React.Component {
   _cleanSearchResults = results => {
     const filteredResults = [];
     results.forEach(element => {
-      // currently no support for playlists, so filter them out
+      // currently no support for youtube playlists, so filter them out
       if (element.kind === 'youtube#video') filteredResults.push(element);
     });
     return filteredResults;
@@ -98,7 +98,7 @@ class SearchTab extends React.Component {
     return (
       <View style={styles.rootContainer}>
         <View style={styles.searchBoxContainer}>
-          <input type="text" placeholder="start typing to search" onChange={this.handleChange} />
+          <input type="text" placeholder="start typing to search from youtube" onChange={this.handleChange} />
         </View>
 
         <FlatList
@@ -119,7 +119,9 @@ class SearchTab extends React.Component {
         {this.state.empty && (
           <View style={styles.centerContainer}>
             <View>
-              <Text className="font"  style={{ fontSize: 24, color: '#8bb955' }}>No Results</Text>
+              <Text className="font" style={{ fontSize: 24, color: '#8bb955' }}>
+                No Results
+              </Text>
             </View>
             <WhatAShame />
           </View>

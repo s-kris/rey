@@ -45,7 +45,6 @@ class Index extends Component {
   _initData = () => {
     const currentTrack = getDataFromStorage(KEY_CURRENT_TRACK);
     const nowPlayingList = getDataFromStorage(KEY_NOW_PLAYING_LIST);
-
     if (currentTrack && nowPlayingList) {
       musicStore.setCurrentTrack(currentTrack);
       musicStore.setNowPlayingList(nowPlayingList);

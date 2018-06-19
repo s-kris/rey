@@ -30,8 +30,9 @@ const musicStore = store({
   addToNowPlayingList(item) {
     showAlert('Added to queue');
     if (!item.id) item.id = shortId.generate();
-    musicStore.nowPlayingList.push(item);
-    saveDataToStorage(KEY_NOW_PLAYING_LIST, musicStore.getNowPlayingList());
+    const list = musicStore.getNowPlayingList();
+    list.push(item);
+    saveDataToStorage(KEY_NOW_PLAYING_LIST, list);
   },
   insertToNowPlayingList(item, position) {
     showAlert('Added to queue');
@@ -40,14 +41,16 @@ const musicStore = store({
       src: item.src,
       label: item.label,
     };
-    musicStore.nowPlayingList.splice(position + 1, 0, newItem);
-    saveDataToStorage(KEY_NOW_PLAYING_LIST, musicStore.getNowPlayingList());
+    const list = musicStore.getNowPlayingList();
+    list.splice(position + 1, 0, newItem);
+    saveDataToStorage(KEY_NOW_PLAYING_LIST, list);
   },
   removeFromNowPlayingList(position) {
     showAlert('Removed from queue');
 
-    musicStore.nowPlayingList.splice(position, 1);
-    saveDataToStorage(KEY_NOW_PLAYING_LIST, musicStore.getNowPlayingList());
+    const list = musicStore.getNowPlayingList();
+    list.splice(position, 1);
+    saveDataToStorage(KEY_NOW_PLAYING_LIST, list);
   },
   setCurrentTrack(item) {
     ReactGA.event({
