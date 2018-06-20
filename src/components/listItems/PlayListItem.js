@@ -15,14 +15,14 @@ import { showToast } from '../../utils/utils';
 class PlaylistItem extends React.Component {
   _onClickPlay = () => {
     const { data, name } = this.props;
-    if (data.length === 0) {
+    const tmpData = data.slice(0);
+    if (data.length > 0) {
       musicStore.playTrack({
         src: data[0].src,
-        id: data[0].id,
         label: this._formatLabel(data[0].label),
       });
-      data.shift();
-      musicStore.queuePlaylistToNowPlaying(data);
+      tmpData.shift();
+      musicStore.queuePlaylistToNowPlaying(tmpData);
       showToast(`Playing '${name}'`);
     } else {
       showToast(`No songs in the playlist: '${name}'`);
@@ -31,14 +31,16 @@ class PlaylistItem extends React.Component {
 
   _onClickQueue = () => {
     const { data } = this.props;
-    if (data.length === 0) {
+    const nowPlayingList = musicStore.getNowPlayingList();
+    const tmpData = data.slice(0);
+    if (nowPlayingList.length === 0) {
       musicStore.playTrack({
         src: data[0].src,
-        id: data[0].id,
         label: this._formatLabel(data[0].label),
       });
+      tmpData.shift();
     }
-    musicStore.queuePlaylistToNowPlaying(data);
+    musicStore.queuePlaylistToNowPlaying(tmpData);
     showToast('Added to Now Playing');
   };
 
