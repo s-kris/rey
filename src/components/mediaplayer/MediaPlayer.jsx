@@ -6,7 +6,7 @@ import { view } from 'react-easy-state';
 import PlayPause from './PlayPause';
 import MuteUnmute from './MuteUnmute';
 import Repeat from './Repeat';
-// import FullScreen from './FullScreen';
+import FullScreen from './FullScreen';
 
 const { CurrentTime, Progress, SeekBar, Duration } = controls;
 const { keyboardControls } = utils;
@@ -58,7 +58,7 @@ class MediaPlayer extends Component {
             <View className="media-controls media-controls--full">
               <View className="media-row">
                 <CurrentTime className="media-control media-control--current-time" />
-                <Text className="font" >{currentTrack && this._formatLabel(currentTrack)}</Text>
+                <Text className="font">{currentTrack && this._formatLabel(currentTrack)}</Text>
                 <Duration className="media-control media-control--duration" />
               </View>
               <View className="media-control-group media-control-group--seek">
@@ -81,9 +81,9 @@ class MediaPlayer extends Component {
                     onClick={this._handleRepeatTrack}
                   />
                 </View>
-                {/* <View className="media-control-group">
+                <View className="media-control-group">
                   <FullScreen className="media-control media-control--repeat" />
-                </View> */}
+                </View>
               </View>
             </View>
           </View>

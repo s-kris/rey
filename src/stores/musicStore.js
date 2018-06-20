@@ -93,7 +93,6 @@ const musicStore = store({
     });
 
     newArray.forEach(element => {
-      console.log(element.id);
       musicStore.addToNowPlayingList(element);
     });
   },

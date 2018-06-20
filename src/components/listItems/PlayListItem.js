@@ -21,7 +21,8 @@ class PlaylistItem extends React.Component {
         id: data[0].id,
         label: this._formatLabel(data[0].label),
       });
-      musicStore.setNowPlayingList(data);
+      data.shift();
+      musicStore.queuePlaylistToNowPlaying(data);
       showToast(`Playing '${name}'`);
     } else {
       showToast(`No songs in the playlist: '${name}'`);
