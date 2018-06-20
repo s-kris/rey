@@ -5,7 +5,7 @@ import randomColor from 'randomcolor';
 import shortid from 'shortid';
 
 import './../../styles/song-item.css';
-// import playIcon from './../assets/images/icons/play.svg';
+import playIcon from './../../assets/images/icons/play.svg';
 import queueIcon from './../../assets/images/icons/add.svg';
 import musicStore from './../../stores/musicStore';
 import { showToast } from '../../utils/utils';
@@ -23,10 +23,20 @@ class SearchResultItem extends React.Component {
 
   _onClickQueue = () => {
     const { name, videoUrl } = this.props;
-    musicStore.addToNowPlayingList({
-      src: videoUrl,
-      label: this._formatLabel(name),
-    });
+    const nowPlayingList = musicStore.getNowPlayingList();
+    if (nowPlayingList.length === 0) {
+      // if queue is already empty start plying
+      musicStore.playTrack({
+        src: videoUrl,
+        label: this._formatLabel(name),
+      });
+    } else {
+      musicStore.addToNowPlayingList({
+        src: videoUrl,
+        label: this._formatLabel(name),
+      });
+    }
+
     showToast('Added to Now Playing');
   };
 
@@ -62,15 +72,15 @@ class SearchResultItem extends React.Component {
           {this._formatLabel(this.props.name)}
         </Text>
         <View className="actions-container">
-          {/* <ReactSVG
+          <ReactSVG
             path={playIcon}
             evalScripts="always"
-            svgClassName="action"
+            svgClassName="action-icon"
             svgStyle={{ fill: '#373d3f' }}
             onClick={() => {
               this._onClickPlay();
             }}
-          /> */}
+          />
           <ReactSVG
             path={queueIcon}
             evalScripts="always"

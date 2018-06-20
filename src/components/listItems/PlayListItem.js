@@ -15,7 +15,7 @@ import { showToast } from '../../utils/utils';
 class PlaylistItem extends React.Component {
   _onClickPlay = () => {
     const { data, name } = this.props;
-    if (data.length > 0) {
+    if (data.length === 0) {
       musicStore.playTrack({
         src: data[0].src,
         id: data[0].id,
@@ -30,7 +30,15 @@ class PlaylistItem extends React.Component {
   };
 
   _onClickQueue = () => {
-    musicStore.queuePlaylistToNowPlaying(this.props.data);
+    const { data } = this.props;
+    if (data.length === 0) {
+      musicStore.playTrack({
+        src: data[0].src,
+        id: data[0].id,
+        label: this._formatLabel(data[0].label),
+      });
+    }
+    musicStore.queuePlaylistToNowPlaying(data);
     showToast('Added to Now Playing');
   };
 
@@ -61,7 +69,7 @@ class PlaylistItem extends React.Component {
           <ReactSVG
             path={playIcon}
             evalScripts="always"
-            svgClassName="action"
+            svgClassName="action-icon"
             svgStyle={{ fill: '#373d3f' }}
             onClick={() => {
               this._onClickPlay();
@@ -70,7 +78,7 @@ class PlaylistItem extends React.Component {
           <ReactSVG
             path={queueIcon}
             evalScripts="always"
-            svgClassName="action"
+            svgClassName="action-icon"
             svgStyle={{ fill: '#373d3f' }}
             onClick={() => {
               this._onClickQueue();
@@ -80,7 +88,7 @@ class PlaylistItem extends React.Component {
           <ReactSVG
             path={editIcon}
             evalScripts="always"
-            svgClassName="action"
+            svgClassName="action-icon"
             svgStyle={{ fill: '#373d3f' }}
             onClick={() => {
               this._onClickEdit();
@@ -89,7 +97,7 @@ class PlaylistItem extends React.Component {
           <ReactSVG
             path={deleteIcon}
             evalScripts="always"
-            svgClassName="action"
+            svgClassName="action-icon"
             svgStyle={{ fill: '#373d3f' }}
             onClick={() => {
               this._onClickDelete();

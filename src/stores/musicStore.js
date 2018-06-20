@@ -53,7 +53,7 @@ const musicStore = store({
   setCurrentTrack(item) {
     ReactGA.event({
       category: 'Player',
-      action: 'Song Played',
+      action: 'Song Play Start',
       value: 1,
     });
     if (!item.id) item.id = shortId.generate();
@@ -64,12 +64,6 @@ const musicStore = store({
     return musicStore.currentTrack;
   },
   playTrack(item) {
-    ReactGA.event({
-      category: 'Player',
-      action: 'Song Played',
-      value: 1,
-    });
-
     musicStore.setCurrentTrack(item);
     musicStore.addToNowPlayingList(item);
   },

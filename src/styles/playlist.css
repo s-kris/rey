@@ -1,6 +1,8 @@
 .action-icon {
     cursor: pointer;
     fill: white;
+    width: auto;
+    height: 35;
 }
 .action-icon :hover {
     fill: var(--theme-color);
