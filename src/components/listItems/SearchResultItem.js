@@ -9,7 +9,6 @@ import './../../styles/song-item.css';
 import queueIcon from './../../assets/images/icons/add.svg';
 import musicStore from './../../stores/musicStore';
 import { showToast } from '../../utils/utils';
-import saveIcon from './../../assets/images/icons/save.svg';
 import SaveButton from './../SaveButton';
 
 class SearchResultItem extends React.Component {
