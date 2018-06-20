@@ -1,4 +1,5 @@
 import alertify from 'alertify.js';
+import { CONST_INVALID_URL } from './../config/Constants';
 
 export const isMobileDevice = () => {
   let isMobile = false; // initiate as false
@@ -31,5 +32,5 @@ export const getYoutubeId = url => {
   if (match && match[2].length === 11) {
     return match[2];
   }
-  console.log('error parsing youtube link');
+  return CONST_INVALID_URL;
 };

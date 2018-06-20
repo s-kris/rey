@@ -3,10 +3,16 @@ import { View, Text, FlatList } from 'react-native-web';
 import youtubeHelper from 'youtube-search';
 import { ScaleLoader } from 'react-spinners';
 
-import { YOUTUBE_API_KEY, YOUTUBE_SEARCH_RESULTS_MAX, SEARCH_MIN_LETTERS } from './../../config/Constants';
+import {
+  YOUTUBE_API_KEY,
+  YOUTUBE_SEARCH_RESULTS_MAX,
+  SEARCH_MIN_LETTERS,
+  CONST_INVALID_URL,
+} from './../../config/Constants';
 import './../../styles/input.css';
 import SearchResultItem from '../listItems/SearchResultItem';
 import WhatAShame from '../WhatAShame';
+import { getYoutubeId } from '../../utils/utils';
 
 const styles = {
   rootContainer: {
@@ -43,17 +49,31 @@ class SearchTab extends React.Component {
 
   handleChange = event => {
     const searchTerm = event.target.value;
+
+    if (searchTerm === '') {
+      this.setState({
+        data: [],
+        isLoading: false,
+        empty: false,
+      });
+    }
+
     if (searchTerm && searchTerm.length > SEARCH_MIN_LETTERS - 1) {
       this.setState(
         {
           isLoading: true,
         },
         () => {
-          this._searchYoutube(searchTerm, YOUTUBE_SEARCH_RESULTS_MAX);
+          if (getYoutubeId(searchTerm) === CONST_INVALID_URL) {
+            this._searchYoutube(searchTerm, YOUTUBE_SEARCH_RESULTS_MAX);
+          } else {
+            // enterted search term is youtube link and so render top 1 result
+            this._searchYoutube(searchTerm, 1);
+          }
         }
       );
     } else {
-      this.setState({ data: [] });
+      this.setState({ data: [], isLoading: false });
     }
   };
 
@@ -75,7 +95,7 @@ class SearchTab extends React.Component {
       if (err) return console.log(err);
 
       if (results.length === 0) {
-        this.setState({ empty: true });
+        this.setState({ empty: true, isLoading: false });
       } else {
         const cleanData = this._cleanSearchResults(results);
         this.setState({
@@ -98,7 +118,11 @@ class SearchTab extends React.Component {
     return (
       <View style={styles.rootContainer}>
         <View style={styles.searchBoxContainer}>
-          <input type="text" placeholder="start typing to search from youtube" onChange={this.handleChange} />
+          <input
+            type="text"
+            placeholder="start typing to search or paste a link from from youtube"
+            onChange={this.handleChange}
+          />
         </View>
 
         <FlatList

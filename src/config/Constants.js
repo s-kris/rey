@@ -6,3 +6,4 @@ export const KEY_NOW_PLAYING_LIST = 'keyfornowplayinglist';
 export const KEY_PLAYLISTS = 'keyforplaylists';
 export const GA_ID = 'UA-120975343-1';
 export const SEARCH_MIN_LETTERS = 4;
+export const CONST_INVALID_URL = 'invalid url';
