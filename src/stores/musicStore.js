@@ -84,7 +84,6 @@ const musicStore = store({
   queuePlaylistToNowPlaying(array) {
     const newArray = [];
     array.forEach(element => {
-      console.log(element.id);
       newArray.push({
         id: shortId.generate(),
         key: shortId.generate(),

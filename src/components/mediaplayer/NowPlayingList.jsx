@@ -3,16 +3,13 @@ import { View, Text, FlatList } from 'react-native-web';
 import { view } from 'react-easy-state';
 import ReactSVG from 'react-svg';
 // import alertify from 'alertify.js';
-import Modal from 'react-responsive-modal';
 
 import './../../styles/playlist.css';
 import NowPlayingListItem from './NowPlayingListItem';
 import musicStore from './../../stores/musicStore';
 import deleteIcon from './../../assets/images/icons/delete.svg';
-import saveIcon from './../../assets/images/icons/save.svg';
-// import AlertBox from './../AlertBox';
-import SaveAsPlaylist from '../SaveAsPlaylist';
 import { showToast } from '../../utils/utils';
+import SaveButton from '../SaveButton';
 
 const styles = {
   nowPlayingHeader: {
@@ -36,18 +33,6 @@ const styles = {
 };
 
 class NowPlayingList extends React.Component {
-  state = {
-    open: false,
-  };
-
-  openModal = () => {
-    this.setState({ open: true });
-  };
-
-  closeModal = () => {
-    this.setState({ open: false });
-  };
-
   _handleTrackClick(track) {
     this.props.onTrackClick(track);
   }
@@ -56,10 +41,6 @@ class NowPlayingList extends React.Component {
     // this.flatListRef.scrollToIndex({ index: position - 1 });
     // console.log(document.getElementById(id));
     // document.getElementById(id).scrollTop = 10;
-  };
-
-  _saveNowPlayingList = () => {
-    this.openModal();
   };
 
   render() {
@@ -74,32 +55,19 @@ class NowPlayingList extends React.Component {
 
     return (
       <View className="media-playlist">
-        <Modal
-          open={this.state.open}
-          onClose={this.closeModal}
-          center
-          styles={{
-            modal: {
-              padding: 0,
-            },
-          }}
-          showCloseIcon={false}
-          classNames={{ overlay: 'custom-overlay', modal: 'custom-modal' }}
-        >
-          <SaveAsPlaylist closeModal={() => this.closeModal()} dataToSave={musicStore.getNowPlayingList()} />
-          {/* <AlertBox message="save now or not" yexText="yes" noText="close" onClickNo={() => this.closeModal()} /> */}
-        </Modal>
         <View style={styles.nowPlayingHeader}>
           <Text className="font">NOW PLAYING</Text>
           <View style={styles.actionsContainer}>
-            <ReactSVG
+            {/* <ReactSVG
               path={saveIcon}
               evalScripts="always"
               svgClassName="action-icon"
               onClick={() => {
                 this._saveNowPlayingList();
               }}
-            />
+            /> */}
+            <SaveButton dataToSave={musicStore.getNowPlayingList()} />
+
             <ReactSVG
               path={deleteIcon}
               evalScripts="always"

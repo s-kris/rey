@@ -7,7 +7,7 @@ import './../../styles/song-item.css';
 import playIcon from './../../assets/images/icons/play.svg';
 import deleteIcon from './../../assets/images/icons/delete.svg';
 import editIcon from './../../assets/images/icons/edit.svg';
-import queueIcon from './../../assets/images/icons/queue_add.svg';
+import queueIcon from './../../assets/images/icons/add.svg';
 import musicStore from './../../stores/musicStore';
 import Playlists from '../../api/playlists';
 import { showToast } from '../../utils/utils';
@@ -53,7 +53,7 @@ class PlaylistItem extends React.Component {
           }),
         }}
       >
-        <Text className="title font" numberOfLines={1}>
+        <Text className="title font" numberOfLines={1} onClick={() => this._onClickQueue()}>
           {this._formatLabel(this.props.name)} &nbsp; &nbsp; ({this.props.data.length} Songs)
         </Text>
         <View className="actions-container">
