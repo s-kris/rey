@@ -21,10 +21,11 @@ const styles = {
     alignItems: 'center',
   },
   actionsContainer: {
-    width: 70,
+    // width: 70,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    // backgroundColor: 'blue',
   },
 };
 
