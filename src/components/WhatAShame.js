@@ -31,11 +31,13 @@ class WhatAShame extends React.Component {
     return (
       <div style={styles.container}>
         {this.props.message && <p> {this.props.message}</p>}
+        <br />
+        <br />
         <iframe
           title="ss"
           src={this.state.giphyUrl}
           width="100%"
-          height="100%"
+          height="60%"
           frameBorder="0"
           className="giphy-embed"
           allowFullScreen
