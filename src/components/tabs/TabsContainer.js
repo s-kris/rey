@@ -7,6 +7,7 @@ import SearchTab from './SearchTab';
 import WhatAShame from '../WhatAShame';
 import PlaylistsTab from './PlaylistsTab';
 import ProfileTab from './ProfileTab';
+import CreditsTab from './CreditsTab';
 
 const styles = {
   rootContainer: {
@@ -63,6 +64,7 @@ class TabsContainer extends React.Component {
         { name: 'POPULAR', path: '/popular' },
         { name: 'PLAYLISTS', path: '/playlists' },
         { name: 'PROFILE', path: '/profile' },
+        { name: 'CREDITS', path: '/credits' },
       ],
     };
   }
@@ -93,6 +95,8 @@ class TabsContainer extends React.Component {
       case 'LOGIN':
       case 'PROFILE':
         return <ProfileTab />;
+      case 'CREDITS':
+        return <CreditsTab />;
       default:
         return <WhatAShame giphyId="26ufd1zhcpm30DWrC" />;
     }

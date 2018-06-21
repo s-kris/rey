@@ -6,8 +6,6 @@ import App from './App';
 ReactDOM.render(<App />, document.getElementById('root'));
 // registerServiceWorker();
 
-module.hot.accept();
-
 if (module.hot) {
   module.hot.accept('./App', () => {
     const HApp = require('./App').default;
