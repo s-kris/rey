@@ -6,7 +6,7 @@
     /* background-color: #F7F7F7; */
     padding: 0;
     margin-bottom: 15px;
-    height: 35px;
+    min-height: 35px;
     width: 100%;    
     cursor: pointer;
 }

@@ -4,6 +4,7 @@ import ReactSVG from 'react-svg';
 import randomColor from 'randomcolor';
 import shortid from 'shortid';
 import ReactGA from 'react-ga';
+import Image from 'react-graceful-image';
 
 import './../../styles/song-item.css';
 import playIcon from './../../assets/images/icons/play.svg';
@@ -63,18 +64,31 @@ class SearchResultItem extends React.Component {
   _formatLabel = name => name;
 
   render() {
+    const generatedColor = randomColor({
+      luminosity: 'bright',
+      hue: 'blue',
+    });
     return (
       <View
         className="song-item-container"
         style={{
           borderLeftWidth: 4,
           borderLeftStyle: 'solid',
-          borderLeftColor: randomColor({
-            luminosity: 'bright',
-            hue: 'blue',
-          }),
+          borderLeftColor: generatedColor,
         }}
       >
+        {this.props.showImage && (
+          <View onClick={() => this._onClickPlay()}>
+            <Image
+              src={this.props.thumbnailUrl}
+              width="100"
+              height="75"
+              alt="My awesome image"
+              placeholderColor={generatedColor}
+              noLazyLoad
+            />
+          </View>
+        )}
         <Text className="title font" onClick={() => this._onClickPlay()} numberOfLines={1}>
           {this._formatLabel(this.props.name)}
         </Text>

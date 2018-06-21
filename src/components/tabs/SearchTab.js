@@ -42,6 +42,7 @@ class SearchTab extends React.Component {
       isLoading: false,
       data: [],
       empty: false,
+      checked: false,
     };
     // this._searchYoutube('telugu songs', 20);
     this.handleChange = this.handleChange.bind(this);
@@ -124,6 +125,20 @@ class SearchTab extends React.Component {
             onChange={this.handleChange}
           />
         </View>
+        <View style={{ marginTop: 10, flexDirection: 'row' }}>
+          <input
+            type="checkbox"
+            checked={this.state.checked}
+            onChange={() => this.setState({ checked: !this.state.checked })}
+          />
+          <Text
+            className="font"
+            style={{ marginLeft: 10, cursor: 'pointer' }}
+            onClick={() => this.setState({ checked: !this.state.checked })}
+          >
+            Show Images
+          </Text>
+        </View>
 
         <FlatList
           style={{ marginTop: 15 }}
@@ -135,6 +150,7 @@ class SearchTab extends React.Component {
               thumbnailUrl={item.thumbnails.medium.url}
               name={item.title}
               videoUrl={item.id}
+              showImage={this.state.checked}
             /> // item.link uses too much data
           )}
         />

@@ -13,6 +13,7 @@
     "react-dom": "^16.4.0",
     "react-easy-state": "^5.1.0",
     "react-ga": "^2.5.3",
+    "react-graceful-image": "^1.2.6",
     "react-media-player": "^0.7.1",
     "react-motion-ui-pack": "^0.10.3",
     "react-native-web": "^0.8.4",
