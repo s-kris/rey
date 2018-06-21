@@ -19,14 +19,16 @@ input[type=checkbox]:after {
     background-color: white;
     display: inline-block;
     border: 1px solid #ccc;
+    border-radius: 2px;
     visibility: visible;
     cursor: pointer;
   }
   input[type=checkbox]:checked:after {
-    /* content: "\2714"; */
+      /* content: "\2714"; */
     /* this is a checkmark symbol */
     color: var(--theme-color);
     font-size: 19px;
     background-color: var(--theme-color);
-    
   }
+   
+   
