@@ -105,7 +105,7 @@ class PlaylistItem extends React.Component {
           <ReactSVG
             path={deleteIcon}
             evalScripts="always"
-            svgClassName="action-icon"
+            svgClassName="action-icon-delete"
             svgStyle={{ fill: '#373d3f' }}
             onClick={() => {
               this._onClickDelete();
