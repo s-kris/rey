@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "alertify.js": "^1.0.12",
+    "firebase": "^5.0.4",
     "moment": "^2.22.2",
     "normalize.css": "^8.0.0",
     "randomcolor": "^0.5.3",
@@ -12,6 +13,7 @@
     "react-document-title": "^2.0.3",
     "react-dom": "^16.4.0",
     "react-easy-state": "^5.1.0",
+    "react-firebaseui": "^3.0.4",
     "react-ga": "^2.5.3",
     "react-graceful-image": "^1.2.6",
     "react-media-player": "^0.7.1",
