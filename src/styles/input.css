@@ -10,3 +10,23 @@ input[type=text]:focus {
 }
 
 textarea, select, input, button { outline: none; }
+
+
+input[type=checkbox]:after {
+    width: 15px;
+    height: 15px;
+    content: " ";
+    background-color: white;
+    display: inline-block;
+    border: 1px solid #ccc;
+    visibility: visible;
+    cursor: pointer;
+  }
+  input[type=checkbox]:checked:after {
+    /* content: "\2714"; */
+    /* this is a checkmark symbol */
+    color: var(--theme-color);
+    font-size: 19px;
+    background-color: var(--theme-color);
+    
+  }
