@@ -2,7 +2,7 @@
     cursor: pointer;
     fill: white;
     width: auto;
-    height: 35;
+    height: 35px;
 }
 .action-icon :hover {
     fill: var(--theme-color);

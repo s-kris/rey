@@ -125,7 +125,7 @@ class SearchTab extends React.Component {
             onChange={this.handleChange}
           />
         </View>
-        <View style={{ marginTop: 10, flexDirection: 'row' }}>
+        <View style={{ marginTop: 10, flexDirection: 'row', alignItems: 'center' }}>
           <input
             type="checkbox"
             checked={this.state.checked}
