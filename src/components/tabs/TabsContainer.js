@@ -57,12 +57,27 @@ class TabsContainer extends React.Component {
 
     this.state = {
       activeTab: 'SEARCH',
-      menuItems: ['SEARCH', 'POPULAR', 'PLAYLISTS', 'PROFILE'],
+      menuItems: [
+        { name: 'SEARCH', path: '/' },
+        { name: 'POPULAR', path: '/popular' },
+        { name: 'PLAYLISTS', path: '/playlists' },
+        { name: 'PROFILE', path: '/profile' },
+      ],
     };
   }
 
+  componentDidMount() {
+    this.state.menuItems.forEach(item => {
+      if (item.path === window.location.pathname) {
+        console.log(`${item.path}  ${window.location.pathname}`);
+        this.setState({ activeTab: item.name });
+      }
+    });
+  }
+
   _onClickMenuItem = item => {
-    this.setState({ activeTab: item });
+    window.history.pushState('', '', `${item.path}`);
+    this.setState({ activeTab: item.name });
   };
 
   _renderContent = () => {
@@ -84,22 +99,13 @@ class TabsContainer extends React.Component {
   };
 
   _renderMenu = array =>
-    array.map(
-      item =>
-        this.state.activeTab === item ? (
-          <View key={item} onClick={() => this._onClickMenuItem(item)}>
-            <Text className="font" style={styles.menuTextActive}>
-              {item}
-            </Text>
-          </View>
-        ) : (
-          <View key={item} onClick={() => this._onClickMenuItem(item)}>
-            <Text className="font" style={styles.menuText}>
-              {item}
-            </Text>
-          </View>
-        )
-    );
+    array.map(item => (
+      <View key={item.name} onClick={() => this._onClickMenuItem(item)}>
+        <Text className="font" style={this.state.activeTab === item.name ? styles.menuTextActive : styles.menuText}>
+          {item.name}
+        </Text>
+      </View>
+    ));
 
   render() {
     const { menuItems } = this.state;

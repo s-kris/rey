@@ -11,6 +11,7 @@ import { fbaseConfig } from './config/firebase';
 import { getFromFirebase } from './api/firebase';
 import { COL_MUSIC_DATA } from './config/Constants';
 import musicStore from './stores/musicStore';
+import HomeScreen from './screens/HomeScreen';
 // import { clearAll } from './api/storage';
 
 class App extends React.Component {
@@ -37,7 +38,7 @@ class App extends React.Component {
     // clearAll();
     return (
       <View>
-        <Routes />
+        <HomeScreen />
       </View>
     );
   }
