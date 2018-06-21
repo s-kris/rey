@@ -57,7 +57,7 @@ class TabsContainer extends React.Component {
 
     this.state = {
       activeTab: 'SEARCH',
-      menuItems: ['SEARCH', 'SIMILAR', 'POPULAR', 'PLAYLISTS', 'PROFILE'],
+      menuItems: ['SEARCH', 'POPULAR', 'PLAYLISTS', 'PROFILE'],
     };
   }
 
