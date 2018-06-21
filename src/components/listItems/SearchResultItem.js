@@ -3,6 +3,7 @@ import { View, Text } from 'react-native-web';
 import ReactSVG from 'react-svg';
 import randomColor from 'randomcolor';
 import shortid from 'shortid';
+import ReactGA from 'react-ga';
 
 import './../../styles/song-item.css';
 import playIcon from './../../assets/images/icons/play.svg';
@@ -10,6 +11,7 @@ import queueIcon from './../../assets/images/icons/add.svg';
 import musicStore from './../../stores/musicStore';
 import { showToast } from '../../utils/utils';
 import SaveButton from './../SaveButton';
+import { GA_EVENT_CAT_MUSIC, GA_EVENT_ACTION_SONG_SEARCH } from '../../config/Constants';
 
 class SearchResultItem extends React.Component {
   _onClickPlay = () => {
@@ -19,6 +21,11 @@ class SearchResultItem extends React.Component {
       label: this._formatLabel(name),
     });
     showToast('Playing');
+    ReactGA.event({
+      category: GA_EVENT_CAT_MUSIC,
+      action: GA_EVENT_ACTION_SONG_SEARCH,
+      value: 1,
+    });
   };
 
   _onClickQueue = () => {
