@@ -9,11 +9,9 @@ import {
   GA_EVENT_CAT_MUSIC,
   GA_EVENT_ACTION_SONG_STARTED,
   GA_EVENT_ACTION_SONG_QUEUED,
-  COL_PLAYLISTS,
 } from './../config/Constants';
 import { saveDataToStorage } from './../api/storage';
 import Playlists from './../api/playlists';
-import { saveToFirebase } from './../api/firebase';
 
 const musicStore = store({
   nowPlayingList: [
@@ -93,7 +91,6 @@ const musicStore = store({
   setPlaylists(array) {
     musicStore.playlists = array.slice(0);
     saveDataToStorage(KEY_PLAYLISTS, musicStore.playlists);
-    saveToFirebase(COL_PLAYLISTS, array, () => {});
   },
   queuePlaylistToNowPlaying(array) {
     const newArray = [];

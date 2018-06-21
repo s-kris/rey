@@ -1,22 +1,19 @@
 import firebase from 'firebase';
-import userStore from './../stores/userStore';
-import { COL_PLAYLISTS } from '../config/Constants';
+import { COL_MUSIC_DATA } from '../config/Constants';
+import { showToast } from '../utils/utils';
+import musicStore from '../stores/musicStore';
 
 export const saveToFirebase = (collection, data, callback) => {
-  console.log('in fbase fun save');
-  const { user } = userStore;
-  console.log(`user: ${user.uid}`);
+  const user = firebase.auth().currentUser;
   const db = firebase.firestore();
   const settings = {
     timestampsInSnapshots: true,
   };
   db.settings(settings);
 
-  const dataToSave = { allPlaylists: data, addedBy: user.uid };
-
   db.collection(collection)
     .doc(user.uid)
-    .set(dataToSave) // array to object cause of fbase
+    .set(data)
     .then(() => {
       callback();
       console.log('Document written ');
@@ -26,8 +23,28 @@ export const saveToFirebase = (collection, data, callback) => {
     });
 };
 
-export const getFromFirebase = (collection, data, callback) => {
-  const { user } = userStore;
+export const updateToFirebase = (collection, data, callback) => {
+  const user = firebase.auth().currentUser;
+  const db = firebase.firestore();
+  const settings = {
+    timestampsInSnapshots: true,
+  };
+  db.settings(settings);
+
+  db.collection(collection)
+    .doc(user.uid)
+    .update(data) // array to object cause of fbase
+    .then(() => {
+      callback();
+      console.log('Document updated ');
+    })
+    .catch(error => {
+      console.error('Error adding document: ', error);
+    });
+};
+
+export const getFromFirebase = (collection, callback) => {
+  const user = firebase.auth().currentUser;
   const db = firebase.firestore();
   const settings = {
     timestampsInSnapshots: true,
@@ -35,25 +52,23 @@ export const getFromFirebase = (collection, data, callback) => {
   db.settings(settings);
   db.collection(collection)
     .doc(user.uid)
-    .set({ data }) // array to object cause of fbase
-    .then(docRef => {
-      callback();
-      console.log('Document written with ID: ', docRef.id);
+    .get()
+    .then(doc => {
+      callback(doc.data());
     })
     .catch(error => {
       console.error('Error adding document: ', error);
     });
 };
 
-export const deleteDataFromFirebase = callback => {
-  const { user } = userStore;
+export const deleteDataFromFirebase = (userId, callback) => {
   const db = firebase.firestore();
   const settings = {
     timestampsInSnapshots: true,
   };
   db.settings(settings);
-  db.collection(COL_PLAYLISTS)
-    .doc(user.uid)
+  db.collection(COL_MUSIC_DATA)
+    .doc(userId)
     .delete()
     .then(() => {
       console.log('Document successfully deleted!');
@@ -65,16 +80,25 @@ export const deleteDataFromFirebase = callback => {
 };
 
 export const deleteAccount = callback => {
-  deleteDataFromFirebase(() => {
-    const user = firebase.auth().currentUser;
+  const user = firebase.auth().currentUser;
+  const userId = user.uid;
+  deleteDataFromFirebase(userId, () => {
     user
       .delete()
       .then(() => {
-        // User deleted.
         callback();
       })
       .catch(error => {
-        // An error happened.
+        console.log(error);
+        if (error.code === 'auth/requires-recent-login') {
+          showToast('Please re-login');
+        }
+        firebase
+          .auth()
+          .signOut()
+          .then(() => {
+            musicStore.setPlaylists([]);
+          });
       });
   });
 };

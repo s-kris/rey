@@ -16,9 +16,11 @@ class App extends React.Component {
     firebase.initializeApp(fbaseConfig);
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
+        console.log('signed in');
         userStore.loggedIn = true;
         userStore.user = firebase.auth().currentUser;
       } else {
+        console.log('signed out');
         userStore.loggedIn = false;
         userStore.user = null;
       }
@@ -27,10 +29,6 @@ class App extends React.Component {
 
   render() {
     // clearAll();
-    // console.log(window.location.origin);
-    // if (window.location.origin !== 'http://localhost:3000' || window.location.origin !== 'https://reymusic.co') {
-    //   window.location = 'https://reymusic.co';
-    // }
     return (
       <View>
         <Routes />

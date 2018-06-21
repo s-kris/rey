@@ -4,6 +4,7 @@ export const YOUTUBE_SEARCH_RESULTS_MAX = 15;
 export const KEY_CURRENT_TRACK = 'keyforcurrentplayingsong';
 export const KEY_NOW_PLAYING_LIST = 'keyfornowplayinglist';
 export const KEY_PLAYLISTS = 'keyforplaylists';
+export const KEY_DELETE_ACCOUNT_FLAG = 'keyfordeleteaccountflag';
 export const GA_ID = 'UA-120975343-1';
 export const SEARCH_MIN_LETTERS = 4;
 export const CONST_INVALID_URL = 'invalid url';
@@ -24,4 +25,4 @@ export const GA_EVENT_ACTION_PLAYLIST_CREATED = 'Playlist Created';
 export const GA_EVENT_ACTION_FULLSCREEN = 'Clicked Fullscreen';
 export const GA_EVENT_ACTION_REPEAT = 'Clicked Repeat';
 
-export const COL_PLAYLISTS = 'playlists';
+export const COL_MUSIC_DATA = 'musicdata';

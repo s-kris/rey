@@ -3,12 +3,16 @@ import { View, Text, Button } from 'react-native-web';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase';
 import { view } from 'react-easy-state';
+import moment from 'moment';
+import alertify from 'alertify.js';
 
 import userStore from '../../stores/userStore';
 import { themeColor } from '../../config/Colors';
 import musicStore from '../../stores/musicStore';
-import { COL_PLAYLISTS } from './../../config/Constants';
-import { saveToFirebase, deleteAccount } from './../../api/firebase';
+import { COL_MUSIC_DATA, KEY_DELETE_ACCOUNT_FLAG } from './../../config/Constants';
+import { saveToFirebase, deleteAccount, getFromFirebase } from './../../api/firebase';
+import { showToast } from '../../utils/utils';
+import { saveDataToStorage, getDataFromStorage } from '../../api/storage';
 
 const styles = {
   rootContainer: {
@@ -44,11 +48,20 @@ const styles = {
 class ProfileTab extends React.Component {
   uiConfig = {
     callbacks: {
-      signInSuccessWithAuthResult(authResult, redirectUrl){
+      signInSuccessWithAuthResult(authResult, redirectUrl) {
         if (authResult.additionalUserInfo.isNewUser) {
-          console.log('ss');
-          saveToFirebase(COL_PLAYLISTS, musicStore.getAllPlaylists(), () => {});
+          console.log('new user');
+          const data = {
+            playlists: musicStore.getAllPlaylists(),
+            createdAt: moment().format(),
+          };
+          saveToFirebase(COL_MUSIC_DATA, data, () => {});
+        } else {
+          getFromFirebase(COL_MUSIC_DATA, data => {
+            musicStore.setPlaylists(data.playlists);
+          });
         }
+        showToast('Playlists synced!');
         return false;
       },
     },
@@ -56,11 +69,48 @@ class ProfileTab extends React.Component {
     signInFlow: 'popup',
     signInOptions: [
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      //  firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-      //   firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+      firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+      firebase.auth.TwitterAuthProvider.PROVIDER_ID,
     ],
     // Terms of service url.
     tosUrl: '/terms',
+  };
+
+  _onClickDeleteAccount = () => {
+    console.log(getDataFromStorage(KEY_DELETE_ACCOUNT_FLAG));
+    if (getDataFromStorage(KEY_DELETE_ACCOUNT_FLAG)) {
+      saveDataToStorage(KEY_DELETE_ACCOUNT_FLAG, false);
+      deleteAccount(() => {
+        alertify
+          .okBtn('Delete Cache')
+          .cancelBtn('Keep')
+          .confirm(
+            'Account deleted. Do you want to remove cached data?',
+            () => {
+              // user clicked "ok"
+              musicStore.setPlaylists([]);
+              musicStore.setCurrentTrack({});
+              musicStore.setNowPlayingList([]);
+            },
+            () => {
+              // user clicked "cancel"
+            }
+          );
+      });
+    } else {
+      showToast('You need to login again');
+      saveDataToStorage(KEY_DELETE_ACCOUNT_FLAG, true);
+      this._onClickLogout();
+    }
+  };
+
+  _onClickLogout = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        musicStore.setPlaylists([]);
+      });
   };
 
   render() {
@@ -85,8 +135,8 @@ class ProfileTab extends React.Component {
               <Text className="font">{signedInWith} </Text>
             </View>
             <View style={styles.row}>
-              <Button title="Delete Account" color="red" onPress={() => deleteAccount(() => {})} />
-              <Button title="logout" color={themeColor} onPress={() => firebase.auth().signOut()} />
+              <Button title="Delete Account" color="red" onPress={() => this._onClickDeleteAccount()} />
+              <Button title="logout" color={themeColor} onPress={() => this._onClickLogout()} />
             </View>
           </View>
         ) : (

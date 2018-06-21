@@ -1,11 +1,15 @@
 import React from 'react';
 import { View, Text, Picker } from 'react-native-web';
 import ReactGA from 'react-ga';
+import moment from 'moment';
 
 import { bgDark } from '../config/Colors';
 import { showToast } from '../utils/utils';
 import Playlists from './../api/playlists';
-import { GA_EVENT_CAT_MUSIC, GA_EVENT_ACTION_SONG_ADDED_TO_PLAYLIST } from '../config/Constants';
+import { GA_EVENT_CAT_MUSIC, GA_EVENT_ACTION_SONG_ADDED_TO_PLAYLIST, COL_MUSIC_DATA } from '../config/Constants';
+import userStore from '../stores/userStore';
+import musicStore from '../stores/musicStore';
+import { updateToFirebase } from '../api/firebase';
 
 const styles = {
   rootContainer: {
@@ -73,6 +77,16 @@ class SaveAsPlaylist extends React.Component {
       this.props.closeModal();
     } else {
       showToast('Enter a Playlist name');
+    }
+
+    if (textInput.length > 0 || selectedOption !== 'select') {
+      if (userStore.loggedIn) {
+        const firebaseData = {
+          playlists: musicStore.getAllPlaylists(),
+          updatedAt: moment().format(),
+        };
+        updateToFirebase(COL_MUSIC_DATA, firebaseData, () => {});
+      }
     }
   };
 
