@@ -47,7 +47,7 @@ class MediaPlayer extends Component {
     this.props.onEnded();
   };
 
-  _formatLabel = name => name.substring(0, 15);
+  _formatLabel = name => name.substring(0, 25);
 
   render() {
     const { src, currentTrack, repeatTrack, autoPlay } = this.props;

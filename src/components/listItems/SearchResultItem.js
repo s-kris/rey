@@ -86,7 +86,7 @@ class SearchResultItem extends React.Component {
           <View onClick={() => this._onClickPlay()}>
             <Image
               src={this.props.thumbnailUrl}
-              width="100"
+              width="121"
               height="75"
               alt="My awesome image"
               placeholderColor={generatedColor}

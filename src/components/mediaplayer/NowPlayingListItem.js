@@ -69,7 +69,7 @@ class NowPlayingListItem extends React.Component {
     }
   };
 
-  _formatLabel = name => name.substring(0, 22);
+  _formatLabel = name => name.substring(0, 25);
 
   render() {
     const { track, currentTrack } = this.props;

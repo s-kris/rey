@@ -38,7 +38,7 @@ const styles = {
     flexDirection: 'row',
   },
   playerContainer: {
-    width: '30%',
+    width: '34%',
     height: '100%',
   },
   tabsContainer: {
