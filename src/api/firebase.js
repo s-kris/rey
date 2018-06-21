@@ -33,7 +33,7 @@ export const updateToFirebase = (collection, data, callback) => {
 
   db.collection(collection)
     .doc(user.uid)
-    .update(data) // array to object cause of fbase
+    .set(data)
     .then(() => {
       callback();
       console.log('Document updated ');

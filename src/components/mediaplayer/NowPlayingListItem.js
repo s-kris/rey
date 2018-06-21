@@ -80,7 +80,7 @@ class NowPlayingListItem extends React.Component {
     return (
       <View id={track.id} className={`media-playlist-track ${isActive ? 'is-active' : ''}`}>
         <View style={styles.row}>
-          <View style={styles.pointer} onClick={() => this.props.onItemClick(track)}>
+          <View style={{ cursor: 'pointer' }} onClick={() => this.props.onItemClick(track)}>
             <View style={styles.row}>
               <Text className="font" numberOfLines={1} style={{ fontSize: 16, letterSpacing: 0 }}>
                 {this._formatLabel(track.label)} &nbsp;

@@ -332,7 +332,7 @@ input[type=range]::-webkit-slider-thumb{
 }
 .media-playlist-track{
     padding: 12px;
-    cursor:pointer
+    /* cursor:pointer */
 }
 .media-playlist-track+.media-playlist-track{
     border-top:1px solid #373d3f
