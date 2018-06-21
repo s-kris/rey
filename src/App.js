@@ -8,6 +8,9 @@ import './styles/common.css';
 import Routes from './config/Routes';
 import userStore from './stores/userStore';
 import { fbaseConfig } from './config/firebase';
+import { getFromFirebase } from './api/firebase';
+import { COL_MUSIC_DATA } from './config/Constants';
+import musicStore from './stores/musicStore';
 // import { clearAll } from './api/storage';
 
 class App extends React.Component {
@@ -19,6 +22,9 @@ class App extends React.Component {
         console.log('signed in');
         userStore.loggedIn = true;
         userStore.user = firebase.auth().currentUser;
+        getFromFirebase(COL_MUSIC_DATA, data => {
+          musicStore.setPlaylists(data.playlists);
+        });
       } else {
         console.log('signed out');
         userStore.loggedIn = false;

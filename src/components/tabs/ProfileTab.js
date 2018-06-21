@@ -35,6 +35,10 @@ const styles = {
     marginTop: 50,
     flexDirection: 'column',
     alignItems: 'center',
+    // borderWidth: 2,
+    // borderColor: 'grey',
+    // borderStyle: 'solid',
+    // borderRadius: 2,
   },
   row: {
     flexDirection: 'row',
