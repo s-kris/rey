@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native-web';
+import { view } from 'react-easy-state';
 
 import SearchTab from './SearchTab';
 import WhatAShame from '../WhatAShame';
@@ -50,12 +51,15 @@ const styles = {
   },
 };
 
-const menuItems = ['SEARCH', 'SIMILAR', 'POPULAR', 'PLAYLISTS', 'PROFILE'];
-
 class TabsContainer extends React.Component {
-  state = {
-    activeTab: 'SEARCH',
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      activeTab: 'SEARCH',
+      menuItems: ['SEARCH', 'SIMILAR', 'POPULAR', 'PLAYLISTS', 'PROFILE'],
+    };
+  }
 
   _onClickMenuItem = item => {
     this.setState({ activeTab: item });
@@ -71,6 +75,7 @@ class TabsContainer extends React.Component {
         return <WhatAShame giphyId="26ufd1zhcpm30DWrC" />;
       case 'PLAYLISTS':
         return <PlaylistsTab />;
+      case 'LOGIN':
       case 'PROFILE':
         return <ProfileTab />;
       default:
@@ -97,6 +102,7 @@ class TabsContainer extends React.Component {
     );
 
   render() {
+    const { menuItems } = this.state;
     return (
       <View style={styles.rootContainer}>
         <View style={styles.headerContainer}>{this._renderMenu(menuItems)}</View>
@@ -106,4 +112,4 @@ class TabsContainer extends React.Component {
   }
 }
 
-export default TabsContainer;
+export default view(TabsContainer);

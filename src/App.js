@@ -18,9 +18,7 @@ class App extends React.Component {
       if (user) {
         userStore.loggedIn = true;
         userStore.user = firebase.auth().currentUser;
-        console.log('signed in');
       } else {
-        console.log('signed out');
         userStore.loggedIn = false;
         userStore.user = null;
       }

@@ -23,3 +23,5 @@ export const GA_EVENT_ACTION_PLAYLIST_CREATED = 'Playlist Created';
 
 export const GA_EVENT_ACTION_FULLSCREEN = 'Clicked Fullscreen';
 export const GA_EVENT_ACTION_REPEAT = 'Clicked Repeat';
+
+export const COL_PLAYLISTS = 'playlists';
