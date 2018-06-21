@@ -63,7 +63,7 @@ class MediaPlayer extends Component {
               <Player src={src} loop={repeatTrack} autoPlay={autoPlay} onEnded={this._handleEnded} />
             </View>
             <View className="media-controls media-controls--full">
-              <View className="media-row">
+              <View className="media-row" style={{ maxWidth: '100%' }}>
                 <CurrentTime className="media-control media-control--current-time" />
                 <Text className="font">{currentTrack && this._formatLabel(currentTrack)}</Text>
                 <Duration className="media-control media-control--duration" />
