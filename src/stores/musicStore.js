@@ -2,7 +2,14 @@ import { store } from 'react-easy-state';
 import shortId from 'shortid';
 import ReactGA from 'react-ga';
 
-import { KEY_CURRENT_TRACK, KEY_NOW_PLAYING_LIST, KEY_PLAYLISTS } from './../config/Constants';
+import {
+  KEY_CURRENT_TRACK,
+  KEY_NOW_PLAYING_LIST,
+  KEY_PLAYLISTS,
+  GA_EVENT_CAT_MUSIC,
+  GA_EVENT_ACTION_SONG_STARTED,
+  GA_EVENT_ACTION_SONG_QUEUED,
+} from './../config/Constants';
 import { saveDataToStorage } from './../api/storage';
 import Playlists from './../api/playlists';
 
@@ -31,6 +38,11 @@ const musicStore = store({
     if (!item.id) {
       item.id = shortId.generate();
     }
+    ReactGA.event({
+      category: GA_EVENT_CAT_MUSIC,
+      action: GA_EVENT_ACTION_SONG_QUEUED,
+      value: 1,
+    });
     const list = musicStore.getNowPlayingList();
     list.push(item);
     saveDataToStorage(KEY_NOW_PLAYING_LIST, list);
@@ -41,6 +53,11 @@ const musicStore = store({
       src: item.src,
       label: item.label,
     };
+    ReactGA.event({
+      category: GA_EVENT_CAT_MUSIC,
+      action: GA_EVENT_ACTION_SONG_QUEUED,
+      value: 1,
+    });
     const list = musicStore.getNowPlayingList();
     list.splice(position + 1, 0, newItem);
     saveDataToStorage(KEY_NOW_PLAYING_LIST, list);
@@ -52,8 +69,8 @@ const musicStore = store({
   },
   setCurrentTrack(item) {
     ReactGA.event({
-      category: 'Player',
-      action: 'Song Play Start',
+      category: GA_EVENT_CAT_MUSIC,
+      action: GA_EVENT_ACTION_SONG_STARTED,
       value: 1,
     });
     if (!item.id) item.id = shortId.generate();

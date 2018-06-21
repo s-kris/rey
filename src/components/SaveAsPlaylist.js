@@ -1,9 +1,11 @@
 import React from 'react';
 import { View, Text, Picker } from 'react-native-web';
+import ReactGA from 'react-ga';
 
 import { bgDark } from '../config/Colors';
 import { showToast } from '../utils/utils';
 import Playlists from './../api/playlists';
+import { GA_EVENT_CAT_MUSIC, GA_EVENT_ACTION_SONG_ADDED_TO_PLAYLIST } from '../config/Constants';
 
 const styles = {
   rootContainer: {
@@ -63,6 +65,11 @@ class SaveAsPlaylist extends React.Component {
       this.props.closeModal();
     } else if (selectedOption !== 'select') {
       Playlists.addToPlaylist(selectedOption, this.props.dataToSave);
+      ReactGA.event({
+        category: GA_EVENT_CAT_MUSIC,
+        action: GA_EVENT_ACTION_SONG_ADDED_TO_PLAYLIST,
+        value: 1,
+      });
       this.props.closeModal();
     } else {
       showToast('Enter a Playlist name');

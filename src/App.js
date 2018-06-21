@@ -10,6 +10,10 @@ import Routes from './config/Routes';
 class App extends React.Component {
   render() {
     // clearAll();
+    // console.log(window.location.origin);
+    // if (window.location.origin !== 'http://localhost:3000' || window.location.origin !== 'https://reymusic.co') {
+    //   window.location = 'https://reymusic.co';
+    // }
     return (
       <View>
         <Routes />

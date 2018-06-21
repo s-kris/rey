@@ -3,6 +3,7 @@ import { View, Text } from 'react-native-web';
 import { ScaleLoader } from 'react-spinners';
 import { view } from 'react-easy-state';
 import ReactSVG from 'react-svg';
+import ReactGA from 'react-ga';
 
 import './../../styles/playlist.css';
 import musicStore from '../../stores/musicStore';
@@ -11,6 +12,7 @@ import deleteIcon from './../../assets/images/icons/delete.svg';
 import queueIcon from './../../assets/images/icons/add.svg';
 import { showToast } from '../../utils/utils';
 import SaveButton from '../SaveButton';
+import { GA_EVENT_ACTION_SONG_COPIED, GA_EVENT_CAT_MUSIC } from '../../config/Constants';
 
 const styles = {
   row: {
@@ -29,8 +31,13 @@ const styles = {
   },
 };
 
-class PlaylistItem extends React.Component {
+class NowPlayingListItem extends React.Component {
   _onClickAdd = () => {
+    ReactGA.event({
+      category: GA_EVENT_CAT_MUSIC,
+      action: GA_EVENT_ACTION_SONG_COPIED,
+      value: 1,
+    });
     showToast('Added to Now Playing');
     musicStore.insertToNowPlayingList(this.props.track, this.props.position);
   };
@@ -114,4 +121,4 @@ class PlaylistItem extends React.Component {
   }
 }
 
-export default view(PlaylistItem);
+export default view(NowPlayingListItem);

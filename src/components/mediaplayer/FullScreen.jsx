@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import { withMediaProps } from 'react-media-player';
+import ReactGA from 'react-ga';
+
+import { GA_EVENT_CAT_PLAYER, GA_EVENT_ACTION_FULLSCREEN } from '../../config/Constants';
 
 class Fullscreen extends Component {
   _handleFullscreen = () => {
+    ReactGA.event({
+      category: GA_EVENT_CAT_PLAYER,
+      action: GA_EVENT_ACTION_FULLSCREEN,
+      value: 1,
+    });
     this.props.media.fullscreen();
   };
 

@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native-web';
 import { Media, Player, controls, utils } from 'react-media-player';
 import { view } from 'react-easy-state';
+import ReactGA from 'react-ga';
 
 import PlayPause from './PlayPause';
 import MuteUnmute from './MuteUnmute';
 import Repeat from './Repeat';
 import FullScreen from './FullScreen';
+import { GA_EVENT_CAT_PLAYER, GA_EVENT_ACTION_REPEAT } from '../../config/Constants';
 
 const { CurrentTime, Progress, SeekBar, Duration } = controls;
 const { keyboardControls } = utils;
@@ -33,6 +35,11 @@ class MediaPlayer extends Component {
   };
 
   _handleRepeatTrack = () => {
+    ReactGA.event({
+      category: GA_EVENT_CAT_PLAYER,
+      action: GA_EVENT_ACTION_REPEAT,
+      value: 1,
+    });
     this.props.onRepeatTrack();
   };
 

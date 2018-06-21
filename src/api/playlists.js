@@ -1,8 +1,9 @@
 import shortid from 'shortid';
 import moment from 'moment';
+import ReactGA from 'react-ga';
 
 import { getDataFromStorage, saveDataToStorage } from './../api/storage';
-import { KEY_PLAYLISTS } from './../config/Constants';
+import { KEY_PLAYLISTS, GA_EVENT_ACTION_PLAYLIST_CREATED, GA_EVENT_CAT_MUSIC } from './../config/Constants';
 import musicStore from './../stores/musicStore';
 import { showToast } from './../utils/utils';
 
@@ -28,6 +29,11 @@ class Playlists {
     saveDataToStorage(KEY_PLAYLISTS, playlists);
     musicStore.setPlaylists(playlists);
     showToast('New playlist saved');
+    ReactGA.event({
+      category: GA_EVENT_CAT_MUSIC,
+      action: GA_EVENT_ACTION_PLAYLIST_CREATED,
+      value: 1,
+    });
   }
 
   static addToPlaylist(playlistId, array) {

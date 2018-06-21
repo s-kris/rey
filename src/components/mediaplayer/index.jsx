@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import { view } from 'react-easy-state';
 import DocumentTitle from 'react-document-title';
+import ReactGA from 'react-ga';
 
 import MediaPlayer from './MediaPlayer';
 import NowPlayingList from './NowPlayingList';
 import musicStore from '../../stores/musicStore';
-import { KEY_CURRENT_TRACK, KEY_NOW_PLAYING_LIST } from '../../config/Constants';
+import {
+  KEY_CURRENT_TRACK,
+  KEY_NOW_PLAYING_LIST,
+  GA_EVENT_CAT_MUSIC,
+  GA_EVENT_ACTION_SONG_REPEATED,
+  GA_EVENT_ACTION_SONG_COMPLETED,
+} from '../../config/Constants';
 import { getDataFromStorage } from './../../api/storage';
 
 const mod = (num, max) => ((num % max) + max) % max;
@@ -75,11 +82,21 @@ class Index extends Component {
             onPrevTrack={() => this._navigatePlaylist(-1)}
             onNextTrack={() => this._navigatePlaylist(1)}
             onRepeatTrack={() => {
+              ReactGA.event({
+                category: GA_EVENT_CAT_MUSIC,
+                action: GA_EVENT_ACTION_SONG_REPEATED,
+                value: 1,
+              });
               this.setState({ repeatTrack: !repeatTrack });
             }}
             onPlay={() => !autoPlay && this.setState({ autoPlay: true })}
             onPause={() => this.setState({ autoPlay: false })}
             onEnded={() => {
+              ReactGA.event({
+                category: GA_EVENT_CAT_MUSIC,
+                action: GA_EVENT_ACTION_SONG_COMPLETED,
+                value: 1,
+              });
               !repeatTrack && this._navigatePlaylist(1);
             }}
           />

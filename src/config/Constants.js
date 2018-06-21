@@ -7,3 +7,19 @@ export const KEY_PLAYLISTS = 'keyforplaylists';
 export const GA_ID = 'UA-120975343-1';
 export const SEARCH_MIN_LETTERS = 4;
 export const CONST_INVALID_URL = 'invalid url';
+
+export const GA_EVENT_CAT_PLAYER = 'Player';
+export const GA_EVENT_CAT_MUSIC = 'Music';
+
+export const GA_EVENT_ACTION_SONG_STARTED = 'Song Started';
+export const GA_EVENT_ACTION_SONG_QUEUED = 'Song Queued';
+export const GA_EVENT_ACTION_SONG_COPIED = 'Song Copied';
+export const GA_EVENT_ACTION_SONG_REPEATED = 'Song Repeated';
+export const GA_EVENT_ACTION_SONG_COMPLETED = 'Song Completed';
+export const GA_EVENT_ACTION_SONG_SEARCH = 'Song Searched';
+export const GA_EVENT_ACTION_SONG_ADDED_TO_PLAYLIST = 'Song added to Playlist';
+
+export const GA_EVENT_ACTION_PLAYLIST_CREATED = 'Playlist Created';
+
+export const GA_EVENT_ACTION_FULLSCREEN = 'Clicked Fullscreen';
+export const GA_EVENT_ACTION_REPEAT = 'Clicked Repeat';
