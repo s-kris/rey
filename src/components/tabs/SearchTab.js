@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList } from 'react-native-web';
+import { View, Text, FlatList, Button } from 'react-native-web';
 import youtubeHelper from 'youtube-search';
 import { ScaleLoader } from 'react-spinners';
 
@@ -13,6 +13,7 @@ import './../../styles/input.css';
 import SearchResultItem from '../listItems/SearchResultItem';
 import WhatAShame from '../WhatAShame';
 import { getYoutubeId } from '../../utils/utils';
+import { themeColor } from '../../config/Colors';
 
 const styles = {
   rootContainer: {
@@ -43,6 +44,7 @@ class SearchTab extends React.Component {
       data: [],
       empty: false,
       checked: false,
+      searchText: '',
     };
     // this._searchYoutube('telugu songs', 20);
     this.handleChange = this.handleChange.bind(this);
@@ -50,6 +52,7 @@ class SearchTab extends React.Component {
 
   handleChange = event => {
     const searchTerm = event.target.value;
+    this.setState({ searchText: searchTerm });
 
     if (searchTerm === '') {
       this.setState({
@@ -123,6 +126,7 @@ class SearchTab extends React.Component {
             type="text"
             placeholder="start typing to search or paste a link from from youtube"
             onChange={this.handleChange}
+            value={this.state.searchText}
             autoFocus
           />
         </View>
@@ -137,8 +141,16 @@ class SearchTab extends React.Component {
             style={{ marginLeft: 10, cursor: 'pointer' }}
             onClick={() => this.setState({ checked: !this.state.checked })}
           >
-            Show Images
+            Show Images {'    '}
           </Text>
+
+          <Button
+            onPress={() => this.setState({ searchText: '', data: [] })}
+            title="Clear"
+            color={themeColor}
+            disabled={this.state.searchText.length === 0}
+            accessibilityLabel="Learn more about this purple button"
+          />
         </View>
 
         <FlatList
