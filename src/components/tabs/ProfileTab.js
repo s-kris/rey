@@ -159,7 +159,7 @@ class ProfileTab extends React.Component {
           <View style={styles.centerContainer}>
             <Text className="font">You can use Rey without signing in but your playlists won't be saved to cloud</Text>
             <View style={styles.divider} />
-            <Text className="font">sign-in to save to cloud</Text>
+            <Text className="font">sign-in to sync with cloud</Text>
             <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} />
           </View>
         )}
