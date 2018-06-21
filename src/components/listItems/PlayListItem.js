@@ -30,21 +30,27 @@ class PlaylistItem extends React.Component {
   };
 
   _onClickQueue = () => {
-    const { data } = this.props;
+    const { data, name } = this.props;
     const nowPlayingList = musicStore.getNowPlayingList();
     const tmpData = data.slice(0);
-    if (nowPlayingList.length === 0) {
-      musicStore.playTrack({
-        src: data[0].src,
-        label: this._formatLabel(data[0].label),
-      });
-      tmpData.shift();
+    if (data.length > 0) {
+      if (nowPlayingList.length === 0) {
+        musicStore.playTrack({
+          src: data[0].src,
+          label: this._formatLabel(data[0].label),
+        });
+        tmpData.shift();
+      }
+      musicStore.queuePlaylistToNowPlaying(tmpData);
+      showToast('Added to Now Playing');
+    } else {
+      showToast(`No songs in the playlist: '${name}'`);
     }
-    musicStore.queuePlaylistToNowPlaying(tmpData);
-    showToast('Added to Now Playing');
   };
 
-  _onClickEdit = () => {};
+  _onClickEdit = () => {
+    showToast('Edit feature is coming soon!');
+  };
 
   _onClickDelete = () => {
     Playlists.deletePlaylist(this.props.id);
