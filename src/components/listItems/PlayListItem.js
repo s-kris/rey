@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native-web';
 import ReactSVG from 'react-svg';
 import randomColor from 'randomcolor';
+import alertify from 'alertify.js';
 
 import './../../styles/song-item.css';
 import playIcon from './../../assets/images/icons/play.svg';
@@ -53,7 +54,19 @@ class PlaylistItem extends React.Component {
   };
 
   _onClickDelete = () => {
-    Playlists.deletePlaylist(this.props.id);
+    const { name, id } = this.props;
+    alertify
+      .okBtn('Yes, delete')
+      .cancelBtn('Cancel')
+      .confirm(
+        `Do you want to delete the playlist '${name}' ? All data will be lost and can not be recovered.`,
+        () => {
+          Playlists.deletePlaylist(id);
+        },
+        () => {
+          // user clicked "cancel"
+        }
+      );
   };
 
   _formatLabel = name => name;

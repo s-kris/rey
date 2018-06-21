@@ -76,7 +76,7 @@ class ProfileTab extends React.Component {
     tosUrl: '/terms',
   };
 
-  _onClickDeleteAccount = () => {
+  _confirmDelete = () => {
     console.log(getDataFromStorage(KEY_DELETE_ACCOUNT_FLAG));
     if (getDataFromStorage(KEY_DELETE_ACCOUNT_FLAG)) {
       saveDataToStorage(KEY_DELETE_ACCOUNT_FLAG, false);
@@ -102,6 +102,22 @@ class ProfileTab extends React.Component {
       saveDataToStorage(KEY_DELETE_ACCOUNT_FLAG, true);
       this._onClickLogout();
     }
+  };
+
+  _onClickDeleteAccount = () => {
+    alertify
+      .okBtn('Yes, delete')
+      .cancelBtn('Cancel')
+      .confirm(
+        'Do you want to delete your account? All data will be lost and can not be recovered.',
+        () => {
+          this._confirmDelete();
+        },
+        () => {
+          saveDataToStorage(KEY_DELETE_ACCOUNT_FLAG, false);
+          // user clicked "cancel"
+        }
+      );
   };
 
   _onClickLogout = () => {
