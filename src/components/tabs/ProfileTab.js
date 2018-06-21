@@ -136,7 +136,7 @@ class ProfileTab extends React.Component {
   render() {
     const { user } = userStore;
     const { displayName, email } = user || {};
-    const signedInWith = user.providerData ? userStore.user.providerData[0].providerId : '';
+    const signedInWith = user && user.providerData ? userStore.user.providerData[0].providerId : '';
 
     return (
       <View style={styles.rootContainer}>
