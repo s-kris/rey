@@ -2,7 +2,7 @@
     cursor: pointer;
     fill: white;
     width: auto;
-    height: 35px;
+    height: 30px;
 }
 .action-icon :hover {
     fill: var(--theme-color);
@@ -11,6 +11,8 @@
 .action-icon-delete {
     cursor: pointer;
     fill: white;
+    width: auto;
+    height: 30px;
 }
 
 .action-icon-delete :hover {

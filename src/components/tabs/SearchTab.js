@@ -123,6 +123,7 @@ class SearchTab extends React.Component {
             type="text"
             placeholder="start typing to search or paste a link from from youtube"
             onChange={this.handleChange}
+            autoFocus
           />
         </View>
         <View style={{ marginTop: 10, flexDirection: 'row', alignItems: 'center' }}>

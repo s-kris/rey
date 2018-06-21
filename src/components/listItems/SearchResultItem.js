@@ -61,7 +61,12 @@ class SearchResultItem extends React.Component {
     ];
   };
 
-  _formatLabel = name => name;
+  _formatLabel = name => {
+    if (name.length > 75) {
+      return `${name.substring(0, 75)}...`;
+    }
+    return name;
+  };
 
   render() {
     const generatedColor = randomColor({
