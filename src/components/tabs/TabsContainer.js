@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native-web';
 import { view } from 'react-easy-state';
+import ReactGA from 'react-ga';
 
 import SearchTab from './SearchTab';
 import WhatAShame from '../WhatAShame';
@@ -54,7 +55,7 @@ const styles = {
 class TabsContainer extends React.Component {
   constructor(props) {
     super(props);
-
+    ReactGA.pageview(window.location.pathname);
     this.state = {
       activeTab: 'SEARCH',
       menuItems: [
@@ -69,7 +70,6 @@ class TabsContainer extends React.Component {
   componentDidMount() {
     this.state.menuItems.forEach(item => {
       if (item.path === window.location.pathname) {
-        console.log(`${item.path}  ${window.location.pathname}`);
         this.setState({ activeTab: item.name });
       }
     });
