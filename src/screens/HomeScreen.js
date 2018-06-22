@@ -8,6 +8,7 @@ import TabsContainer from '../components/tabs/TabsContainer';
 import Header from '../components/Header';
 import { isMobileDevice } from './../utils/utils';
 import WhatAShame from '../components/WhatAShame';
+import Footer from '../components/Footer';
 
 const styles = {
   rootContainer: {
@@ -74,6 +75,7 @@ class HomeScreen extends React.Component {
           <Header />
         </View>
         {this._renderPlayer()}
+        <Footer />
       </View>
     );
   }

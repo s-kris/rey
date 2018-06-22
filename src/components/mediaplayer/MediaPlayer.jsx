@@ -7,7 +7,7 @@ import ReactGA from 'react-ga';
 import PlayPause from './PlayPause';
 import MuteUnmute from './MuteUnmute';
 import Repeat from './Repeat';
-import FullScreen from './FullScreen';
+// import FullScreen from './FullScreen';
 import { GA_EVENT_CAT_PLAYER, GA_EVENT_ACTION_REPEAT } from '../../config/Constants';
 
 const { CurrentTime, Progress, SeekBar, Duration } = controls;

@@ -24,10 +24,12 @@
     "react-spinners": "^0.3.2",
     "react-svg": "^4.0.17",
     "shortid": "^2.2.8",
+    "source-map-explorer": "^1.5.0",
     "store": "^2.0.12",
     "youtube-search": "^1.1.1"
   },
   "scripts": {
+    "analyze": "source-map-explorer build/static/js/main.*",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
