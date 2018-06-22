@@ -9,7 +9,7 @@ import Playlists from './../api/playlists';
 import { GA_EVENT_CAT_MUSIC, GA_EVENT_ACTION_SONG_ADDED_TO_PLAYLIST, COL_MUSIC_DATA } from '../config/Constants';
 import userStore from '../stores/userStore';
 import musicStore from '../stores/musicStore';
-import { updateToFirebase } from '../api/firebase';
+import { saveToFirebase } from '../api/firebase';
 
 const styles = {
   rootContainer: {
@@ -85,7 +85,7 @@ class SaveAsPlaylist extends React.Component {
           playlists: musicStore.getAllPlaylists(),
           updatedAt: moment().format(),
         };
-        updateToFirebase(COL_MUSIC_DATA, firebaseData, () => {});
+        saveToFirebase(COL_MUSIC_DATA, firebaseData, () => {});
       }
     }
   };

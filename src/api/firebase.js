@@ -23,26 +23,6 @@ export const saveToFirebase = (collection, data, callback) => {
     });
 };
 
-export const updateToFirebase = (collection, data, callback) => {
-  const user = firebase.auth().currentUser;
-  const db = firebase.firestore();
-  const settings = {
-    timestampsInSnapshots: true,
-  };
-  db.settings(settings);
-
-  db.collection(collection)
-    .doc(user.uid)
-    .set(data)
-    .then(() => {
-      callback();
-      // console.log('Document updated ');
-    })
-    .catch(error => {
-      console.error('Error adding document: ', error);
-    });
-};
-
 export const getFromFirebase = (collection, callback) => {
   const user = firebase.auth().currentUser;
   const db = firebase.firestore();

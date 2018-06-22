@@ -3,6 +3,7 @@ import { View, Text } from 'react-native-web';
 import ReactSVG from 'react-svg';
 import randomColor from 'randomcolor';
 import alertify from 'alertify.js';
+import moment from 'moment';
 
 import './../../styles/song-item.css';
 import playIcon from './../../assets/images/icons/play.svg';
@@ -12,6 +13,8 @@ import queueIcon from './../../assets/images/icons/add.svg';
 import musicStore from './../../stores/musicStore';
 import Playlists from '../../api/playlists';
 import { showToast } from '../../utils/utils';
+import { saveToFirebase } from '../../api/firebase';
+import { COL_MUSIC_DATA } from '../../config/Constants';
 
 class PlaylistItem extends React.Component {
   _onClickPlay = () => {
@@ -59,9 +62,14 @@ class PlaylistItem extends React.Component {
       .okBtn('Yes, delete')
       .cancelBtn('Cancel')
       .confirm(
-        `Do you want to delete the playlist '${name}' ? All data will be lost and can not be recovered.`,
+        `Do you want to delete the playlist '${name}' ?`,
         () => {
           Playlists.deletePlaylist(id);
+          const firebaseData = {
+            playlists: musicStore.getAllPlaylists(),
+            updatedAt: moment().format(),
+          };
+          saveToFirebase(COL_MUSIC_DATA, firebaseData, () => {});
         },
         () => {
           // user clicked "cancel"
