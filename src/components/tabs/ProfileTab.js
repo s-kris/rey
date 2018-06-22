@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native-web';
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
@@ -15,6 +14,8 @@ import { COL_MUSIC_DATA, KEY_DELETE_ACCOUNT_FLAG } from './../../config/Constant
 import { saveToFirebase, deleteAccount, getFromFirebase } from './../../api/firebase';
 import { showToast } from '../../utils/utils';
 import { saveDataToStorage, getDataFromStorage } from '../../api/storage';
+import GoogleButton from './../../assets/images/google.png';
+import TwitterButton from './../../assets/images/twitter.png';
 
 const styles = {
   rootContainer: {
@@ -52,11 +53,20 @@ const styles = {
 };
 
 class ProfileTab extends React.Component {
-  uiConfig = {
-    callbacks: {
-      signInSuccessWithAuthResult(authResult, redirectUrl) {
-        if (authResult.additionalUserInfo.isNewUser) {
-          //   console.log('new user');
+  constructor(props) {
+    super(props);
+
+    this.gProvider = new firebase.auth.GoogleAuthProvider();
+    this.tProvider = new firebase.auth.TwitterAuthProvider();
+  }
+
+  _onClickSignIn = provider => {
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then(result => {
+        if (result.additionalUserInfo.isNewUser) {
+          // console.log('new user');
           const data = {
             playlists: musicStore.getAllPlaylists(),
             createdAt: moment().format(),
@@ -68,19 +78,41 @@ class ProfileTab extends React.Component {
           });
         }
         showToast('Playlists synced!');
-        return false;
-      },
-    },
-
-    signInFlow: 'popup',
-    signInOptions: [
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-      firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-    ],
-    // Terms of service url.
-    tosUrl: '/terms',
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
+
+  // uiConfig = {
+  //   callbacks: {
+  //     signInSuccessWithAuthResult(authResult, redirectUrl) {
+  //       if (authResult.additionalUserInfo.isNewUser) {
+  //         //   console.log('new user');
+  //         const data = {
+  //           playlists: musicStore.getAllPlaylists(),
+  //           createdAt: moment().format(),
+  //         };
+  //         saveToFirebase(COL_MUSIC_DATA, data, () => {});
+  //       } else {
+  //         getFromFirebase(COL_MUSIC_DATA, data => {
+  //           musicStore.setPlaylists(data.playlists);
+  //         });
+  //       }
+  //       showToast('Playlists synced!');
+  //       return false;
+  //     },
+  //   },
+
+  //   signInFlow: 'popup',
+  //   signInOptions: [
+  //     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+  //     // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+  //     firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+  //   ],
+  //   // Terms of service url.
+  //   tosUrl: '/terms',
+  // };
 
   _confirmDelete = () => {
     if (getDataFromStorage(KEY_DELETE_ACCOUNT_FLAG)) {
@@ -165,7 +197,20 @@ class ProfileTab extends React.Component {
             <Text className="font">You can use Rey without signing in but your playlists won't be saved to cloud</Text>
             <View style={styles.divider} />
             <Text className="font">sign-in to sync with cloud</Text>
-            <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} />
+            <View>
+              <img
+                style={{ cursor: 'pointer', marginTop: 15 }}
+                onClick={() => this._onClickSignIn(this.gProvider)}
+                src={GoogleButton}
+                alt="sign in with google"
+              />
+              <img
+                style={{ cursor: 'pointer', marginTop: 5 }}
+                onClick={() => this._onClickSignIn(this.tProvider)}
+                src={TwitterButton}
+                alt="sign in with google"
+              />
+            </View>
           </View>
         )}
       </View>
