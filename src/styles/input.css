@@ -6,7 +6,7 @@ input[type=text] {
 }
 
 input[type=text]:focus {
-    border:2px solid var(--theme-color); 
+    border:2px solid var(--accent-color); 
 }
 
 textarea, select, input, button { outline: none; }
@@ -26,9 +26,9 @@ input[type=checkbox]:after {
   input[type=checkbox]:checked:after {
       /* content: "\2714"; */
     /* this is a checkmark symbol */
-    color: var(--theme-color);
+    color: var(--accent-color);
     font-size: 19px;
-    background-color: var(--theme-color);
+    background-color: var(--accent-color);
   }
    
    

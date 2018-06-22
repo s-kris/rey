@@ -5,7 +5,7 @@ import { view } from 'react-easy-state';
 import './../../styles/input.css';
 import PlaylistItem from '../listItems/PlayListItem';
 import musicStore from '../../stores/musicStore';
-import { themeColor } from '../../config/Colors';
+import { accentColor } from '../../config/Colors';
 
 const styles = {
   rootContainer: {
@@ -56,7 +56,7 @@ class PlaylistsTab extends React.Component {
         </View> */}
         <View style={styles.textContainer}>
           {playlistsData.length === 0 && (
-            <Text className="font" style={{ fontSize: 24, color: themeColor }}>
+            <Text className="font" style={{ fontSize: 24, color: accentColor }}>
               No Playlists were created yet!
             </Text>
           )}

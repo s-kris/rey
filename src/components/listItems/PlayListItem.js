@@ -15,6 +15,7 @@ import Playlists from '../../api/playlists';
 import { showToast } from '../../utils/utils';
 import { saveToFirebase } from '../../api/firebase';
 import { COL_MUSIC_DATA } from '../../config/Constants';
+import { primaryColorLight } from './../../config/Colors';
 
 class PlaylistItem extends React.Component {
   _onClickPlay = () => {
@@ -99,7 +100,7 @@ class PlaylistItem extends React.Component {
             path={playIcon}
             evalScripts="always"
             svgClassName="action-icon"
-            svgStyle={{ fill: '#373d3f' }}
+            svgStyle={{ fill: { primaryColorLight } }}
             onClick={() => {
               this._onClickPlay();
             }}
@@ -108,7 +109,7 @@ class PlaylistItem extends React.Component {
             path={queueIcon}
             evalScripts="always"
             svgClassName="action-icon"
-            svgStyle={{ fill: '#373d3f' }}
+            svgStyle={{ fill: { primaryColorLight } }}
             onClick={() => {
               this._onClickQueue();
             }}
@@ -118,7 +119,7 @@ class PlaylistItem extends React.Component {
             path={editIcon}
             evalScripts="always"
             svgClassName="action-icon"
-            svgStyle={{ fill: '#373d3f' }}
+            svgStyle={{ fill: { primaryColorLight } }}
             onClick={() => {
               this._onClickEdit();
             }}
@@ -127,7 +128,7 @@ class PlaylistItem extends React.Component {
             path={deleteIcon}
             evalScripts="always"
             svgClassName="action-icon-delete"
-            svgStyle={{ fill: '#373d3f' }}
+            svgStyle={{ fill: { primaryColorLight } }}
             onClick={() => {
               this._onClickDelete();
             }}

@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Text } from 'react-native-web';
-import { bgDark } from '../config/Colors';
+import { primaryColor } from '../config/Colors';
 
 const styles = {
   rootContainer: {
     width: 500,
     height: 200,
-    backgroundColor: bgDark,
+    backgroundColor: primaryColor,
     padding: 25,
     flexDirection: 'column',
     justifyContent: 'space-around',

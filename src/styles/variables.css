@@ -1,6 +1,6 @@
 *{
-    --theme-color: #51B34D ;
-    --bg-color: #34495e;
-    --progress-bar-color: #353b48;
-    --border-color: #2C313B;
+    --accent-color: #44bd32 ;
+    --primary-color: #2f3640;
+    --primary-color-mid: #353b48;
+    --primary-color-light: #3B4350;
 }

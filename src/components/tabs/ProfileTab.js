@@ -7,7 +7,7 @@ import moment from 'moment';
 import alertify from 'alertify.js';
 
 import userStore from '../../stores/userStore';
-import { themeColor } from '../../config/Colors';
+import { accentColor } from '../../config/Colors';
 import musicStore from '../../stores/musicStore';
 import { COL_MUSIC_DATA, KEY_DELETE_ACCOUNT_FLAG } from './../../config/Constants';
 import { saveToFirebase, deleteAccount, getFromFirebase } from './../../api/firebase';
@@ -29,7 +29,7 @@ const styles = {
     width: 300,
     height: 3,
     margin: 25,
-    backgroundColor: themeColor,
+    backgroundColor: accentColor,
   },
   profileContainer: {
     marginTop: 50,
@@ -155,7 +155,7 @@ class ProfileTab extends React.Component {
             </View>
             <View style={styles.row}>
               <Button title="Delete Account" color="red" onPress={() => this._onClickDeleteAccount()} />
-              <Button title="logout" color={themeColor} onPress={() => this._onClickLogout()} />
+              <Button title="logout" color={accentColor} onPress={() => this._onClickLogout()} />
             </View>
           </View>
         ) : (

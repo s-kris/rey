@@ -10,7 +10,7 @@ import musicStore from './../../stores/musicStore';
 import deleteIcon from './../../assets/images/icons/delete.svg';
 import { showToast } from '../../utils/utils';
 import SaveButton from '../SaveButton';
-import { borderColor } from '../../config/Colors';
+import { primaryColorLight } from '../../config/Colors';
 
 const styles = {
   nowPlayingHeader: {
@@ -22,7 +22,7 @@ const styles = {
     paddingTop: 5,
     paddingBottom: 5,
     paddingRight: 12,
-    backgroundColor: borderColor,
+    backgroundColor: primaryColorLight,
   },
   actionsContainer: {
     display: 'flex',
@@ -91,7 +91,7 @@ class NowPlayingList extends React.Component {
                 style={{
                   borderBottomWidth: 1,
                   borderBottomStyle: 'solid',
-                  borderBottomColor: borderColor,
+                  borderBottomColor: primaryColorLight,
                 }}
               >
                 <NowPlayingListItem

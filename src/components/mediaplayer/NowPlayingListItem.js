@@ -7,7 +7,7 @@ import ReactGA from 'react-ga';
 
 import './../../styles/playlist.css';
 import musicStore from '../../stores/musicStore';
-import { themeColor } from './../../config/Colors';
+import { accentColor } from './../../config/Colors';
 import deleteIcon from './../../assets/images/icons/delete.svg';
 import queueIcon from './../../assets/images/icons/add.svg';
 import { showToast } from '../../utils/utils';
@@ -85,7 +85,7 @@ class NowPlayingListItem extends React.Component {
               <Text className="font" numberOfLines={1} style={{ fontSize: 16, letterSpacing: 0 }}>
                 {this._formatLabel(track.label)} &nbsp;
               </Text>
-              <ScaleLoader height={10} width={2} color={themeColor} loading={isActive} />
+              <ScaleLoader height={10} width={2} color={accentColor} loading={isActive} />
             </View>
           </View>
           <View style={styles.actionsContainer}>

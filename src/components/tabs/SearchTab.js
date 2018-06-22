@@ -13,7 +13,7 @@ import './../../styles/input.css';
 import SearchResultItem from '../listItems/SearchResultItem';
 import WhatAShame from '../WhatAShame';
 import { getYoutubeId } from '../../utils/utils';
-import { themeColor } from '../../config/Colors';
+import { accentColor } from '../../config/Colors';
 
 const styles = {
   rootContainer: {
@@ -147,7 +147,7 @@ class SearchTab extends React.Component {
           <Button
             onPress={() => this.setState({ searchText: '', data: [] })}
             title="Clear"
-            color={themeColor}
+            color={accentColor}
             disabled={this.state.searchText.length === 0}
             accessibilityLabel="Learn more about this purple button"
           />
@@ -170,14 +170,14 @@ class SearchTab extends React.Component {
 
         {this.state.isLoading && (
           <View style={styles.centerContainer}>
-            <ScaleLoader color="#8bb955" loading />
+            <ScaleLoader color={accentColor} loading />
           </View>
         )}
 
         {this.state.empty && (
           <View style={styles.centerContainer}>
             <View>
-              <Text className="font" style={{ fontSize: 24, color: themeColor }}>
+              <Text className="font" style={{ fontSize: 24, color: accentColor }}>
                 No Results
               </Text>
             </View>

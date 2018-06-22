@@ -3,7 +3,7 @@ import { View, Text, Picker } from 'react-native-web';
 import ReactGA from 'react-ga';
 import moment from 'moment';
 
-import { bgDark } from '../config/Colors';
+import { primaryColor } from '../config/Colors';
 import { showToast } from '../utils/utils';
 import Playlists from './../api/playlists';
 import { GA_EVENT_CAT_MUSIC, GA_EVENT_ACTION_SONG_ADDED_TO_PLAYLIST, COL_MUSIC_DATA } from '../config/Constants';
@@ -15,7 +15,7 @@ const styles = {
   rootContainer: {
     width: 500,
     height: 400,
-    backgroundColor: bgDark,
+    backgroundColor: primaryColor,
     padding: 25,
     flexDirection: 'column',
     justifyContent: 'space-around',

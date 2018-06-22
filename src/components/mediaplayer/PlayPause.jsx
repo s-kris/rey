@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withMediaProps } from 'react-media-player';
 
 import ScaleX from './ScaleX';
+import { primaryColorLight } from '../../config/Colors';
 
 class PlayPause extends Component {
   _handlePlayPause = () => {
@@ -22,7 +23,7 @@ class PlayPause extends Component {
         className={className}
         onClick={this._handlePlayPause}
       >
-        <circle fill="#373D3F" cx="18" cy="18" r="18" />
+        <circle fill={primaryColorLight} cx="18" cy="18" r="18" />
         <ScaleX>
           {isPlaying && (
             <g key="pause" style={{ transformOrigin: '0% 50%' }}>

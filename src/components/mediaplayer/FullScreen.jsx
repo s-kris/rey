@@ -3,6 +3,7 @@ import { withMediaProps } from 'react-media-player';
 import ReactGA from 'react-ga';
 
 import { GA_EVENT_CAT_PLAYER, GA_EVENT_ACTION_FULLSCREEN } from '../../config/Constants';
+import { primaryColorLight } from './../../config/Colors';
 
 class Fullscreen extends Component {
   _handleFullscreen = () => {
@@ -24,7 +25,7 @@ class Fullscreen extends Component {
         className={this.props.className}
         onClick={() => this._handleFullscreen()}
       >
-        <circle fill="#373D3F" cx="18" cy="18" r="18" />
+        <circle fill={primaryColorLight} cx="18" cy="18" r="18" />
         {!isFullscreen ? (
           <g>
             <polyline fill="none" stroke="#CDD7DB" strokeWidth="1.75" points="9.875,16.5 9.875,11.375 15,11.375" />

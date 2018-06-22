@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 
+import { primaryColorLight, accentColor } from './../../config/Colors';
+
 class Repeat extends Component {
   render() {
     const { isActive, ...props } = this.props;
-    const fill = isActive ? '#8bb955' : '#CDD7DB';
+    const fill = isActive ? accentColor : '#CDD7DB';
     return (
       <svg width="36px" height="36px" viewBox="0 0 36 36" {...props}>
-        <circle fill="#373D3F" cx="18" cy="18" r="18" />
+        <circle fill={primaryColorLight} cx="18" cy="18" r="18" />
         <path fill={fill} d="M12.5,16.5c0-1.103,0.897-2,2-2H21v2l3-3l-3-3v2h-6.5c-2.206,0-4,1.794-4,4v4h0l2-2V16.5z" />
         <path
           fill={fill}

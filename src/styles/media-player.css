@@ -11,7 +11,7 @@
 }
 
 .media-playlist{
-    background-color:var(--bg-color);
+    background-color:var(--primary-color);
     color:#fff;
     flex: 1;
     overflow: hidden;
@@ -42,7 +42,7 @@
     display:flex;
     align-items:center;
     padding:12px;
-    background-color:var(--bg-color);
+    background-color:var(--primary-color);
     color:#fff
 }
 .media-controls path,.media-controls polygon,.media-controls svg{
@@ -91,17 +91,17 @@
     position:absolute;
     /* top:7px; */
     /* left:12px; */
-    background-color:var(--border-color);
-    color:var(--progress-bar-color)
+    background-color:var(--primary-color-light);
+    color:var(--primary-color-mid)
 }
 .media-control--progress::-webkit-progress-bar{
-    background-color:var(--border-color)
+    background-color:var(--primary-color-light)
 }
 .media-control--progress::-moz-progress-bar{
-    background-color:var(--progress-bar-color)
+    background-color:var(--primary-color-mid)
 }
 .media-control--progress::-webkit-progress-value{
-    background-color:var(--progress-bar-color)
+    background-color:var(--primary-color-mid)
 }
 .media-control--seekbar{
     position:relative;
@@ -226,7 +226,7 @@ input[type=range]::-webkit-slider-runnable-track{
     height:3px;
     border:0;
     cursor:pointer;
-    background-color:var(--border-color)
+    background-color:var(--primary-color-light)
 }
 input[type=range]::-webkit-slider-runnable-track:active{
     cursor:grabbing
@@ -236,7 +236,7 @@ input[type=range]::-moz-range-track{
     height:3px;
     border:0;
     cursor:pointer;
-    background-color:var(--border-color)
+    background-color:var(--primary-color-light)
 }
 input[type=range]::-moz-range-track:active{
     cursor:grabbing
@@ -246,7 +246,7 @@ input[type=range]::-ms-track{
     height:3px;
     border:0;
     cursor:pointer;
-    background-color:var(--border-color)
+    background-color:var(--primary-color-light)
 }
 input[type=range]::-ms-track:active{
     cursor:grabbing
@@ -255,18 +255,18 @@ input[type=range]::-webkit-slider-container{
     background-size:inherit
 }
 input[type=range]::-webkit-slider-runnable-track{
-    background-image:linear-gradient(var(--theme-color),var(--theme-color));
+    background-image:linear-gradient(var(--accent-color),var(--accent-color));
     background-size:inherit;
     background-repeat:no-repeat
 }
 input[type=range]::-webkit-slider-thumb:before{
-    background-color:var(--theme-color)
+    background-color:var(--accent-color)
 }
 input[type=range]::-moz-range-progress{
-    background-color:var(--theme-color)
+    background-color:var(--accent-color)
 }
 input[type=range]::-ms-fill-lower{
-    background-color:var(--theme-color)
+    background-color:var(--accent-color)
 }
 input[type=range]::-webkit-slider-thumb{
     width:8px;
@@ -318,7 +318,7 @@ input[type=range]::-webkit-slider-thumb{
     padding:2px;
     text-align: center;
     height: 100;
-    background-color:var(--border-color);
+    background-color:var(--primary-color-light);
 }
 .media-playlist-title{
     font-size:14px;   
@@ -328,15 +328,15 @@ input[type=range]::-webkit-slider-thumb{
     padding:0;
     margin:0;
     list-style:none;
-    border:1px solid var(--border-color)
+    border:1px solid var(--primary-color-light)
 }
 .media-playlist-track{
     padding: 12px;
     /* cursor:pointer */
 }
 .media-playlist-track+.media-playlist-track{
-    border-top:1px solid var(--border-color)
+    border-top:1px solid var(--primary-color-light)
 }
 .media-playlist-track.is-active{
-    color:var(--theme-color)
+    color:var(--accent-color)
 }

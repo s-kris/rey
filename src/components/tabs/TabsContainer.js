@@ -8,7 +8,7 @@ import WhatAShame from '../WhatAShame';
 import PlaylistsTab from './PlaylistsTab';
 import ProfileTab from './ProfileTab';
 import CreditsTab from './CreditsTab';
-import { themeColor, borderColor } from '../../config/Colors';
+import { accentColor, primaryColorLight } from '../../config/Colors';
 
 const styles = {
   rootContainer: {
@@ -33,7 +33,7 @@ const styles = {
     fontWeight: '900',
     letterSpacing: 2,
     fontSize: 16,
-    color: borderColor,
+    color: primaryColorLight,
     cursor: 'pointer',
     textTransform: 'uppercase',
   },
@@ -42,7 +42,7 @@ const styles = {
     fontWeight: '900',
     letterSpacing: 2,
     fontSize: 16,
-    color: themeColor,
+    color: accentColor,
     cursor: 'pointer',
     textTransform: 'uppercase',
   },
