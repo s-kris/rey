@@ -4,7 +4,7 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import { view } from 'react-easy-state';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import alertify from 'alertify.js';
 
 import userStore from '../../stores/userStore';
@@ -69,7 +69,7 @@ class ProfileTab extends React.Component {
           // console.log('new user');
           const data = {
             playlists: musicStore.getAllPlaylists(),
-            createdAt: moment().format(),
+            createdAt: dayjs().format(),
           };
           saveToFirebase(COL_MUSIC_DATA, data, () => {});
         } else {
@@ -91,7 +91,7 @@ class ProfileTab extends React.Component {
   //         //   console.log('new user');
   //         const data = {
   //           playlists: musicStore.getAllPlaylists(),
-  //           createdAt: moment().format(),
+  //           createdAt: dayjs().format(),
   //         };
   //         saveToFirebase(COL_MUSIC_DATA, data, () => {});
   //       } else {

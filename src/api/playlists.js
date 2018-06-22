@@ -1,5 +1,5 @@
 import shortid from 'shortid';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import ReactGA from 'react-ga';
 
 import { getDataFromStorage, saveDataToStorage } from './../api/storage';
@@ -24,7 +24,7 @@ class Playlists {
       id: shortid.generate(),
       name: playlistName,
       data: array,
-      created: moment().format(),
+      created: dayjs().format(),
     });
     saveDataToStorage(KEY_PLAYLISTS, playlists);
     musicStore.setPlaylists(playlists);
@@ -43,7 +43,7 @@ class Playlists {
       if (p.id === playlistId) {
         const newData = p.data.concat(array);
         p.data = newData;
-        p.updated = moment().format();
+        p.updated = dayjs().format();
         playlistName = p.name;
       }
     });

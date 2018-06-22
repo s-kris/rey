@@ -3,7 +3,7 @@ import { View, Text } from 'react-native-web';
 import ReactSVG from 'react-svg';
 import randomColor from 'randomcolor';
 import alertify from 'alertify.js';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 import './../../styles/song-item.css';
 import playIcon from './../../assets/images/icons/play.svg';
@@ -68,7 +68,7 @@ class PlaylistItem extends React.Component {
           Playlists.deletePlaylist(id);
           const firebaseData = {
             playlists: musicStore.getAllPlaylists(),
-            updatedAt: moment().format(),
+            updatedAt: dayjs().format(),
           };
           saveToFirebase(COL_MUSIC_DATA, firebaseData, () => {});
         },

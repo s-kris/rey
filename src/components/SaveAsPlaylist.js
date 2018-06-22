@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Picker } from 'react-native-web';
 import ReactGA from 'react-ga';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 import { primaryColor } from '../config/Colors';
 import { showToast } from '../utils/utils';
@@ -83,7 +83,7 @@ class SaveAsPlaylist extends React.Component {
       if (userStore.loggedIn) {
         const firebaseData = {
           playlists: musicStore.getAllPlaylists(),
-          updatedAt: moment().format(),
+          updatedAt: dayjs().format(),
         };
         saveToFirebase(COL_MUSIC_DATA, firebaseData, () => {});
       }
