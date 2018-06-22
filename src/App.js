@@ -3,6 +3,7 @@ import { View } from 'react-native-web';
 import 'normalize.css';
 import firebase from 'firebase';
 import ReactGA from 'react-ga';
+import { hot } from 'react-hot-loader';
 
 import './styles/variables.css';
 import './styles/common.css';
@@ -47,4 +48,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default hot(module)(App);

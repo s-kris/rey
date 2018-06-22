@@ -9,6 +9,8 @@
     "normalize.css": "^8.0.0",
     "randomcolor": "^0.5.3",
     "react": "^16.4.0",
+    "react-app-rewire-hot-loader": "^1.0.1",
+    "react-app-rewired": "^1.5.2",
     "react-art": "^16.4.1",
     "react-document-title": "^2.0.3",
     "react-dom": "^16.4.0",
@@ -16,6 +18,7 @@
     "react-firebaseui": "^3.0.4",
     "react-ga": "^2.5.3",
     "react-graceful-image": "^1.2.6",
+    "react-hot-loader": "^4.3.3",
     "react-media-player": "^0.7.1",
     "react-motion-ui-pack": "^0.10.3",
     "react-native-web": "^0.8.4",
@@ -30,10 +33,10 @@
   },
   "scripts": {
     "analyze": "source-map-explorer build/static/js/main.*",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test --env=jsdom",
+    "eject": "react-app-rewired eject"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",
