@@ -177,7 +177,7 @@ class SearchTab extends React.Component {
         {this.state.empty && (
           <View style={styles.centerContainer}>
             <View>
-              <Text className="font" style={{ fontSize: 24, color: '#8bb955' }}>
+              <Text className="font" style={{ fontSize: 24, color: themeColor }}>
                 No Results
               </Text>
             </View>

@@ -6,7 +6,7 @@ input[type=text] {
 }
 
 input[type=text]:focus {
-    border:2px solid #8bb955; 
+    border:2px solid var(--theme-color); 
 }
 
 textarea, select, input, button { outline: none; }
