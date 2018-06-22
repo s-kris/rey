@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text } from 'react-native-web';
-import { ScaleLoader } from 'react-spinners';
 import { view } from 'react-easy-state';
 import ReactSVG from 'react-svg';
 import ReactGA from 'react-ga';
@@ -13,6 +12,7 @@ import queueIcon from './../../assets/images/icons/add.svg';
 import { showToast } from '../../utils/utils';
 import SaveButton from '../SaveButton';
 import { GA_EVENT_ACTION_SONG_COPIED, GA_EVENT_CAT_MUSIC } from '../../config/Constants';
+import Loader from '../Loader';
 
 const styles = {
   row: {
@@ -85,7 +85,9 @@ class NowPlayingListItem extends React.Component {
               <Text className="font" numberOfLines={1} style={{ fontSize: 16, letterSpacing: 0 }}>
                 {this._formatLabel(track.label)} &nbsp;
               </Text>
-              <ScaleLoader height={10} width={2} color={accentColor} loading={isActive} />
+              {isActive && (
+                <Loader height={20} width={40} barGap={2} barWidth={2} color={accentColor} loading={isActive} />
+              )}
             </View>
           </View>
           <View style={styles.actionsContainer}>

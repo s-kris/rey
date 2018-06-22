@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, FlatList, Button } from 'react-native-web';
 import youtubeHelper from 'youtube-search';
-import { ScaleLoader } from 'react-spinners';
 
 import {
   YOUTUBE_API_KEY,
@@ -14,6 +13,7 @@ import SearchResultItem from '../listItems/SearchResultItem';
 import WhatAShame from '../WhatAShame';
 import { getYoutubeId } from '../../utils/utils';
 import { accentColor } from '../../config/Colors';
+import Loader from './../Loader';
 
 const styles = {
   rootContainer: {
@@ -145,7 +145,7 @@ class SearchTab extends React.Component {
           </Text>
 
           <Button
-            onPress={() => this.setState({ searchText: '', data: [] })}
+            onPress={() => this.setState({ searchText: '', data: [], empty: false })}
             title="Clear"
             color={accentColor}
             disabled={this.state.searchText.length === 0}
@@ -170,7 +170,7 @@ class SearchTab extends React.Component {
 
         {this.state.isLoading && (
           <View style={styles.centerContainer}>
-            <ScaleLoader color={accentColor} loading />
+            <Loader color={accentColor} width={100} height={50} />
           </View>
         )}
 
