@@ -88,9 +88,9 @@ class MediaPlayer extends Component {
                     onClick={this._handleRepeatTrack}
                   />
                 </View>
-                <View className="media-control-group">
+                {/* <View className="media-control-group">
                   <FullScreen className="media-control media-control--repeat" />
-                </View>
+                </View> */}
               </View>
             </View>
           </View>
