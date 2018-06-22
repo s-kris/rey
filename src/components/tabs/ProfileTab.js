@@ -54,7 +54,7 @@ class ProfileTab extends React.Component {
     callbacks: {
       signInSuccessWithAuthResult(authResult, redirectUrl) {
         if (authResult.additionalUserInfo.isNewUser) {
-          console.log('new user');
+          //   console.log('new user');
           const data = {
             playlists: musicStore.getAllPlaylists(),
             createdAt: moment().format(),
@@ -81,7 +81,6 @@ class ProfileTab extends React.Component {
   };
 
   _confirmDelete = () => {
-    console.log(getDataFromStorage(KEY_DELETE_ACCOUNT_FLAG));
     if (getDataFromStorage(KEY_DELETE_ACCOUNT_FLAG)) {
       saveDataToStorage(KEY_DELETE_ACCOUNT_FLAG, false);
       deleteAccount(() => {

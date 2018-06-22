@@ -16,7 +16,7 @@ export const saveToFirebase = (collection, data, callback) => {
     .set(data)
     .then(() => {
       callback();
-      console.log('Document written ');
+      // console.log('Document written ');
     })
     .catch(error => {
       console.error('Error adding document: ', error);
@@ -36,7 +36,7 @@ export const updateToFirebase = (collection, data, callback) => {
     .set(data)
     .then(() => {
       callback();
-      console.log('Document updated ');
+      // console.log('Document updated ');
     })
     .catch(error => {
       console.error('Error adding document: ', error);
@@ -71,7 +71,7 @@ export const deleteDataFromFirebase = (userId, callback) => {
     .doc(userId)
     .delete()
     .then(() => {
-      console.log('Document successfully deleted!');
+      // console.log('Document successfully deleted!');
       callback();
     })
     .catch(error => {

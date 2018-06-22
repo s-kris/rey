@@ -23,14 +23,14 @@ class App extends React.Component {
 
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        console.log('signed in');
+        //  console.log('signed in');
         userStore.loggedIn = true;
         userStore.user = firebase.auth().currentUser;
         getFromFirebase(COL_MUSIC_DATA, data => {
           musicStore.setPlaylists(data.playlists);
         });
       } else {
-        console.log('signed out');
+        // console.log('signed out');
         userStore.loggedIn = false;
         userStore.user = null;
       }
