@@ -1,7 +1,9 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native-web';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 import { view } from 'react-easy-state';
 import moment from 'moment';
 import alertify from 'alertify.js';

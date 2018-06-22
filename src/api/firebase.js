@@ -1,4 +1,7 @@
-import firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
+
 import { COL_MUSIC_DATA } from '../config/Constants';
 import { showToast } from '../utils/utils';
 import musicStore from '../stores/musicStore';

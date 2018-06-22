@@ -1,7 +1,9 @@
 import React from 'react';
 import { View } from 'react-native-web';
 import 'normalize.css';
-import firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 import ReactGA from 'react-ga';
 import { hot } from 'react-hot-loader';
 
