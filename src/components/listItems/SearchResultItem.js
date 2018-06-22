@@ -103,7 +103,7 @@ class SearchResultItem extends React.Component {
             path={playIcon}
             evalScripts="always"
             svgClassName="action-icon"
-            svgStyle={{ fill: { primaryColorLight } }}
+            svgStyle={{ fill: primaryColorLight }}
             onClick={() => {
               this._onClickPlay();
             }}
@@ -112,12 +112,12 @@ class SearchResultItem extends React.Component {
             path={queueIcon}
             evalScripts="always"
             svgClassName="action-icon"
-            svgStyle={{ fill: { primaryColorLight } }}
+            svgStyle={{ fill: primaryColorLight }}
             onClick={() => {
               this._onClickQueue();
             }}
           />
-          <SaveButton dataToSave={this._formatDataToSave()} svgStyle={{ fill: { primaryColorLight } }} />
+          <SaveButton dataToSave={this._formatDataToSave()} svgStyle={{ fill: primaryColorLight }} />
         </View>
       </View>
     );
