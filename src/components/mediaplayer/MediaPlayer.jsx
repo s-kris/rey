@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native-web';
-import { Media, Player, controls, utils } from 'react-media-player';
+import { Media, Player, controls } from 'react-media-player';
 import { view } from 'react-easy-state';
 import ReactGA from 'react-ga';
 
@@ -12,7 +12,6 @@ import { GA_EVENT_CAT_PLAYER, GA_EVENT_ACTION_REPEAT } from '../../config/Consta
 import playerStore from '../../stores/playerStore';
 
 const { CurrentTime, Progress, SeekBar, Duration } = controls;
-const { keyboardControls } = utils;
 
 const PrevTrack = props => (
   <svg width="10px" height="12px" viewBox="0 0 10 12" {...props}>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { withMediaProps } from 'react-media-player';
 import ReactGA from 'react-ga';
-import { view } from 'react-easy-state';
 
 import { GA_EVENT_CAT_PLAYER, GA_EVENT_ACTION_FULLSCREEN, CONTROLS_TIMEOUT_DURATION } from '../../config/Constants';
 import { primaryColorLight } from './../../config/Colors';
@@ -27,7 +26,6 @@ class Fullscreen extends Component {
             media.seekTo(media.currentTime - 5);
             break;
           case 39:
-            console.log(media.currentTime);
             // Key right.
             media.seekTo(media.currentTime + 5);
             break;
