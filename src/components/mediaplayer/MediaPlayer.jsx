@@ -10,6 +10,7 @@ import Repeat from './Repeat';
 import FullScreen from './FullScreen';
 import { GA_EVENT_CAT_PLAYER, GA_EVENT_ACTION_REPEAT } from '../../config/Constants';
 import playerStore from '../../stores/playerStore';
+import { showToast } from '../../utils/utils';
 
 const { CurrentTime, Progress, SeekBar, Duration } = controls;
 
@@ -41,6 +42,11 @@ class MediaPlayer extends Component {
       value: 1,
     });
     this.props.onRepeatTrack();
+    if (!this.props.repeatTrack) {
+      showToast('Repeat Mode is ON');
+    } else {
+      showToast('Repeat Mode is OFF');
+    }
   };
 
   _handleEnded = () => {

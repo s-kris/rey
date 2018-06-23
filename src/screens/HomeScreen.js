@@ -52,7 +52,7 @@ class HomeScreen extends React.Component {
     if (isMobileDevice()) {
       return (
         <View style={styles.modulesContainer}>
-          <WhatAShame message="Rey is only for desktop at the dayjs" giphyId="RFDXes97gboYg" />
+          <WhatAShame message="Rey is only for desktop at the moment!" giphyId="RFDXes97gboYg" />
         </View>
       );
     }
