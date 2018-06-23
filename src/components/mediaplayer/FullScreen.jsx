@@ -27,6 +27,7 @@ class Fullscreen extends Component {
             media.seekTo(media.currentTime - 5);
             break;
           case 39:
+            console.log(media.currentTime);
             // Key right.
             media.seekTo(media.currentTime + 5);
             break;
@@ -164,4 +165,4 @@ class Fullscreen extends Component {
   }
 }
 
-export default view(withMediaProps(Fullscreen));
+export default withMediaProps(Fullscreen);
