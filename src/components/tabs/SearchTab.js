@@ -148,8 +148,8 @@ class SearchTab extends React.Component {
               this.setState({ checked: !this.state.checked });
             }}
           />
-          <Text className="font" style={{ marginLeft: 10 }}>
-            Show thumbnails {'    '}
+          <Text className="font" style={{ marginTop: 5 }}>
+            {'  '} Show thumbnails {'    '}
           </Text>
 
           <Button

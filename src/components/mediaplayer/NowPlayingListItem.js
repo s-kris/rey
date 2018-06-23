@@ -22,8 +22,15 @@ const styles = {
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  trackNameWrapper: {
+    cursor: 'pointer',
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'row',
+    // backgroundColor: 'green',
+  },
   actionsContainer: {
-    // width: 70,
+    // width: 90,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -69,7 +76,7 @@ class NowPlayingListItem extends React.Component {
     }
   };
 
-  _formatLabel = name => name.substring(0, 23);
+  _formatLabel = name => name.substring(0, 22);
 
   render() {
     const { track, currentTrack } = this.props;
@@ -80,15 +87,13 @@ class NowPlayingListItem extends React.Component {
     return (
       <View id={track.id} className={`media-playlist-track ${isActive ? 'is-active' : ''}`}>
         <View style={styles.row}>
-          <View style={{ cursor: 'pointer' }} onClick={() => this.props.onItemClick(track)}>
-            <View style={styles.row}>
-              <Text className="font" numberOfLines={1} style={{ fontSize: 16, letterSpacing: 0 }}>
-                {this._formatLabel(track.label)} &nbsp;
-              </Text>
-              {isActive && (
-                <Loader height={20} width={40} barGap={2} barWidth={2} color={accentColor} loading={isActive} />
-              )}
-            </View>
+          <View style={styles.trackNameWrapper} onClick={() => this.props.onItemClick(track)}>
+            <Text className="font" numberOfLines={1} style={{ fontSize: 16, letterSpacing: 0 }}>
+              {this._formatLabel(track.label)} &nbsp;
+            </Text>
+            {isActive && (
+              <Loader height={20} width={40} barGap={2} barWidth={2} color={accentColor} loading={isActive} />
+            )}
           </View>
           <View style={styles.actionsContainer}>
             <ReactSVG

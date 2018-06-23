@@ -18,7 +18,7 @@ input[type=checkbox]:after {
     content: " ";
     background-color: white;
     display: inline-block;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     border-radius: 2px;
     visibility: visible;
     cursor: pointer;
