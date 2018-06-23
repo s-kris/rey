@@ -9,6 +9,7 @@ import MuteUnmute from './MuteUnmute';
 import Repeat from './Repeat';
 import FullScreen from './FullScreen';
 import { GA_EVENT_CAT_PLAYER, GA_EVENT_ACTION_REPEAT } from '../../config/Constants';
+import playerStore from '../../stores/playerStore';
 
 const { CurrentTime, Progress, SeekBar, Duration } = controls;
 const { keyboardControls } = utils;
@@ -54,45 +55,48 @@ class MediaPlayer extends Component {
     return (
       <Media>
         {mediaProps => (
-          <View
-            className={`media-player${mediaProps.isFullscreen ? ' media-player--fullscreen' : ''}`}
-            onKeyDown={keyboardControls.bind(null, mediaProps)}
-            tabIndex="0"
-          >
+          <View className={`media-player${mediaProps.isFullscreen ? ' media-player--fullscreen' : ''}`} tabIndex="0">
             <View className="media-player-element" onClick={() => mediaProps.playPause()}>
               <Player src={src} loop={repeatTrack} autoPlay={autoPlay} onEnded={this._handleEnded} />
             </View>
-            <View className="media-controls media-controls--full">
-              <View className="media-row" style={{ maxWidth: '100%' }}>
-                <CurrentTime className="media-control media-control--current-time" />
-                <Text className="font">{currentTrack && this._formatLabel(currentTrack)}</Text>
-                <Duration className="media-control media-control--duration" />
+            {
+              <View
+                className="media-controls media-controls--full"
+                style={{
+                  visibility: playerStore.showControls ? 'visible' : 'hidden',
+                }}
+              >
+                <View className="media-row" style={{ maxWidth: '100%' }}>
+                  <CurrentTime className="media-control media-control--current-time" />
+                  <Text className="font">{currentTrack && this._formatLabel(currentTrack)}</Text>
+                  <Duration className="media-control media-control--duration" />
+                </View>
+                <View className="media-control-group media-control-group--seek">
+                  <Progress className="media-control media-control--progress" />
+                  <SeekBar className="media-control media-control--seekbar" />
+                </View>
+                <View className="media-row">
+                  <View className="media-control-group">
+                    <MuteUnmute className="media-control media-control--mute-unmute" />
+                  </View>
+                  <View className="media-control-group">
+                    <PrevTrack className="media-control media-control--prev-track" onClick={this._handlePrevTrack} />
+                    <PlayPause className="media-control media-control--play-pause" />
+                    <NextTrack className="media-control media-control--next-track" onClick={this._handleNextTrack} />
+                  </View>
+                  <View className="media-control-group">
+                    <Repeat
+                      className="media-control media-control--repeat"
+                      isActive={repeatTrack}
+                      onClick={this._handleRepeatTrack}
+                    />
+                  </View>
+                  <View className="media-control-group">
+                    <FullScreen className="media-control media-control--repeat" />
+                  </View>
+                </View>
               </View>
-              <View className="media-control-group media-control-group--seek">
-                <Progress className="media-control media-control--progress" />
-                <SeekBar className="media-control media-control--seekbar" />
-              </View>
-              <View className="media-row">
-                <View className="media-control-group">
-                  <MuteUnmute className="media-control media-control--mute-unmute" />
-                </View>
-                <View className="media-control-group">
-                  <PrevTrack className="media-control media-control--prev-track" onClick={this._handlePrevTrack} />
-                  <PlayPause className="media-control media-control--play-pause" />
-                  <NextTrack className="media-control media-control--next-track" onClick={this._handleNextTrack} />
-                </View>
-                <View className="media-control-group">
-                  <Repeat
-                    className="media-control media-control--repeat"
-                    isActive={repeatTrack}
-                    onClick={this._handleRepeatTrack}
-                  />
-                </View>
-                <View className="media-control-group">
-                  <FullScreen className="media-control media-control--repeat" />
-                </View>
-              </View>
-            </View>
+            }
           </View>
         )}
       </Media>

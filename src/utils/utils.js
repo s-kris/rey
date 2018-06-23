@@ -34,3 +34,10 @@ export const getYoutubeId = url => {
   }
   return CONST_INVALID_URL;
 };
+
+export const isFullscreen = () => {
+  if (!window.screenTop && !window.screenY) {
+    return true;
+  }
+  return false;
+};

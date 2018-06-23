@@ -2,14 +2,39 @@ import React, { Component } from 'react';
 import { withMediaProps } from 'react-media-player';
 import ReactGA from 'react-ga';
 
-import { GA_EVENT_CAT_PLAYER, GA_EVENT_ACTION_FULLSCREEN } from '../../config/Constants';
+import { GA_EVENT_CAT_PLAYER, GA_EVENT_ACTION_FULLSCREEN, CONTROLS_TIMEOUT_DURATION } from '../../config/Constants';
 import { primaryColorLight } from './../../config/Colors';
 import musicStore from '../../stores/musicStore';
+import playerStore from '../../stores/playerStore';
+import { view } from 'react-easy-state';
 
 const mod = (num, max) => ((num % max) + max) % max;
-
+let isFullscreen = false;
 class Fullscreen extends Component {
   componentDidMount() {
+    // window.addEventListener('resize', () => {
+    //   if (isFullscreen) {
+    //     console.log('yes');
+    //   } else {
+    //     console.log('no');
+    //   }
+    // });
+
+    ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange', 'msfullscreenchange'].forEach(eventType =>
+      document.addEventListener(
+        eventType,
+        () => {
+          isFullscreen = !isFullscreen;
+          if (isFullscreen) {
+            playerStore.showControls = false;
+          } else {
+            playerStore.showControls = true;
+          }
+        },
+        false
+      )
+    );
+
     document.onkeydown = event => {
       if (document.activeElement.tagName !== 'INPUT') {
         const { media } = this.props;
@@ -27,12 +52,14 @@ class Fullscreen extends Component {
             break;
           case 38:
             // Key up.
+            event.preventDefault();
             if (media.volume <= 0.9) {
               media.setVolume(media.volume + 0.1);
             }
             break;
           case 40:
             // Key down.
+            event.preventDefault();
             if (media.volume >= 0.2) {
               media.setVolume(media.volume - 0.1);
             }
@@ -44,7 +71,7 @@ class Fullscreen extends Component {
             break;
           case 70:
             // key F
-            media.fullscreen();
+            this._handleFullscreen();
             break;
           case 77:
             // key N
@@ -85,6 +112,7 @@ class Fullscreen extends Component {
 
   render() {
     const { isFullscreen } = this.context;
+
     return (
       <svg
         width="36px"
@@ -114,4 +142,4 @@ class Fullscreen extends Component {
   }
 }
 
-export default withMediaProps(Fullscreen);
+export default view(withMediaProps(Fullscreen));

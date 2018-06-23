@@ -16,6 +16,7 @@ import { getFromFirebase } from './api/firebase';
 import { COL_MUSIC_DATA, GA_ID } from './config/Constants';
 import musicStore from './stores/musicStore';
 import HomeScreen from './screens/HomeScreen';
+import playerStore from './stores/playerStore';
 // import { clearAll } from './api/storage';
 
 class App extends React.Component {
@@ -42,6 +43,7 @@ class App extends React.Component {
 
   render() {
     // clearAll();
+    playerStore.showControls = true;
     return (
       <View>
         <HomeScreen />
