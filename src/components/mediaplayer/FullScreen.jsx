@@ -11,54 +11,56 @@ const mod = (num, max) => ((num % max) + max) % max;
 class Fullscreen extends Component {
   componentDidMount() {
     document.onkeydown = event => {
-      const { media } = this.props;
-      if (!event) event = window.event;
-      let code = event.keyCode;
-      if (event.charCode && code === 0) code = event.charCode;
-      switch (code) {
-        case 37:
-          // Key left.
-          media.seekTo(media.currentTime - 5);
-          break;
-        case 39:
-          // Key right.
-          media.seekTo(media.currentTime + 5);
-          break;
-        case 38:
-          // Key up.
-          if (media.volume <= 0.9) {
-            media.setVolume(media.volume + 0.1);
-          }
-          break;
-        case 40:
-          // Key down.
-          if (media.volume >= 0.2) {
-            media.setVolume(media.volume - 0.1);
-          }
-          break;
-        case 32:
-          // key space
-          media.playPause();
-          event.preventDefault();
-          break;
-        case 70:
-          // key F
-          media.fullscreen();
-          break;
-        case 77:
-          // key N
-          media.muteUnmute();
-          break;
-        case 78:
-          // key N
-          this._navigatePlaylist(1);
-          break;
-        case 80:
-          // key P
-          this._navigatePlaylist(-1);
-          break;
-        default:
-          break;
+      if (document.activeElement.tagName !== 'INPUT') {
+        const { media } = this.props;
+        if (!event) event = window.event;
+        let code = event.keyCode;
+        if (event.charCode && code === 0) code = event.charCode;
+        switch (code) {
+          case 37:
+            // Key left.
+            media.seekTo(media.currentTime - 5);
+            break;
+          case 39:
+            // Key right.
+            media.seekTo(media.currentTime + 5);
+            break;
+          case 38:
+            // Key up.
+            if (media.volume <= 0.9) {
+              media.setVolume(media.volume + 0.1);
+            }
+            break;
+          case 40:
+            // Key down.
+            if (media.volume >= 0.2) {
+              media.setVolume(media.volume - 0.1);
+            }
+            break;
+          case 32:
+            // key space
+            media.playPause();
+            event.preventDefault();
+            break;
+          case 70:
+            // key F
+            media.fullscreen();
+            break;
+          case 77:
+            // key N
+            media.muteUnmute();
+            break;
+          case 78:
+            // key N
+            this._navigatePlaylist(1);
+            break;
+          case 80:
+            // key P
+            this._navigatePlaylist(-1);
+            break;
+          default:
+            break;
+        }
       }
     };
   }
@@ -75,9 +77,10 @@ class Fullscreen extends Component {
   _navigatePlaylist = direction => {
     const currentTrack = musicStore.getCurrentTrack();
     const nowPlayingList = musicStore.getNowPlayingList();
-
-    const newIndex = mod(nowPlayingList.indexOf(currentTrack) + direction, nowPlayingList.length);
-    musicStore.setCurrentTrack(nowPlayingList[newIndex]);
+    if (nowPlayingList.length > 1) {
+      const newIndex = mod(nowPlayingList.indexOf(currentTrack) + direction, nowPlayingList.length);
+      musicStore.setCurrentTrack(nowPlayingList[newIndex]);
+    }
   };
 
   render() {

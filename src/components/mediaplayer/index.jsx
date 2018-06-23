@@ -62,8 +62,10 @@ class Index extends Component {
     const currentTrack = musicStore.getCurrentTrack();
     const nowPlayingList = musicStore.getNowPlayingList();
 
-    const newIndex = mod(nowPlayingList.indexOf(currentTrack) + direction, nowPlayingList.length);
-    musicStore.setCurrentTrack(nowPlayingList[newIndex]);
+    if (nowPlayingList.length > 1) {
+      const newIndex = mod(nowPlayingList.indexOf(currentTrack) + direction, nowPlayingList.length);
+      musicStore.setCurrentTrack(nowPlayingList[newIndex]);
+    }
   };
 
   render() {
