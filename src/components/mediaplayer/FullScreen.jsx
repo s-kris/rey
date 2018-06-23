@@ -4,6 +4,9 @@ import ReactGA from 'react-ga';
 
 import { GA_EVENT_CAT_PLAYER, GA_EVENT_ACTION_FULLSCREEN } from '../../config/Constants';
 import { primaryColorLight } from './../../config/Colors';
+import musicStore from '../../stores/musicStore';
+
+const mod = (num, max) => ((num % max) + max) % max;
 
 class Fullscreen extends Component {
   componentDidMount() {
@@ -17,15 +20,15 @@ class Fullscreen extends Component {
           // Key left.
           media.seekTo(media.currentTime - 5);
           break;
+        case 39:
+          // Key right.
+          media.seekTo(media.currentTime + 5);
+          break;
         case 38:
           // Key up.
           if (media.volume <= 0.9) {
             media.setVolume(media.volume + 0.1);
           }
-          break;
-        case 39:
-          // Key right.
-          media.seekTo(media.currentTime + 5);
           break;
         case 40:
           // Key down.
@@ -48,11 +51,11 @@ class Fullscreen extends Component {
           break;
         case 78:
           // key N
-          console.log('N');
+          this._navigatePlaylist(1);
           break;
         case 80:
           // key P
-          console.log('P');
+          this._navigatePlaylist(-1);
           break;
         default:
           break;
@@ -67,6 +70,14 @@ class Fullscreen extends Component {
       value: 1,
     });
     this.props.media.fullscreen();
+  };
+
+  _navigatePlaylist = direction => {
+    const currentTrack = musicStore.getCurrentTrack();
+    const nowPlayingList = musicStore.getNowPlayingList();
+
+    const newIndex = mod(nowPlayingList.indexOf(currentTrack) + direction, nowPlayingList.length);
+    musicStore.setCurrentTrack(nowPlayingList[newIndex]);
   };
 
   render() {
