@@ -7,6 +7,7 @@ import {
   YOUTUBE_SEARCH_RESULTS_MAX,
   SEARCH_MIN_LETTERS,
   CONST_INVALID_URL,
+  KEY_PREF_SHOW_THUMBS,
 } from './../../config/Constants';
 import './../../styles/input.css';
 import SearchResultItem from '../listItems/SearchResultItem';
@@ -14,6 +15,7 @@ import WhatAShame from '../WhatAShame';
 import { getYoutubeId } from '../../utils/utils';
 import { accentColor } from '../../config/Colors';
 import Loader from './../Loader';
+import { getDataFromStorage, saveDataToStorage } from '../../api/storage';
 
 const styles = {
   rootContainer: {
@@ -46,8 +48,15 @@ class SearchTab extends React.Component {
       checked: false,
       searchText: '',
     };
+
     // this._searchYoutube('telugu songs', 20);
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentWillMount() {
+    this.setState({
+      checked: getDataFromStorage(KEY_PREF_SHOW_THUMBS) || false,
+    });
   }
 
   handleChange = event => {
@@ -134,14 +143,13 @@ class SearchTab extends React.Component {
           <input
             type="checkbox"
             checked={this.state.checked}
-            onChange={() => this.setState({ checked: !this.state.checked })}
+            onChange={() => {
+              saveDataToStorage(KEY_PREF_SHOW_THUMBS, !this.state.checked);
+              this.setState({ checked: !this.state.checked });
+            }}
           />
-          <Text
-            className="font"
-            style={{ marginLeft: 10, cursor: 'pointer' }}
-            onClick={() => this.setState({ checked: !this.state.checked })}
-          >
-            Show Images {'    '}
+          <Text className="font" style={{ marginLeft: 10 }}>
+            Show thumbnails {'    '}
           </Text>
 
           <Button
