@@ -1,20 +1,26 @@
 import React, { Component } from 'react';
 import { withMediaProps } from 'react-media-player';
-import Transition from 'react-motion-ui-pack';
+import Scale from './Scale';
 
 import { primaryColorLight } from './../../config/Colors';
 
-class Scale extends Component {
-  render() {
-    return (
-      <Transition component="g" enter={{ scale: 1 }} leave={{ scale: 0 }}>
-        {this.props.children}
-      </Transition>
-    );
-  }
-}
-
 class MuteUnmute extends Component {
+  componentDidMount() {
+    document.onkeydown = event => {
+      if (!event) event = window.event;
+      let code = event.keyCode;
+      if (event.charCode && code === 0) code = event.charCode;
+      switch (code) {
+        case 77:
+          // Key M.
+          this._handleMuteUnmute();
+          break;
+        default:
+          break;
+      }
+    };
+  }
+
   _handleMuteUnmute = () => {
     this.props.media.muteUnmute();
   };

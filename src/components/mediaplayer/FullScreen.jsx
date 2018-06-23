@@ -6,6 +6,60 @@ import { GA_EVENT_CAT_PLAYER, GA_EVENT_ACTION_FULLSCREEN } from '../../config/Co
 import { primaryColorLight } from './../../config/Colors';
 
 class Fullscreen extends Component {
+  componentDidMount() {
+    document.onkeydown = event => {
+      const { media } = this.props;
+      if (!event) event = window.event;
+      let code = event.keyCode;
+      if (event.charCode && code === 0) code = event.charCode;
+      switch (code) {
+        case 37:
+          // Key left.
+          media.seekTo(media.currentTime - 5);
+          break;
+        case 38:
+          // Key up.
+          if (media.volume <= 0.9) {
+            media.setVolume(media.volume + 0.1);
+          }
+          break;
+        case 39:
+          // Key right.
+          media.seekTo(media.currentTime + 5);
+          break;
+        case 40:
+          // Key down.
+          if (media.volume >= 0.2) {
+            media.setVolume(media.volume - 0.1);
+          }
+          break;
+        case 32:
+          // key space
+          media.playPause();
+          event.preventDefault();
+          break;
+        case 70:
+          // key F
+          media.fullscreen();
+          break;
+        case 77:
+          // key N
+          media.muteUnmute();
+          break;
+        case 78:
+          // key N
+          console.log('N');
+          break;
+        case 80:
+          // key P
+          console.log('P');
+          break;
+        default:
+          break;
+      }
+    };
+  }
+
   _handleFullscreen = () => {
     ReactGA.event({
       category: GA_EVENT_CAT_PLAYER,
