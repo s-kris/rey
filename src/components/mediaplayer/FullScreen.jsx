@@ -1,39 +1,19 @@
 import React, { Component } from 'react';
 import { withMediaProps } from 'react-media-player';
 import ReactGA from 'react-ga';
+import { view } from 'react-easy-state';
 
 import { GA_EVENT_CAT_PLAYER, GA_EVENT_ACTION_FULLSCREEN, CONTROLS_TIMEOUT_DURATION } from '../../config/Constants';
 import { primaryColorLight } from './../../config/Colors';
 import musicStore from '../../stores/musicStore';
 import playerStore from '../../stores/playerStore';
-import { view } from 'react-easy-state';
 
 const mod = (num, max) => ((num % max) + max) % max;
 let isFullscreen = false;
+let activateMouseListener = true;
 class Fullscreen extends Component {
   componentDidMount() {
-    // window.addEventListener('resize', () => {
-    //   if (isFullscreen) {
-    //     console.log('yes');
-    //   } else {
-    //     console.log('no');
-    //   }
-    // });
-
-    ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange', 'msfullscreenchange'].forEach(eventType =>
-      document.addEventListener(
-        eventType,
-        () => {
-          isFullscreen = !isFullscreen;
-          if (isFullscreen) {
-            playerStore.showControls = false;
-          } else {
-            playerStore.showControls = true;
-          }
-        },
-        false
-      )
-    );
+    this._addFullscreenChangeHandler();
 
     document.onkeydown = event => {
       if (document.activeElement.tagName !== 'INPUT') {
@@ -71,7 +51,7 @@ class Fullscreen extends Component {
             break;
           case 70:
             // key F
-            this._handleFullscreen();
+            this._onClickFullScreen();
             break;
           case 77:
             // key N
@@ -92,7 +72,49 @@ class Fullscreen extends Component {
     };
   }
 
-  _handleFullscreen = () => {
+  _addFullscreenChangeHandler = () => {
+    ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange', 'msfullscreenchange'].forEach(eventType =>
+      document.addEventListener(
+        eventType,
+        () => {
+          isFullscreen = !isFullscreen;
+          if (isFullscreen) {
+            this._hideControlsAfterSometime();
+            if (activateMouseListener) {
+              activateMouseListener = false;
+              document.addEventListener(
+                'mousemove',
+                () => {
+                  if (isFullscreen && playerStore.showControls === false) {
+                    playerStore.showControls = true;
+                    this._hideControlsAfterSometime();
+                  }
+                },
+                false
+              );
+            }
+          } else {
+            playerStore.showControls = true;
+          }
+        },
+        false
+      )
+    );
+  };
+
+  _isMouseOnControls = () => false;
+
+  _hideControlsAfterSometime = () => {
+    setTimeout(() => {
+      if (isFullscreen && !this._isMouseOnControls()) {
+        playerStore.showControls = false;
+      } else {
+        playerStore.showControls = true;
+      }
+    }, CONTROLS_TIMEOUT_DURATION);
+  };
+
+  _onClickFullScreen = () => {
     ReactGA.event({
       category: GA_EVENT_CAT_PLAYER,
       action: GA_EVENT_ACTION_FULLSCREEN,
@@ -119,7 +141,7 @@ class Fullscreen extends Component {
         height="36px"
         viewBox="0 0 36 36"
         className={this.props.className}
-        onClick={() => this._handleFullscreen()}
+        onClick={() => this._onClickFullScreen()}
       >
         <circle fill={primaryColorLight} cx="18" cy="18" r="18" />
         {!isFullscreen ? (
