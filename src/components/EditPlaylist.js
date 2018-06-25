@@ -23,9 +23,9 @@ const styles = {
     justifyContent: 'space-around',
   },
   songsContainer: {
-    height: 400,
+    maxHeight: 400,
     overflow: 'scroll',
-    marginTop: 15,
+    marginTop: 20,
   },
 };
 
