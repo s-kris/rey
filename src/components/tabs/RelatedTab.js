@@ -51,6 +51,8 @@ class RelatedTab extends React.Component {
     if (this.props.currentTrack !== prevProps.currentTrack) {
       if (this.props.currentTrack.src) {
         this.fetchRelatedVideos();
+      } else {
+        this.setState({ data: [] });
       }
     }
   }
