@@ -123,10 +123,9 @@ class SaveAsPlaylist extends React.Component {
               onValueChange={itemValue => this.setState({ textInput: '', selectedOption: itemValue })}
             >
               <Picker.Item label={allPlaylists.length > 0 ? 'Select' : 'None'} value="select" />
-              {allPlaylists &&
-                allPlaylists.map(p => (
-                  <Picker.Item key={p.id} label={`${p.name} (${p.data.length} Songs)`} value={p.id} />
-                ))}
+              {allPlaylists.map(p => (
+                <Picker.Item key={p.id} label={`${p.name} (${p.data.length} Songs)`} value={p.id} />
+              ))}
             </Picker>
           </View>
         )}
