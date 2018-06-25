@@ -10,6 +10,7 @@ import ProfileTab from './ProfileTab';
 import CreditsTab from './CreditsTab';
 import { accentColor, primaryColorLight } from '../../config/Colors';
 import RelatedTab from './RelatedTab';
+import musicStore from '../../stores/musicStore';
 
 const styles = {
   rootContainer: {
@@ -89,7 +90,7 @@ class TabsContainer extends React.Component {
       case 'SEARCH':
         return <SearchTab />;
       case 'RELATED':
-        return <RelatedTab />;
+        return <RelatedTab currentTrack={musicStore.currentTrack} />;
       case 'FAVOURITES':
         return <WhatAShame giphyId="26ufd1zhcpm30DWrC" />;
       case 'PLAYLISTS':

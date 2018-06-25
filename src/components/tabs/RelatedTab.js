@@ -9,7 +9,6 @@ import SearchResultItem from '../listItems/SearchResultItem';
 import { accentColor } from '../../config/Colors';
 import Loader from './../Loader';
 import { saveDataToStorage, getDataFromStorage } from '../../api/storage';
-import musicStore from '../../stores/musicStore';
 
 const styles = {
   rootContainer: {
@@ -38,16 +37,21 @@ class RelatedTab extends React.Component {
     this.state = {
       isLoading: false,
       data: [],
-      checked: false,
+      checked: getDataFromStorage(KEY_PREF_SHOW_THUMBS) || false,
     };
   }
 
   componentDidMount() {
-    this.setState({
-      checked: getDataFromStorage(KEY_PREF_SHOW_THUMBS) || false,
-    });
-    if (musicStore.currentTrack.label) {
+    if (this.props.currentTrack.src) {
       this.fetchRelatedVideos();
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.currentTrack !== prevProps.currentTrack) {
+      if (this.props.currentTrack.src) {
+        this.fetchRelatedVideos();
+      }
     }
   }
 
@@ -59,7 +63,7 @@ class RelatedTab extends React.Component {
       .get('https://www.googleapis.com/youtube/v3/search', {
         params: {
           key: YOUTUBE_API_KEY,
-          relatedToVideoId: musicStore.currentTrack.src,
+          relatedToVideoId: this.props.currentTrack.src,
           type: 'video',
           part: 'snippet',
           maxResults: '25',
@@ -89,6 +93,7 @@ class RelatedTab extends React.Component {
   };
 
   render() {
+    const { currentTrack } = this.props;
     return (
       <View style={styles.rootContainer}>
         <View style={{ marginTop: 20, marginBottom: 10, flexDirection: 'row', alignItems: 'center' }}>
@@ -109,7 +114,7 @@ class RelatedTab extends React.Component {
           </Text>
         </View>
 
-        {!musicStore.currentTrack.label && (
+        {!currentTrack.label && (
           <Text className="font" style={{ marginTop: 20, fontSize: 18, color: accentColor }}>
             {'No Song is playing'}
           </Text>
