@@ -24,6 +24,7 @@ class App extends React.Component {
     super();
     firebase.initializeApp(fbaseConfig);
     ReactGA.initialize(GA_ID);
+    ReactGA.pageview(window.location.pathname);
 
     firebase.auth().onAuthStateChanged(user => {
       if (user) {

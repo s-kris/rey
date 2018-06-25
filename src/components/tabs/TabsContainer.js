@@ -57,7 +57,6 @@ const styles = {
 class TabsContainer extends React.Component {
   constructor(props) {
     super(props);
-    ReactGA.pageview(window.location.pathname);
     this.state = {
       activeTab: 'SEARCH',
       menuItems: [
@@ -80,6 +79,7 @@ class TabsContainer extends React.Component {
 
   _onClickMenuItem = item => {
     window.history.pushState('', '', `${item.path}`);
+    ReactGA.pageview(window.location.pathname);
     this.setState({ activeTab: item.name });
   };
 
