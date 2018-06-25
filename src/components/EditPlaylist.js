@@ -50,7 +50,7 @@ class EditPlaylist extends React.Component {
   render() {
     return (
       <View style={styles.rootContainer}>
-        <View style={{ width: '100%', alignItems: 'center' }}>
+        <View style={{ width: '100%', alignItems: 'flex-start' }}>
           <Text
             className="font"
             style={{
@@ -58,7 +58,7 @@ class EditPlaylist extends React.Component {
               fontSize: 24,
             }}
           >
-            {this.props.title}
+            Edit Playlist: {this.props.title}
           </Text>
         </View>
         <FlatList
