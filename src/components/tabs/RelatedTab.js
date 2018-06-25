@@ -63,6 +63,7 @@ class RelatedTab extends React.Component {
           type: 'video',
           part: 'snippet',
           maxResults: '25',
+          videoEmbeddable: 'true',
         },
       })
       .then(response => {
@@ -90,7 +91,7 @@ class RelatedTab extends React.Component {
   render() {
     return (
       <View style={styles.rootContainer}>
-        <View style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center' }}>
+        <View style={{ marginTop: 20, marginBottom: 10, flexDirection: 'row', alignItems: 'center' }}>
           <input
             type="checkbox"
             checked={this.state.checked}

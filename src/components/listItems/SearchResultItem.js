@@ -4,7 +4,6 @@ import ReactSVG from 'react-svg';
 import randomColor from 'randomcolor';
 import shortid from 'shortid';
 import ReactGA from 'react-ga';
-import Image from 'react-graceful-image';
 
 import './../../styles/song-item.css';
 import playIcon from './../../assets/images/icons/play.svg';
@@ -84,15 +83,15 @@ class SearchResultItem extends React.Component {
         }}
       >
         {this.props.showImage && (
-          <View onClick={() => this._onClickPlay()}>
-            <Image
-              src={this.props.thumbnailUrl}
-              width="121"
-              height="75"
-              alt="My awesome image"
-              placeholderColor={generatedColor}
-              noLazyLoad
-            />
+          <View
+            onClick={() => this._onClickPlay()}
+            style={{
+              width: 121,
+              height: 75,
+              backgroundColor: generatedColor,
+            }}
+          >
+            <img src={this.props.thumbnailUrl} alt="My awesome" width="121" height="75" />
           </View>
         )}
         <Text className="title font" onClick={() => this._onClickPlay()} numberOfLines={1}>

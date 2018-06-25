@@ -38,11 +38,6 @@ class CreditsTab extends React.Component {
           link: 'https://github.com/necolas/react-native-web',
           licence: 'MIT',
         },
-        {
-          name: 'Youtube Search',
-          link: 'https://www.npmjs.com/package/youtube-search',
-          licence: 'MIT',
-        },
       ],
     };
   }

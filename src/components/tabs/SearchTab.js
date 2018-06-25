@@ -1,8 +1,7 @@
 import React from 'react';
 import { View, Text, FlatList, Button } from 'react-native-web';
-import youtubeHelper from 'youtube-search';
 import { view } from 'react-easy-state';
-// import Axios from 'axios';
+import axios from 'axios';
 
 import {
   YOUTUBE_API_KEY,
@@ -62,24 +61,40 @@ class SearchTab extends React.Component {
     });
   }
 
-  // fetchRelatedVideos = () => {
-  //   const { currentTrack } = musicStore;
-  //   if (currentTrack.label) {
-  //     Axios.get('https://www.googleapis.com/youtube/v3/search', {
-  //       params: {
-  //         key: YOUTUBE_API_KEY,
-  //         relatedToVideoId: currentTrack.src,
-  //         maxResults: 25,
-  //       },
-  //     })
-  //       .then(response => {
-  //         console.log(response.items);
-  //       })
-  //       .catch(error => {
-  //         console.log(error);
-  //       });
-  //   }
-  // };
+  _fetchVideos = (searchTerm, maxResults) => {
+    axios
+      .get('https://www.googleapis.com/youtube/v3/search', {
+        params: {
+          key: YOUTUBE_API_KEY,
+          q: searchTerm,
+          maxResults: maxResults.toString(),
+          part: 'snippet',
+          type: 'video',
+          videoEmbeddable: 'true',
+        },
+      })
+      .then(response => {
+        const relatedData = [];
+        response.data.items.forEach(item => {
+          if (item.id.kind === 'youtube#video') {
+            relatedData.push({
+              videoId: item.id.videoId,
+              title: item.snippet.title,
+              thumbnailUrl: item.snippet.thumbnails.medium.url,
+              id: item.id.videoId,
+            });
+          }
+        });
+        this.setState({
+          data: relatedData,
+          isLoading: false,
+          empty: relatedData.length === 0,
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
   handleChange = event => {
     const searchTerm = event.target.value;
@@ -101,10 +116,10 @@ class SearchTab extends React.Component {
         },
         () => {
           if (getYoutubeId(searchTerm) === CONST_INVALID_URL) {
-            this._searchYoutube(searchTerm, YOUTUBE_SEARCH_RESULTS_MAX);
+            this._fetchVideos(searchTerm, YOUTUBE_SEARCH_RESULTS_MAX);
           } else {
             // enterted search term is youtube link and so render top 1 result
-            this._searchYoutube(searchTerm, 1);
+            this._fetchVideos(searchTerm, 1);
           }
         }
       );
@@ -120,27 +135,6 @@ class SearchTab extends React.Component {
       if (element.kind === 'youtube#video') filteredResults.push(element);
     });
     return filteredResults;
-  };
-
-  _searchYoutube = (searchTerm, limit) => {
-    const opts = {
-      maxResults: limit,
-      key: YOUTUBE_API_KEY,
-    };
-    youtubeHelper(searchTerm, opts, (err, results) => {
-      if (err) return console.log(err);
-
-      if (results.length === 0) {
-        this.setState({ empty: true, isLoading: false });
-      } else {
-        const cleanData = this._cleanSearchResults(results);
-        this.setState({
-          data: cleanData,
-          empty: false,
-          isLoading: false,
-        });
-      }
-    });
   };
 
   render() {
@@ -197,10 +191,9 @@ class SearchTab extends React.Component {
           data={this.state.data}
           renderItem={({ item }) => (
             <SearchResultItem
-              key={item.id}
-              thumbnailUrl={item.thumbnails.medium.url}
+              thumbnailUrl={item.thumbnailUrl}
               name={item.title}
-              videoUrl={item.id}
+              videoUrl={item.videoId}
               showImage={this.state.checked}
             /> // item.link uses too much data
           )}
