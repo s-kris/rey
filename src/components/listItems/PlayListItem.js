@@ -4,6 +4,7 @@ import ReactSVG from 'react-svg';
 import randomColor from 'randomcolor';
 import alertify from 'alertify.js';
 import dayjs from 'dayjs';
+import Modal from 'react-responsive-modal';
 
 import './../../styles/song-item.css';
 import playIcon from './../../assets/images/icons/play.svg';
@@ -16,8 +17,13 @@ import { showToast } from '../../utils/utils';
 import { saveToFirebase } from '../../api/firebase';
 import { COL_MUSIC_DATA } from '../../config/Constants';
 import { primaryColorLight } from './../../config/Colors';
+import EditPlaylist from '../EditPlaylist';
 
 class PlaylistItem extends React.Component {
+  state = {
+    open: false,
+  };
+
   _onClickPlay = () => {
     const { data, name } = this.props;
     const tmpData = data.slice(0);
@@ -54,7 +60,8 @@ class PlaylistItem extends React.Component {
   };
 
   _onClickEdit = () => {
-    showToast('Edit feature is coming soon!');
+    //  showToast('Edit feature is coming soon!');
+    this.openModal();
   };
 
   _onClickDelete = () => {
@@ -79,6 +86,15 @@ class PlaylistItem extends React.Component {
   };
 
   _formatLabel = name => name;
+
+  openModal = () => {
+    this.setState({ open: true });
+  };
+
+  closeModal = () => {
+    this.setState({ open: false });
+  };
+
   render() {
     return (
       <View
@@ -92,6 +108,22 @@ class PlaylistItem extends React.Component {
           }),
         }}
       >
+        <Modal
+          open={this.state.open}
+          onClose={this.closeModal}
+          center
+          styles={{
+            modal: {
+              padding: 0,
+            },
+          }}
+          showCloseIcon={false}
+          classNames={{ overlay: 'custom-overlay', modal: 'custom-modal' }}
+        >
+          <EditPlaylist closeModal={() => this.closeModal()} data={this.props.data} title={this.props.name} />
+          {/* <AlertBox message="save now or not" yexText="yes" noText="close" onClickNo={() => this.closeModal()} /> */}
+        </Modal>
+
         <Text className="title font" numberOfLines={1} onClick={() => this._onClickQueue()}>
           {this._formatLabel(this.props.name)} &nbsp; &nbsp; ({this.props.data.length} Songs)
         </Text>
