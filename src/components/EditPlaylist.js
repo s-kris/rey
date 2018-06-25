@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, FlatList, Button } from 'react-native-web';
 import dayjs from 'dayjs';
+import shortid from 'shortid';
 
 import { accentColor, primaryColor } from '../config/Colors';
 import EditPlaylistItem from './listItems/EditPlaylistItem';
@@ -20,6 +21,11 @@ const styles = {
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-around',
+  },
+  songsContainer: {
+    height: 400,
+    overflow: 'scroll',
+    marginTop: 15,
   },
 };
 
@@ -61,14 +67,15 @@ class EditPlaylist extends React.Component {
             Edit Playlist: {this.props.title}
           </Text>
         </View>
-        <FlatList
-          style={{ marginTop: 15 }}
-          keyExtractor={item => item.id}
-          data={this.state.data}
-          renderItem={({ item, index }) => (
-            <EditPlaylistItem name={item.label} onClickDelete={() => this._deleteSong(index)} />
-          )}
-        />
+        <View style={styles.songsContainer}>
+          <FlatList
+            keyExtractor={() => shortid.generate()}
+            data={this.state.data}
+            renderItem={({ item, index }) => (
+              <EditPlaylistItem name={item.label} onClickDelete={() => this._deleteSong(index)} />
+            )}
+          />
+        </View>
         <View style={styles.buttonContainer}>
           <Button title="Save Playlist" color={accentColor} onPress={() => this._onClickSave()} />
           <Button title="Cancel" color={primaryColor} onPress={() => this.props.closeModal()} />
