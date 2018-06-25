@@ -5,7 +5,7 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import ReactGA from 'react-ga';
-import { hot } from 'react-hot-loader';
+// import { hot } from 'react-hot-loader';
 
 import './styles/variables.css';
 import './styles/common.css';
@@ -53,4 +53,5 @@ class App extends React.Component {
   }
 }
 
-export default hot(module)(App);
+// export default hot(module)(App);
+export default App;

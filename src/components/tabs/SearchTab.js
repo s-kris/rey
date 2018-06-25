@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, FlatList, Button } from 'react-native-web';
 import youtubeHelper from 'youtube-search';
+import { view } from 'react-easy-state';
+// import Axios from 'axios';
 
 import {
   YOUTUBE_API_KEY,
@@ -16,6 +18,7 @@ import { getYoutubeId } from '../../utils/utils';
 import { accentColor } from '../../config/Colors';
 import Loader from './../Loader';
 import { getDataFromStorage, saveDataToStorage } from '../../api/storage';
+// import musicStore from '../../stores/musicStore';
 
 const styles = {
   rootContainer: {
@@ -53,11 +56,30 @@ class SearchTab extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.setState({
       checked: getDataFromStorage(KEY_PREF_SHOW_THUMBS) || false,
     });
   }
+
+  // fetchRelatedVideos = () => {
+  //   const { currentTrack } = musicStore;
+  //   if (currentTrack.label) {
+  //     Axios.get('https://www.googleapis.com/youtube/v3/search', {
+  //       params: {
+  //         key: YOUTUBE_API_KEY,
+  //         relatedToVideoId: currentTrack.src,
+  //         maxResults: 25,
+  //       },
+  //     })
+  //       .then(response => {
+  //         console.log(response.items);
+  //       })
+  //       .catch(error => {
+  //         console.log(error);
+  //       });
+  //   }
+  // };
 
   handleChange = event => {
     const searchTerm = event.target.value;
@@ -69,6 +91,7 @@ class SearchTab extends React.Component {
         isLoading: false,
         empty: false,
       });
+      // this.fetchRelatedVideos();
     }
 
     if (searchTerm && searchTerm.length > SEARCH_MIN_LETTERS - 1) {
@@ -120,13 +143,6 @@ class SearchTab extends React.Component {
     });
   };
 
-  // _renderData = songs => {
-  //   const songsList = songs.map(s => (
-  //     <SearchResultItem thumbnailUrl={s.thumbnails.medium.url} name={s.title} videoUrl={s.link} key={s.id} />
-  //   ));
-  //   this.setState({ empty: false, data: songsList, isLoading: false });
-  // };
-
   render() {
     return (
       <View style={styles.rootContainer}>
@@ -149,7 +165,14 @@ class SearchTab extends React.Component {
               this.setState({ checked: !this.state.checked });
             }}
           />
-          <Text className="font" style={{ marginTop: 5 }}>
+          <Text
+            className="font"
+            style={{ marginTop: 5, cursor: 'pointer' }}
+            onClick={() => {
+              saveDataToStorage(KEY_PREF_SHOW_THUMBS, !this.state.checked);
+              this.setState({ checked: !this.state.checked });
+            }}
+          >
             {'  '} Show thumbnails {'    '}
           </Text>
 
@@ -161,6 +184,12 @@ class SearchTab extends React.Component {
             accessibilityLabel="Learn more about this purple button"
           />
         </View>
+        {/* {musicStore.currentTrack.label &&
+          this.state.searchText.length === 0 && (
+            <Text className="font" style={{ marginTop: 20, fontSize: 18, color: accentColor }}>
+              You may also like
+            </Text>
+          )} */}
 
         <FlatList
           style={{ marginTop: 15 }}
@@ -198,4 +227,4 @@ class SearchTab extends React.Component {
   }
 }
 
-export default SearchTab;
+export default view(SearchTab);

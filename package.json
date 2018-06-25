@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "alertify.js": "^1.0.12",
+    "axios": "^0.18.0",
     "dayjs": "^1.6.9",
     "firebase": "^5.0.4",
     "normalize.css": "^8.0.0",

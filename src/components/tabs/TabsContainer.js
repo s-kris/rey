@@ -9,6 +9,7 @@ import PlaylistsTab from './PlaylistsTab';
 import ProfileTab from './ProfileTab';
 import CreditsTab from './CreditsTab';
 import { accentColor, primaryColorLight } from '../../config/Colors';
+import RelatedTab from './RelatedTab';
 
 const styles = {
   rootContainer: {
@@ -61,7 +62,7 @@ class TabsContainer extends React.Component {
       activeTab: 'SEARCH',
       menuItems: [
         { name: 'SEARCH', path: '/' },
-        { name: 'POPULAR', path: '/popular' },
+        { name: 'RELATED', path: '/related' },
         { name: 'PLAYLISTS', path: '/playlists' },
         { name: 'PROFILE', path: '/profile' },
         { name: 'CREDITS', path: '/credits' },
@@ -87,8 +88,8 @@ class TabsContainer extends React.Component {
     switch (this.state.activeTab) {
       case 'SEARCH':
         return <SearchTab />;
-      case 'POPULAR':
-        return <WhatAShame giphyId="26ufd1zhcpm30DWrC" />;
+      case 'RELATED':
+        return <RelatedTab />;
       case 'FAVOURITES':
         return <WhatAShame giphyId="26ufd1zhcpm30DWrC" />;
       case 'PLAYLISTS':

@@ -41,3 +41,7 @@ export const isFullscreen = () => {
   }
   return false;
 };
+
+export const printLog = msg => {
+  console.log(msg);
+};
