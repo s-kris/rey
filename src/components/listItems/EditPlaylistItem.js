@@ -36,8 +36,9 @@ class EditPlaylistItem extends React.Component {
           <ReactSVG
             path={deleteIcon}
             evalScripts="always"
-            svgClassName="action-icon"
+            svgClassName="action-icon-delete"
             svgStyle={{ fill: primaryColorLight }}
+            onClick={() => this.props.onClickDelete()}
           />
         </View>
       </View>

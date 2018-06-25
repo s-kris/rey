@@ -120,7 +120,12 @@ class PlaylistItem extends React.Component {
           showCloseIcon={false}
           classNames={{ overlay: 'custom-overlay', modal: 'custom-modal' }}
         >
-          <EditPlaylist closeModal={() => this.closeModal()} data={this.props.data} title={this.props.name} />
+          <EditPlaylist
+            closeModal={() => this.closeModal()}
+            data={this.props.data}
+            title={this.props.name}
+            playlistId={this.props.id}
+          />
           {/* <AlertBox message="save now or not" yexText="yes" noText="close" onClickNo={() => this.closeModal()} /> */}
         </Modal>
 

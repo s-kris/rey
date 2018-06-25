@@ -63,6 +63,20 @@ class Playlists {
     musicStore.setPlaylists(playlists);
     showToast(`${playlistName} deleted!`);
   }
+
+  static updatePlaylist(playlistId, array) {
+    const playlists = getDataFromStorage(KEY_PLAYLISTS);
+    let playlistName = '';
+
+    playlists.forEach(p => {
+      if (p.id === playlistId) {
+        p.data = array;
+        playlistName = p.name;
+      }
+    });
+    musicStore.setPlaylists(playlists);
+    showToast(`${playlistName} updated!`);
+  }
 }
 
 export default Playlists;
