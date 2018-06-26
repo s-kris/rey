@@ -11,6 +11,7 @@ import CreditsTab from './CreditsTab';
 import { accentColor, primaryColorLight } from '../../config/Colors';
 import RelatedTab from './RelatedTab';
 import musicStore from '../../stores/musicStore';
+import MoreTab from './MoreTab';
 
 const styles = {
   rootContainer: {
@@ -66,7 +67,8 @@ class TabsContainer extends React.Component {
         { name: 'RELATED', path: '/related' },
         { name: 'PLAYLISTS', path: '/playlists' },
         { name: 'PROFILE', path: '/profile' },
-        { name: 'CREDITS', path: '/credits' },
+        // { name: 'CREDITS', path: '/credits' },
+        { name: 'MORE', path: '/more' },
       ],
     };
   }
@@ -100,6 +102,8 @@ class TabsContainer extends React.Component {
         return <ProfileTab />;
       case 'CREDITS':
         return <CreditsTab />;
+      case 'MORE':
+        return <MoreTab />;
       default:
         return <WhatAShame giphyId="26ufd1zhcpm30DWrC" />;
     }
