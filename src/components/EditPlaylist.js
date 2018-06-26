@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, FlatList, Button } from 'react-native-web';
 import dayjs from 'dayjs';
-import shortid from 'shortid';
 
 import { accentColor, primaryColor } from '../config/Colors';
 import EditPlaylistItem from './listItems/EditPlaylistItem';
@@ -69,11 +68,12 @@ class EditPlaylist extends React.Component {
         </View>
         <View style={styles.songsContainer}>
           <FlatList
-            keyExtractor={() => shortid.generate()}
+            // keyExtractor={() => shortid.generate()}
             data={this.state.data}
-            renderItem={({ item, index }) => (
-              <EditPlaylistItem name={item.label} onClickDelete={() => this._deleteSong(index)} />
-            )}
+            renderItem={({ item, index }) => {
+              console.log(item);
+              return <EditPlaylistItem name={item.label} onClickDelete={() => this._deleteSong(index)} />;
+            }}
           />
         </View>
         <View style={styles.buttonContainer}>
