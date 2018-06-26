@@ -70,10 +70,9 @@ class EditPlaylist extends React.Component {
           <FlatList
             // keyExtractor={() => shortid.generate()}
             data={this.state.data}
-            renderItem={({ item, index }) => {
-              console.log(item);
-              return <EditPlaylistItem name={item.label} onClickDelete={() => this._deleteSong(index)} />;
-            }}
+            renderItem={({ item, index }) => (
+              <EditPlaylistItem name={item.label} onClickDelete={() => this._deleteSong(index)} />
+            )}
           />
         </View>
         <View style={styles.buttonContainer}>
