@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native-web';
 import { view } from 'react-easy-state';
-import ReactGA from 'react-ga';
+// import ReactGA from 'react-ga';
 
 import SearchTab from './SearchTab';
 import WhatAShame from '../WhatAShame';
@@ -80,8 +80,8 @@ class TabsContainer extends React.Component {
   }
 
   _onClickMenuItem = item => {
-    window.history.pushState('', '', `${item.path}`);
-    ReactGA.pageview(window.location.pathname);
+    // window.history.pushState('', '', `${item.path}`);
+    // ReactGA.pageview(window.location.pathname);
     this.setState({ activeTab: item.name });
   };
 
