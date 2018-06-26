@@ -142,7 +142,7 @@ class SearchTab extends React.Component {
       <View style={styles.rootContainer}>
         <View style={styles.searchBoxContainer}>
           <input
-            id="searchtextinput"
+            id="searchTextInput"
             type="text"
             placeholder="start typing to search or paste a link from from youtube"
             onChange={this.handleChange}

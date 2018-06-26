@@ -104,6 +104,7 @@ class SaveAsPlaylist extends React.Component {
         </Text>
         <View style={styles.searchBoxContainer}>
           <input
+            id="playlistNameInput"
             type="text"
             placeholder="enter a name"
             onChange={this._onTextEnter.bind(this)}

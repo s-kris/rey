@@ -15,7 +15,8 @@ class Fullscreen extends Component {
     this._addFullscreenChangeHandler();
 
     document.onkeydown = event => {
-      if (document.activeElement.id !== 'searchtextinput') {
+      const { id } = document.activeElement;
+      if (id !== 'searchTextInput' && id !== 'playlistNameInput') {
         const { media } = this.props;
         if (!event) event = window.event;
         let code = event.keyCode;
