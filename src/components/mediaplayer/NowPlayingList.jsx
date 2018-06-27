@@ -33,16 +33,26 @@ const styles = {
   },
 };
 
+// const indexOfTopItem = 0;
+
 class NowPlayingList extends React.Component {
   _handleTrackClick(track) {
     this.props.onTrackClick(track);
   }
 
   _focusNowPlayingItem = position => {
-    // this.flatListRef.scrollToIndex({ index: position - 1 });
-    // console.log(document.getElementById(id));
-    // document.getElementById(id).scrollTop = 10;
+    // showToast(position - indexOfTopItem);
+
+    setTimeout(() => {
+      try {
+        this.flatListRef.scrollToIndex({ animated: true, index: position });
+      } catch (e) {
+        console.log(e);
+      }
+    }, 100);
   };
+
+  _getItemLayout = (data, index) => ({ length: 150, offset: 150 * index, index });
 
   render() {
     const { tracks, currentTrack } = this.props;
@@ -84,10 +94,19 @@ class NowPlayingList extends React.Component {
           <FlatList
             style={{ marginTop: 0 }}
             data={tracks}
+            ref={ref => {
+              this.flatListRef = ref;
+            }}
+            // onScroll={e => {
+            //   const offset = e.nativeEvent.contentOffset.y;
+            //   const index = parseInt(offset / 50); // your cell height
+            //   indexOfTopItem = index;
+            // }}
             renderItem={(
               { item, index } // console.log(index)
             ) => (
               <View
+                id="nowPlayingListItem"
                 style={{
                   borderBottomWidth: 1,
                   borderBottomStyle: 'solid',
@@ -100,6 +119,7 @@ class NowPlayingList extends React.Component {
                   position={index}
                   focus={() => this._focusNowPlayingItem(index)}
                   currentTrack={currentTrack}
+                  //  getItemLayout={this._getItemLayout}
                   onItemClick={() => this._handleTrackClick(item)}
                 />
               </View>
