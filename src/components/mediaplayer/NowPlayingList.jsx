@@ -90,6 +90,7 @@ class NowPlayingList extends React.Component {
         {
           <FlatList
             style={{ marginTop: 0 }}
+            // keyExtractor={item => item.id}
             data={tracks}
             ref={ref => {
               this.flatListRef = ref;
