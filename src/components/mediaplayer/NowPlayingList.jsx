@@ -42,7 +42,6 @@ class NowPlayingList extends React.Component {
 
   _focusNowPlayingItem = position => {
     // showToast(position - indexOfTopItem);
-
     setTimeout(() => {
       try {
         this.flatListRef.scrollToIndex({ animated: true, index: position });
@@ -51,8 +50,6 @@ class NowPlayingList extends React.Component {
       }
     }, 100);
   };
-
-  _getItemLayout = (data, index) => ({ length: 150, offset: 150 * index, index });
 
   render() {
     const { tracks, currentTrack } = this.props;
