@@ -1,6 +1,6 @@
 export const borderRadiusLarge = 0;
 export const YOUTUBE_API_KEY = 'AIzaSyBYFIt7WI1sDCEO2lxWsskgL1xn2lQJCRU';
-export const YOUTUBE_SEARCH_RESULTS_MAX = 15;
+export const YOUTUBE_SEARCH_RESULTS_MAX = 25;
 
 export const CONTROLS_TIMEOUT_DURATION = 5000;
 export const SEARCH_MIN_LETTERS = 5;
