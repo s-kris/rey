@@ -69,6 +69,29 @@ class MoreTab extends React.Component {
             <Text className="font">Previous [P]</Text>
           </View>
         </View>
+
+        <View>
+          <Text className="font" style={{ color: accentColor, marginTop: 15 }}>
+            Why?
+          </Text>
+          <Text
+            className="font"
+            style={{
+              cursor: 'pointer',
+              textDecorationLine: 'underline',
+              textDecorationStyle: 'solid',
+              textDecorationColor: '#000',
+              marginTop: 10,
+              marginBottom: 5,
+            }}
+            onClick={() => {
+              window.open('https://goo.gl/eust6P');
+            }}
+          >
+            https://www.reddit.com/r/Music/comments/8sxjxo/rey_reimagined_youtube_music_player_for_desktop_i
+          </Text>
+        </View>
+
         <Text className="font" style={{ color: accentColor, marginTop: 15 }}>
           Credits
         </Text>
