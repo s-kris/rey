@@ -92,6 +92,22 @@ class MoreTab extends React.Component {
           </Text>
         </View>
 
+        <View>
+          <Text className="font" style={{ color: accentColor, marginTop: 15 }}>
+            Standalone App?
+          </Text>
+          <Text
+            className="font"
+            style={{
+              cursor: 'pointer',
+              marginTop: 10,
+              marginBottom: 5,
+            }}
+          >
+            If people are interested! ¯\_(ツ)_/¯
+          </Text>
+        </View>
+
         <Text className="font" style={{ color: accentColor, marginTop: 15 }}>
           Credits
         </Text>
