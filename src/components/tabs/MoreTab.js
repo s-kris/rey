@@ -25,26 +25,26 @@ class MoreTab extends React.Component {
     super(props);
     this.state = {
       data: [
-        {
-          name: 'React',
-          link: 'https://reactjs.org/',
-          licence: 'MIT',
-        },
-        {
-          name: 'Unsplash',
-          link: 'https://unsplash.com/',
-          licence: 'MIT',
-        },
+        // {
+        //   name: 'React',
+        //   link: 'https://reactjs.org/',
+        //   licence: 'MIT',
+        // },
+        // {
+        //   name: 'Unsplash',
+        //   link: 'https://unsplash.com/',
+        //   licence: 'MIT',
+        // },
         {
           name: 'Irene Davila (Background Image)',
           link: 'https://unsplash.com/photos/9Y5Wk7favpE',
           licence: 'MIT',
         },
-        {
-          name: 'React Native Web',
-          link: 'https://github.com/necolas/react-native-web',
-          licence: 'MIT',
-        },
+        // {
+        //   name: 'React Native Web',
+        //   link: 'https://github.com/necolas/react-native-web',
+        //   licence: 'MIT',
+        // },
       ],
     };
   }
