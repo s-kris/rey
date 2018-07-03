@@ -127,7 +127,13 @@ class Fullscreen extends Component {
     const currentTrack = musicStore.getCurrentTrack();
     const nowPlayingList = musicStore.getNowPlayingList();
     if (nowPlayingList.length > 1) {
-      const newIndex = mod(nowPlayingList.indexOf(currentTrack) + direction, nowPlayingList.length);
+      let currentTrackPosition; //= nowPlayingList.indexOf(currentTrack)
+      nowPlayingList.forEach((item, index) => {
+        if (currentTrack.id === item.id) {
+          currentTrackPosition = index;
+        }
+      });
+      const newIndex = mod(currentTrackPosition + direction, nowPlayingList.length);
       musicStore.setCurrentTrack(nowPlayingList[newIndex]);
     }
   };

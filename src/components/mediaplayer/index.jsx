@@ -61,11 +61,10 @@ class Index extends Component {
   _navigatePlaylist = direction => {
     const currentTrack = musicStore.getCurrentTrack();
     const nowPlayingList = musicStore.getNowPlayingList();
-
     if (nowPlayingList.length > 1) {
       let currentTrackPosition; //= nowPlayingList.indexOf(currentTrack)
       nowPlayingList.forEach((item, index) => {
-        if (currentTrack.id === nowPlayingList[index].id) {
+        if (currentTrack.id === item.id) {
           currentTrackPosition = index;
         }
       });
