@@ -3,7 +3,7 @@ export const YOUTUBE_API_KEY = 'AIzaSyBYFIt7WI1sDCEO2lxWsskgL1xn2lQJCRU';
 export const YOUTUBE_SEARCH_RESULTS_MAX = 25;
 
 export const CONTROLS_TIMEOUT_DURATION = 5000;
-export const SEARCH_MIN_LETTERS = 5;
+export const SEARCH_MIN_LETTERS = 4;
 export const CONST_INVALID_URL = 'invalid url';
 
 export const KEY_CURRENT_TRACK = 'keyforcurrentplayingsong';
