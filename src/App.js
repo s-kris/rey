@@ -16,6 +16,7 @@ import { getFromFirebase } from './api/firebase';
 import { COL_MUSIC_DATA, GA_ID } from './config/Constants';
 import musicStore from './stores/musicStore';
 import HomeScreen from './screens/HomeScreen';
+import DesktopApp from './screens/DesktopApp';
 import playerStore from './stores/playerStore';
 // import { clearAll } from './api/storage';
 
@@ -42,14 +43,23 @@ class App extends React.Component {
     });
   }
 
+  renderUI = currentUrl => {
+    if (currentUrl === '/standaloneapp') {
+      return <DesktopApp />;
+    }
+
+    const script = document.createElement('script');
+    script.src =
+      'https://platform-api.sharethis.com/js/sharethis.js#property=5b2c936fa7603d0012fa8905&product=sticky-share-buttons';
+    script.async = true;
+    document.body.appendChild(script);
+    return <HomeScreen />;
+  };
+
   render() {
     // clearAll();
     playerStore.showControls = true;
-    return (
-      <View>
-        <HomeScreen />
-      </View>
-    );
+    return <View>{this.renderUI(window.location.pathname)}</View>;
   }
 }
 
