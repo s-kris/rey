@@ -95,7 +95,8 @@ class SearchResultItem extends React.Component {
           </View>
         )}
         <Text className="title font" onClick={() => this._onClickPlay()} numberOfLines={1}>
-          {this._formatLabel(this.props.name)}
+          {/* {this._formatLabel(this.props.name)} */}
+          {this.props.name}
         </Text>
         <View className="actions-container">
           <ReactSVG
