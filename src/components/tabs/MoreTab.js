@@ -5,6 +5,7 @@ import randomColor from 'randomcolor';
 
 import './../../styles/input.css';
 import { accentColor } from '../../config/Colors';
+import TwitterIcon from './../../assets/images/twitter-icon.png';
 
 const styles = {
   rootContainer: {
@@ -94,18 +95,26 @@ class MoreTab extends React.Component {
 
         <View>
           <Text className="font" style={{ color: accentColor, marginTop: 15 }}>
-            Standalone App?
+            Developer
           </Text>
-          <Text
-            className="font"
-            style={{
-              cursor: 'pointer',
-              marginTop: 10,
-              marginBottom: 5,
+          <View
+            style={{ flexDirection: 'row', alignItems: 'center' }}
+            onClick={() => {
+              window.open('https://twitter.com/_skris');
             }}
           >
-            If people are interested! ¯\_(ツ)_/¯
-          </Text>
+            <Text
+              className="font"
+              style={{
+                cursor: 'pointer',
+                marginTop: 10,
+                marginBottom: 5,
+              }}
+            >
+              Sai Krishna &nbsp;
+            </Text>
+            <img src={TwitterIcon} style={{ cursor: 'pointer', width: 24, height: 24 }} alt="_skris" />
+          </View>
         </View>
 
         <Text className="font" style={{ color: accentColor, marginTop: 15 }}>

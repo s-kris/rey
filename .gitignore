@@ -30,3 +30,6 @@ firestore.indexes.json
 package-lock.json
 src/stores/Test.js
 src/components/Temp.js
+public/apps/Rey-linux.zip
+public/apps/Rey-osx.zip
+public/apps/Rey-windows.zip
