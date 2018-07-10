@@ -20,6 +20,7 @@ const styles = {
     width: 96,
     height: 96,
     marginBottom: 25,
+    cursor: 'pointer',
   },
 
   text: {
@@ -43,13 +44,21 @@ class DownloadBox extends React.Component {
       default:
         break;
     }
+    this.props.closeModal();
   };
 
   render() {
     return (
       <View style={styles.rootContainer}>
         <View style={styles.platform}>
-          <img src={windowsIcon} alt="download-rey-windows" style={styles.icon} />
+          <img
+            src={windowsIcon}
+            alt="download-rey-windows"
+            style={styles.icon}
+            onClick={() => {
+              this._initDownload('windows');
+            }}
+          />
           <Button
             color={accentColor}
             title="Download for Windows"
@@ -59,7 +68,14 @@ class DownloadBox extends React.Component {
           />
         </View>
         <View style={styles.platform}>
-          <img src={macIcon} alt="download-rey-mac" style={styles.icon} />
+          <img
+            src={macIcon}
+            alt="download-rey-mac"
+            style={styles.icon}
+            onClick={() => {
+              this._initDownload('osx');
+            }}
+          />
           <Button
             color={accentColor}
             title="Download for OS X"
@@ -69,7 +85,14 @@ class DownloadBox extends React.Component {
           />
         </View>
         <View style={styles.platform}>
-          <img src={linuxIcon} alt="download-rey-linux" style={styles.icon} />
+          <img
+            src={linuxIcon}
+            alt="download-rey-linux"
+            style={styles.icon}
+            onClick={() => {
+              this._initDownload('linux');
+            }}
+          />
           <Button
             color={accentColor}
             title="Download for Linux"

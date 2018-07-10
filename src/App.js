@@ -18,6 +18,7 @@ import musicStore from './stores/musicStore';
 import HomeScreen from './screens/HomeScreen';
 import DesktopApp from './screens/DesktopApp';
 import playerStore from './stores/playerStore';
+// import WhatAShame from './components/WhatAShame';
 // import { clearAll } from './api/storage';
 
 class App extends React.Component {
@@ -45,6 +46,7 @@ class App extends React.Component {
 
   renderUI = currentUrl => {
     if (currentUrl === '/standaloneapp') {
+      // return <WhatAShame giphyId="KJ1f5iTl4Oo7u" />;
       return <DesktopApp />;
     }
 

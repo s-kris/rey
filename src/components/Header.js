@@ -49,7 +49,7 @@ class Header extends React.Component {
           showCloseIcon={false}
           classNames={{ overlay: 'custom-overlay', modal: 'custom-modal' }}
         >
-          <DownloadBox />
+          <DownloadBox closeModal={() => this.closeModal()} />
         </Modal>
         <img src={logo} width="75" height="75" alt="rey music player" />
         {/* <Text className="font" style={styles.logoText}>
