@@ -24,22 +24,19 @@ const styles = {
     justifyContent: 'center',
   },
   headerContainer: {
-    width: '75%',
-    paddingBottom: 15,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
+    width: '77%',
+    paddingBottom: 10,
   },
   modulesContainer: {
     backgroundColor: 'white',
-    width: '75%',
-    height: '75%',
+    width: '77%',
+    height: '77%',
     borderRadius: borderRadiusLarge,
     display: 'flex',
     flexDirection: 'row',
   },
   playerContainer: {
-    width: '34%',
+    width: '36%',
     height: '100%',
   },
   tabsContainer: {
