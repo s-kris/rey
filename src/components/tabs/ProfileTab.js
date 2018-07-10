@@ -61,58 +61,52 @@ class ProfileTab extends React.Component {
   }
 
   _onClickSignIn = provider => {
-    firebase
-      .auth()
-      .signInWithPopup(provider)
-      .then(result => {
-        if (result.additionalUserInfo.isNewUser) {
-          // console.log('new user');
-          const data = {
-            playlists: musicStore.getAllPlaylists(),
-            createdAt: dayjs().format(),
-          };
-          saveToFirebase(COL_MUSIC_DATA, data, () => {});
-        } else {
-          getFromFirebase(COL_MUSIC_DATA, data => {
-            musicStore.setPlaylists(data.playlists);
-          });
-        }
-        showToast('Playlists synced!');
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    if (window.location.pathname === '/standaloneapp') {
+      firebase
+        .auth()
+        .signInWithRedirect(provider)
+        .then(result => {
+          if (result.additionalUserInfo.isNewUser) {
+            // console.log('new user');
+            const data = {
+              playlists: musicStore.getAllPlaylists(),
+              createdAt: dayjs().format(),
+            };
+            saveToFirebase(COL_MUSIC_DATA, data, () => {});
+          } else {
+            getFromFirebase(COL_MUSIC_DATA, data => {
+              musicStore.setPlaylists(data.playlists);
+            });
+          }
+          showToast('Playlists synced!');
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    } else {
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then(result => {
+          if (result.additionalUserInfo.isNewUser) {
+            // console.log('new user');
+            const data = {
+              playlists: musicStore.getAllPlaylists(),
+              createdAt: dayjs().format(),
+            };
+            saveToFirebase(COL_MUSIC_DATA, data, () => {});
+          } else {
+            getFromFirebase(COL_MUSIC_DATA, data => {
+              musicStore.setPlaylists(data.playlists);
+            });
+          }
+          showToast('Playlists synced!');
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
   };
-
-  // uiConfig = {
-  //   callbacks: {
-  //     signInSuccessWithAuthResult(authResult, redirectUrl) {
-  //       if (authResult.additionalUserInfo.isNewUser) {
-  //         //   console.log('new user');
-  //         const data = {
-  //           playlists: musicStore.getAllPlaylists(),
-  //           createdAt: dayjs().format(),
-  //         };
-  //         saveToFirebase(COL_MUSIC_DATA, data, () => {});
-  //       } else {
-  //         getFromFirebase(COL_MUSIC_DATA, data => {
-  //           musicStore.setPlaylists(data.playlists);
-  //         });
-  //       }
-  //       showToast('Playlists synced!');
-  //       return false;
-  //     },
-  //   },
-
-  //   signInFlow: 'popup',
-  //   signInOptions: [
-  //     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-  //     // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-  //     firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-  //   ],
-  //   // Terms of service url.
-  //   tosUrl: '/terms',
-  // };
 
   _confirmDelete = () => {
     if (getDataFromStorage(KEY_DELETE_ACCOUNT_FLAG)) {

@@ -11,7 +11,7 @@ const styles = {
     backgroundPosition: 'center center',
     width: '100vw',
     height: '100vh',
-    minWidth: 1000,
+    minWidth: 1200,
     minHeight: 700,
     display: 'flex',
     flexDirection: 'column',
