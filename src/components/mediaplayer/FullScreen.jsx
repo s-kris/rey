@@ -6,6 +6,7 @@ import { GA_EVENT_CAT_PLAYER, GA_EVENT_ACTION_FULLSCREEN, CONTROLS_TIMEOUT_DURAT
 import { primaryColorLight } from './../../config/Colors';
 import musicStore from '../../stores/musicStore';
 import playerStore from '../../stores/playerStore';
+import { getRandomNumber } from '../../utils/utils';
 
 const mod = (num, max) => ((num % max) + max) % max;
 let isFullscreen = false;
@@ -133,7 +134,15 @@ class Fullscreen extends Component {
           currentTrackPosition = index;
         }
       });
-      const newIndex = mod(currentTrackPosition + direction, nowPlayingList.length);
+      let newIndex;
+      if (musicStore.isShuffleON()) {
+        newIndex = getRandomNumber(0, nowPlayingList.length - 1);
+        while (newIndex === currentTrackPosition) {
+          newIndex = getRandomNumber(0, nowPlayingList.length - 1);
+        }
+      } else {
+        newIndex = mod(currentTrackPosition + direction, nowPlayingList.length);
+      }
       musicStore.setCurrentTrack(nowPlayingList[newIndex]);
     }
   };

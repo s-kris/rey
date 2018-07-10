@@ -1,4 +1,6 @@
 import alertify from 'alertify.js';
+import Random from 'random-js';
+
 import { CONST_INVALID_URL } from './../config/Constants';
 
 export const isMobileDevice = () => {
@@ -64,4 +66,9 @@ export const shuffleArray = array => {
   }
 
   return array;
+};
+
+export const getRandomNumber = (min, max) => {
+  const random = new Random(Random.engines.mt19937().autoSeed());
+  return random.integer(min, max);
 };

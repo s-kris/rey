@@ -6,6 +6,7 @@ import { view } from 'react-easy-state';
 import { primaryColorLight, accentColor } from './../../config/Colors';
 import shuffleIcon from './../../assets/images/icons/shuffle.svg';
 import musicStore from '../../stores/musicStore';
+import { showToast } from '../../utils/utils';
 
 const styles = {
   container: {
@@ -31,6 +32,8 @@ class Shuffle extends Component {
           svgStyle={{ fill, width: 20, height: 20 }}
           onClick={() => {
             musicStore.toggleShuffle();
+            const msg = musicStore.isShuffleON() ? 'Shuffle is ON' : 'Shuffle is OFF';
+            showToast(msg);
           }}
         />
       </View>

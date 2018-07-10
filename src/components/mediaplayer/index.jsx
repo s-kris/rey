@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { view } from 'react-easy-state';
 import DocumentTitle from 'react-document-title';
 import ReactGA from 'react-ga';
-import Random from 'random-js';
 
 import MediaPlayer from './MediaPlayer';
 import NowPlayingList from './NowPlayingList';
@@ -15,6 +14,7 @@ import {
   GA_EVENT_ACTION_SONG_COMPLETED,
 } from '../../config/Constants';
 import { getDataFromStorage } from './../../api/storage';
+import { getRandomNumber } from './../../utils/utils';
 
 const mod = (num, max) => ((num % max) + max) % max;
 
@@ -71,11 +71,9 @@ class Index extends Component {
       });
       let newIndex;
       if (musicStore.isShuffleON()) {
-        const engine = Random.engines.mt19937().autoSeed();
-        const distribution = Random.integer(0, nowPlayingList.length - 1);
-        newIndex = distribution(engine);
+        newIndex = getRandomNumber(0, nowPlayingList.length - 1);
         while (newIndex === currentTrackPosition) {
-          newIndex = distribution(engine);
+          newIndex = getRandomNumber(0, nowPlayingList.length - 1);
         }
       } else {
         newIndex = mod(currentTrackPosition + direction, nowPlayingList.length);
