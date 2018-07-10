@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, FlatList } from 'react-native-web';
 import { view } from 'react-easy-state';
 import ReactSVG from 'react-svg';
-// import alertify from 'alertify.js';
 
 import './../../styles/playlist.css';
 import NowPlayingListItem from './NowPlayingListItem';
@@ -67,11 +66,12 @@ class NowPlayingList extends React.Component {
           <Text className="font">NOW PLAYING</Text>
           <View style={styles.actionsContainer}>
             {/* <ReactSVG
-              path={saveIcon}
+              path={shuffleIcon}
               evalScripts="always"
               svgClassName="action-icon"
               onClick={() => {
-                this._saveNowPlayingList();
+                musicStore.shuffleNowPlaying();
+                showToast('Shuffled');
               }}
             /> */}
             <SaveButton dataToSave={musicStore.getNowPlayingList()} />

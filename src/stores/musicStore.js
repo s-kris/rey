@@ -12,8 +12,10 @@ import {
 } from './../config/Constants';
 import { saveDataToStorage } from './../api/storage';
 import Playlists from './../api/playlists';
+import { shuffleArray } from './../utils/utils';
 
 const musicStore = store({
+  shuffle: false,
   nowPlayingList: [
     // { src: 'https://www.youtube.com/watch?v=KZDzO36P8Wg', label: 'Sada Nannu' },
     // { src: 'https://www.youtube.com/watch?v=XruNLPI0yQc', label: 'Cheliya Sakhiya' },
@@ -106,6 +108,15 @@ const musicStore = store({
     newArray.forEach(element => {
       musicStore.addToNowPlayingList(element);
     });
+  },
+  shuffleNowPlaying() {
+    musicStore.setNowPlayingList(shuffleArray(musicStore.getNowPlayingList()));
+  },
+  isShuffleON() {
+    return musicStore.shuffle;
+  },
+  toggleShuffle() {
+    musicStore.shuffle = !musicStore.shuffle;
   },
 });
 

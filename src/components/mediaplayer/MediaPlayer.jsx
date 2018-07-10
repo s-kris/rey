@@ -11,6 +11,7 @@ import FullScreen from './FullScreen';
 import { GA_EVENT_CAT_PLAYER, GA_EVENT_ACTION_REPEAT } from '../../config/Constants';
 import playerStore from '../../stores/playerStore';
 import { showToast } from '../../utils/utils';
+import Shuffle from './Shuffle';
 
 const { CurrentTime, Progress, SeekBar, Duration } = controls;
 
@@ -95,6 +96,7 @@ class MediaPlayer extends Component {
                       isActive={repeatTrack}
                       onClick={this._handleRepeatTrack}
                     />
+                    <Shuffle />
                   </View>
                   <View className="media-control-group">
                     <FullScreen className="media-control media-control--repeat" />

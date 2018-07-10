@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { view } from 'react-easy-state';
 import DocumentTitle from 'react-document-title';
 import ReactGA from 'react-ga';
+import Random from 'random-js';
 
 import MediaPlayer from './MediaPlayer';
 import NowPlayingList from './NowPlayingList';
@@ -68,7 +69,17 @@ class Index extends Component {
           currentTrackPosition = index;
         }
       });
-      const newIndex = mod(currentTrackPosition + direction, nowPlayingList.length);
+      let newIndex;
+      if (musicStore.isShuffleON()) {
+        const engine = Random.engines.mt19937().autoSeed();
+        const distribution = Random.integer(0, nowPlayingList.length - 1);
+        newIndex = distribution(engine);
+        while (newIndex === currentTrackPosition) {
+          newIndex = distribution(engine);
+        }
+      } else {
+        newIndex = mod(currentTrackPosition + direction, nowPlayingList.length);
+      }
       musicStore.setCurrentTrack(nowPlayingList[newIndex]);
     }
   };

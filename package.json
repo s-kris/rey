@@ -8,6 +8,7 @@
     "dayjs": "^1.6.9",
     "firebase": "^5.0.4",
     "normalize.css": "^8.0.0",
+    "random-js": "^1.0.8",
     "randomcolor": "^0.5.3",
     "react": "^16.4.0",
     "react-app-rewire-hot-loader": "^1.0.1",
