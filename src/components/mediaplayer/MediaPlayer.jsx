@@ -72,9 +72,16 @@ class MediaPlayer extends Component {
                   visibility: playerStore.showControls ? 'visible' : 'hidden',
                 }}
               >
-                <View className="media-row" style={{ maxWidth: '100%' }}>
+                <View className="media-row" style={{ width: '100%' }}>
                   <CurrentTime className="media-control media-control--current-time" />
-                  <Text className="font">{currentTrack && this._formatLabel(currentTrack)}</Text>
+                  <View style={{ width: '60%', justifyContent: 'center' }}>
+                    {currentTrack && (
+                      <Text className="font" numberOfLines={1}>
+                        {/* {this._formatLabel(currentTrack)} */}
+                        {currentTrack}
+                      </Text>
+                    )}
+                  </View>
                   <Duration className="media-control media-control--duration" />
                 </View>
                 <View className="media-control-group media-control-group--seek">

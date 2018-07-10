@@ -27,6 +27,7 @@ const styles = {
     flex: 1,
     display: 'flex',
     flexDirection: 'row',
+    width: '30',
     // backgroundColor: 'green',
   },
   actionsContainer: {
@@ -88,13 +89,12 @@ class NowPlayingListItem extends React.Component {
       <View id={track.id} className={`media-playlist-track ${isActive ? 'is-active' : ''}`}>
         <View style={styles.row}>
           <View style={styles.trackNameWrapper} onClick={() => this.props.onItemClick(track)}>
-            <Text className="font" numberOfLines={1} style={{ fontSize: 16, letterSpacing: 0 }}>
-              {this._formatLabel(track.label)} &nbsp;
+            <Text className="font" numberOfLines={2} style={{ fontSize: 14, letterSpacing: 0 }}>
+              {/* {this._formatLabel(track.label)} &nbsp; */}
+              {track.label}
             </Text>
-            {isActive && (
-              <Loader height={20} width={40} barGap={2} barWidth={2} color={accentColor} loading={isActive} />
-            )}
           </View>
+          {isActive && <Loader height={20} width={40} barGap={2} barWidth={2} color={accentColor} loading={isActive} />}
           <View style={styles.actionsContainer}>
             <ReactSVG
               path={queueIcon}
