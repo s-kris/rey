@@ -23,6 +23,7 @@ const musicStore = store({
     // { src: 'https://www.youtube.com/watch?v=b8Zc4WGOcE0', label: 'Enduko Emo' },
     // { src: 'https://www.youtube.com/watch?v=MtcfU0XXSfY', label: 'Ninnena Nenu' },
   ],
+  songsPlayed: [],
   currentTrack: {},
   getNowPlayingList() {
     return musicStore.nowPlayingList;
@@ -78,6 +79,10 @@ const musicStore = store({
     if (!item.id) item.id = shortId.generate();
     musicStore.currentTrack = item;
     saveDataToStorage(KEY_CURRENT_TRACK, item);
+    musicStore.addToSongsPlayed(item);
+    if (musicStore.getSongsPlayed().length === musicStore.getNowPlayingList().length) {
+      musicStore.resetSongsPlayed();
+    }
   },
   getCurrentTrack() {
     return musicStore.currentTrack;
@@ -117,6 +122,15 @@ const musicStore = store({
   },
   toggleShuffle() {
     musicStore.shuffle = !musicStore.shuffle;
+  },
+  addToSongsPlayed(track) {
+    musicStore.songsPlayed.push(track);
+  },
+  getSongsPlayed() {
+    return musicStore.songsPlayed;
+  },
+  resetSongsPlayed() {
+    musicStore.songsPlayed = [];
   },
 });
 

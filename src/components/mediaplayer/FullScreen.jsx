@@ -137,7 +137,8 @@ class Fullscreen extends Component {
       let newIndex;
       if (musicStore.isShuffleON()) {
         newIndex = getRandomNumber(0, nowPlayingList.length - 1);
-        while (newIndex === currentTrackPosition) {
+        const songsPlayed = musicStore.getSongsPlayed();
+        while (songsPlayed.includes(nowPlayingList[newIndex]) && songsPlayed.length !== nowPlayingList.length) {
           newIndex = getRandomNumber(0, nowPlayingList.length - 1);
         }
       } else {

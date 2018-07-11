@@ -11,7 +11,6 @@ import { showToast } from '../../utils/utils';
 const styles = {
   container: {
     borderRadius: '50%',
-    behavior: 'url(PIE.htc)',
     backgroundColor: primaryColorLight,
     width: 36,
     height: 36,
