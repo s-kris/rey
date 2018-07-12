@@ -10,6 +10,6 @@ export const getDataFromStorage = key => {
   return data;
 };
 
-export const clearAll = () => {
+export const clearAllLocalStorage = () => {
   store.clearAll();
 };

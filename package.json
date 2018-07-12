@@ -23,6 +23,7 @@
     "react-motion-ui-pack": "^0.10.3",
     "react-native-web": "^0.8.4",
     "react-responsive-modal": "^3.0.3",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "react-svg": "^4.0.17",
     "shortid": "^2.2.8",

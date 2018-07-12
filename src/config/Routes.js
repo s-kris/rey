@@ -3,22 +3,19 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import ReactGA from 'react-ga';
 
 import HomeScreen from '../screens/HomeScreen';
-import SettingsScreen from '../screens/SettingsScreen';
-import { GA_ID } from './Constants';
+import DesktopApp from '../screens/DesktopApp';
 
 class Routes extends React.Component {
-  constructor(props) {
-    super(props);
-    ReactGA.initialize(GA_ID);
+  _onSwitch = () => {
     ReactGA.pageview(window.location.pathname);
-  }
+  };
 
   render() {
     return (
       <BrowserRouter>
-        <Switch>
+        <Switch onChange={this._onSwitch()}>
           <Route path="/" exact component={HomeScreen} />
-          <Route path="/settings" exact component={SettingsScreen} />
+          <Route path="/standaloneapp" exact component={DesktopApp} />
         </Switch>
       </BrowserRouter>
     );
