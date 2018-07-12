@@ -27,15 +27,12 @@ const styles = {
   searchBoxContainer: {
     marginTop: 30,
   },
-  searchResultsContainer: {
-    marginTop: 20,
+  gifContainer: {
+    height: 500,
   },
-  centerContainer: {
+  loaderContainer: {
     width: '100%',
-    height: '100%',
-    display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
     alignItems: 'center',
   },
 };
@@ -178,42 +175,34 @@ class SearchTab extends React.Component {
             accessibilityLabel="Learn more about this purple button"
           />
         </View>
-        {/* {musicStore.currentTrack.label &&
-          this.state.searchText.length === 0 && (
-            <Text className="font" style={{ marginTop: 20, fontSize: 18, color: accentColor }}>
-              You may also like
-            </Text>
-          )} */}
-
-        <FlatList
-          style={{ marginTop: 15 }}
-          keyExtractor={item => item.id}
-          data={this.state.data}
-          renderItem={({ item }) => (
-            <SearchResultItem
-              thumbnailUrl={item.thumbnailUrl}
-              name={item.title}
-              videoUrl={item.videoId}
-              showImage={this.state.checked}
-            /> // item.link uses too much data
-          )}
-        />
 
         {this.state.isLoading && (
-          <View style={styles.centerContainer}>
+          <View style={styles.loaderContainer}>
             <Loader color={accentColor} width={100} height={50} />
           </View>
         )}
 
-        {this.state.empty && (
-          <View style={styles.centerContainer}>
-            <View>
-              <Text className="font" style={{ fontSize: 24, color: accentColor }}>
-                No Results
-              </Text>
+        {!this.state.isLoading &&
+          this.state.empty && (
+            <View style={styles.gifContainer}>
+              <WhatAShame message="No Results" />
             </View>
-            <WhatAShame />
-          </View>
+          )}
+
+        {!this.state.isLoading && (
+          <FlatList
+            style={{ marginTop: 15 }}
+            keyExtractor={item => item.id}
+            data={this.state.data}
+            renderItem={({ item }) => (
+              <SearchResultItem
+                thumbnailUrl={item.thumbnailUrl}
+                name={item.title}
+                videoUrl={item.videoId}
+                showImage={this.state.checked}
+              /> // item.link uses too much data
+            )}
+          />
         )}
       </View>
     );

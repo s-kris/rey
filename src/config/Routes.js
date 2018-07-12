@@ -4,6 +4,7 @@ import ReactGA from 'react-ga';
 
 import HomeScreen from '../screens/HomeScreen';
 import DesktopApp from '../screens/DesktopApp';
+import ThankYouScreen from './../screens/ThankYouScreen';
 
 class Routes extends React.Component {
   _onSwitch = () => {
@@ -16,6 +17,7 @@ class Routes extends React.Component {
         <Switch onChange={this._onSwitch()}>
           <Route path="/" exact component={HomeScreen} />
           <Route path="/standaloneapp" exact component={DesktopApp} />
+          <Route path="/thankyou" exact component={ThankYouScreen} />
         </Switch>
       </BrowserRouter>
     );

@@ -1,12 +1,23 @@
 import React from 'react';
+import { View, Text } from '../../node_modules/react-native-web';
+import { accentColor } from '../config/Colors';
 
 const styles = {
   container: {
-    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
-    height: '100%',
     width: '100%',
+    height: '100%',
     justifyContent: 'center',
+    // backgroundColor: 'red',
+  },
+  message: {
+    marginBottom: 25,
+    display: 'flex',
+    justifyContent: 'center',
+    fontSize: 24,
+    color: accentColor,
   },
 };
 
@@ -29,10 +40,12 @@ class WhatAShame extends React.Component {
 
   render() {
     return (
-      <div style={styles.container}>
-        {this.props.message && <p> {this.props.message}</p>}
-        <br />
-        <br />
+      <View style={styles.container}>
+        {this.props.message && (
+          <Text style={styles.message} className="font">
+            {this.props.message}
+          </Text>
+        )}
         <iframe
           title="ss"
           src={this.state.giphyUrl}
@@ -42,7 +55,7 @@ class WhatAShame extends React.Component {
           className="giphy-embed"
           allowFullScreen
         />
-      </div>
+      </View>
     );
   }
 }

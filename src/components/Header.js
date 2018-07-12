@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Button } from 'react-native-web';
 import Modal from 'react-responsive-modal';
-
+import { Link } from 'react-router-dom';
 import logo from './../assets/images/logo-min.png';
 import { accentColor } from '../config/Colors';
 import DownloadBox from './DownloadBox';
@@ -18,6 +18,9 @@ const styles = {
     letterSpacing: 3,
     fontSize: 14,
     textTransform: 'uppercase',
+  },
+  logo: {
+    cursor: 'pointer',
   },
 };
 
@@ -51,7 +54,10 @@ class Header extends React.Component {
         >
           <DownloadBox closeModal={() => this.closeModal()} />
         </Modal>
-        <img src={logo} width="75" height="75" alt="rey music player" />
+        <Link to="/">
+          {' '}
+          <img src={logo} width="75" height="75" alt="rey music player" style={styles.logo} />
+        </Link>
         {/* <Text className="font" style={styles.logoText}>
           Re-imagined youtube music player
         </Text> */}
