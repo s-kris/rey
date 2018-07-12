@@ -5,6 +5,7 @@ import { accentColor } from '../config/Colors';
 import windowsIcon from './../assets/images/windows.png';
 import macIcon from './../assets/images/mac.png';
 import linuxIcon from './../assets/images/linux.png';
+import { WINDOWS_DOWNLOAD_URL, OSX_DOWNLOAD_URL, LINUX_DOWNLOAD_URL } from '../config/Constants';
 
 const styles = {
   rootContainer: {
@@ -33,13 +34,13 @@ class DownloadBox extends React.Component {
   _initDownload = platform => {
     switch (platform) {
       case 'windows':
-        window.open('https://drive.google.com/uc?id=16XA54iZB8uNaanatwIJ46TfTLXnS-SCY&export=download');
+        window.open(WINDOWS_DOWNLOAD_URL);
         break;
       case 'osx':
-        window.open('https://drive.google.com/uc?id=1NcERuJc5rF2Ij5JJdIrj3KmmUgqIf5Zd&export=download');
+        window.open(OSX_DOWNLOAD_URL);
         break;
       case 'linux':
-        window.open('https://drive.google.com/uc?id=1PibNUF2iLFuKFeusdPNhjnInnleGuiGn&export=download');
+        window.open(LINUX_DOWNLOAD_URL);
         break;
       default:
         break;

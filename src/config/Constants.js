@@ -6,6 +6,10 @@ export const CONTROLS_TIMEOUT_DURATION = 5000;
 export const SEARCH_MIN_LETTERS = 3;
 export const CONST_INVALID_URL = 'invalid url';
 
+export const WINDOWS_DOWNLOAD_URL = 'https://drive.google.com/uc?id=1gjxUWKDuLmmD-T1W9WFEIFHMlTcebOw0&export=download';
+export const OSX_DOWNLOAD_URL = 'https://drive.google.com/uc?id=1NcERuJc5rF2Ij5JJdIrj3KmmUgqIf5Zd&export=download';
+export const LINUX_DOWNLOAD_URL = 'https://drive.google.com/uc?id=1PibNUF2iLFuKFeusdPNhjnInnleGuiGn&export=download';
+
 export const KEY_CURRENT_TRACK = 'keyforcurrentplayingsong';
 export const KEY_NOW_PLAYING_LIST = 'keyfornowplayinglist';
 export const KEY_PLAYLISTS = 'keyforplaylists';
