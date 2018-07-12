@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Button } from 'react-native-web';
+import { View, Button, Text } from 'react-native-web';
 
 import { accentColor } from '../config/Colors';
 import windowsIcon from './../assets/images/windows.png';
@@ -9,9 +9,11 @@ import { WINDOWS_DOWNLOAD_URL, OSX_DOWNLOAD_URL, LINUX_DOWNLOAD_URL } from '../c
 
 const styles = {
   rootContainer: {
-    flexDirection: 'row',
     alignItems: 'center',
     padding: 50,
+  },
+  platformContainer: {
+    flexDirection: 'row',
   },
   platform: {
     alignItems: 'center',
@@ -24,9 +26,8 @@ const styles = {
     cursor: 'pointer',
   },
 
-  text: {
-    fontSize: 18,
-    color: '#FFF',
+  noteText: {
+    fontSize: 12,
   },
 };
 
@@ -51,57 +52,62 @@ class DownloadBox extends React.Component {
   render() {
     return (
       <View style={styles.rootContainer}>
-        <View style={styles.platform}>
-          <img
-            src={windowsIcon}
-            alt="download-rey-windows"
-            style={styles.icon}
-            onClick={() => {
-              this._initDownload('windows');
-            }}
-          />
-          <Button
-            color={accentColor}
-            title="Download for Windows"
-            onPress={() => {
-              this._initDownload('windows');
-            }}
-          />
+        <View style={styles.platformContainer}>
+          <View style={styles.platform}>
+            <img
+              src={windowsIcon}
+              alt="download-rey-windows"
+              style={styles.icon}
+              onClick={() => {
+                this._initDownload('windows');
+              }}
+            />
+            <Button
+              color={accentColor}
+              title="Download for Windows"
+              onPress={() => {
+                this._initDownload('windows');
+              }}
+            />
+          </View>
+          <View style={styles.platform}>
+            <img
+              src={macIcon}
+              alt="download-rey-mac"
+              style={styles.icon}
+              onClick={() => {
+                this._initDownload('osx');
+              }}
+            />
+            <Button
+              color={accentColor}
+              title="Download for OS X"
+              onPress={() => {
+                this._initDownload('osx');
+              }}
+            />
+          </View>
+          <View style={styles.platform}>
+            <img
+              src={linuxIcon}
+              alt="download-rey-linux"
+              style={styles.icon}
+              onClick={() => {
+                this._initDownload('linux');
+              }}
+            />
+            <Button
+              color={accentColor}
+              title="Download for Linux"
+              onPress={() => {
+                this._initDownload('linux');
+              }}
+            />
+          </View>
         </View>
-        <View style={styles.platform}>
-          <img
-            src={macIcon}
-            alt="download-rey-mac"
-            style={styles.icon}
-            onClick={() => {
-              this._initDownload('osx');
-            }}
-          />
-          <Button
-            color={accentColor}
-            title="Download for OS X"
-            onPress={() => {
-              this._initDownload('osx');
-            }}
-          />
-        </View>
-        <View style={styles.platform}>
-          <img
-            src={linuxIcon}
-            alt="download-rey-linux"
-            style={styles.icon}
-            onClick={() => {
-              this._initDownload('linux');
-            }}
-          />
-          <Button
-            color={accentColor}
-            title="Download for Linux"
-            onPress={() => {
-              this._initDownload('linux');
-            }}
-          />
-        </View>
+        <Text className="font" style={styles.noteText}>
+          Note: The standalone app is just a wrapper of the web player. It's easier to use the website!
+        </Text>
       </View>
     );
   }

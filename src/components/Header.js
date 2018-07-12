@@ -55,7 +55,7 @@ class Header extends React.Component {
         {/* <Text className="font" style={styles.logoText}>
           Re-imagined youtube music player
         </Text> */}
-        <Button title="Download" color={accentColor} onPress={() => this.openModal()} />
+        <Button title="Download App" color={accentColor} onPress={() => this.openModal()} />
       </View>
     );
   }
