@@ -34,7 +34,7 @@ const styles = {
   },
 };
 
-class ThankYouScreen extends React.Component {
+class UnInstallScreen extends React.Component {
   render() {
     return (
       <View style={styles.rootContainer}>
@@ -42,7 +42,10 @@ class ThankYouScreen extends React.Component {
           <Header />
         </View>
         <View style={styles.modulesContainer}>
-          <WhatAShame message="Thanks for installing Rey! Tweet to _skris for feedback." giphyId="fv4tD2kW1PSgg" />
+          <WhatAShame
+            message="We are sorry to see you go! Tweet to _skris for feedback."
+            giphyId="3o6vY6f7KoAQXL5eP6"
+          />
         </View>
         <Footer />
       </View>
@@ -50,4 +53,4 @@ class ThankYouScreen extends React.Component {
   }
 }
 
-export default ThankYouScreen;
+export default UnInstallScreen;
