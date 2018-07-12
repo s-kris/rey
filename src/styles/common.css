@@ -3,12 +3,18 @@
 }
 
 html {
-    overflow:   scroll;
+    overflow: hidden;
+    height: 100%;
   }
   ::-webkit-scrollbar {
       width: 0px;
       background: transparent; /* make scrollbar transparent */
   }
+
+  body {
+    height: 100%;
+    overflow: auto;
+}
 
   * {
     -webkit-user-select: none;
