@@ -110,7 +110,10 @@ class RelatedTab extends React.Component {
           <Text
             className="font"
             style={{ marginTop: 5, cursor: 'pointer' }}
-            onClick={() => this.setState({ checked: !this.state.checked })}
+            onClick={() => {
+              saveDataToStorage(KEY_PREF_SHOW_THUMBS, !this.state.checked);
+              this.setState({ checked: !this.state.checked });
+            }}
           >
             {'  '} Show thumbnails {'    '}
           </Text>
