@@ -16,6 +16,8 @@ const styles = {
     // filter: `blur(3px)`,
     boxShadow: 'inset 0 0 0 1000px rgba(0,0,0,.5)',
     backgroundPosition: 'center center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
     width: '100vw',
     height: '100vh',
     display: 'flex',
