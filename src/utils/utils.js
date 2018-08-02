@@ -1,5 +1,12 @@
 import alertify from 'alertify.js';
 import Random from 'random-js';
+import bg1 from './../assets/images/bg/bg1.jpg';
+import bg2 from './../assets/images/bg/bg2.jpg';
+import bg3 from './../assets/images/bg/bg3.jpg';
+import bg4 from './../assets/images/bg/bg4.jpg';
+import bg5 from './../assets/images/bg/bg5.jpg';
+import bg6 from './../assets/images/bg/bg6.jpg';
+import bg7 from './../assets/images/bg/bg7.jpg';
 
 import { CONST_INVALID_URL } from './../config/Constants';
 
@@ -71,4 +78,11 @@ export const shuffleArray = array => {
 export const getRandomNumber = (min, max) => {
   const random = new Random(Random.engines.mt19937().autoSeed());
   return random.integer(min, max);
+};
+
+export const getRandomImage = () => {
+  const random = new Random(Random.engines.mt19937().autoSeed());
+  const number = random.integer(0, 6);
+  const imagesArray = [bg1, bg2, bg3, bg4, bg5, bg6, bg7];
+  return imagesArray[number];
 };

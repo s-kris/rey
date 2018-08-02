@@ -2,17 +2,16 @@ import React from 'react';
 import { View } from 'react-native-web';
 
 import Player from '../components/Player';
-import bg1 from './../assets/images/bg1.jpg';
 import { borderRadiusLarge } from '../config/Constants';
 import TabsContainer from '../components/tabs/TabsContainer';
 import Header from '../components/Header';
-import { isMobileDevice } from './../utils/utils';
+import { isMobileDevice, getRandomImage } from './../utils/utils';
 import WhatAShame from '../components/WhatAShame';
 import Footer from '../components/Footer';
 
 const styles = {
   rootContainer: {
-    backgroundImage: `url(${bg1})`,
+    backgroundImage: `url(${getRandomImage()})`,
     // filter: `blur(3px)`,
     boxShadow: 'inset 0 0 0 1000px rgba(0,0,0,.5)',
     backgroundPosition: 'center center',

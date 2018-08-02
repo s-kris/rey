@@ -6,6 +6,7 @@ import randomColor from 'randomcolor';
 import './../../styles/input.css';
 import { accentColor } from '../../config/Colors';
 import TwitterIcon from './../../assets/images/twitter-icon.png';
+import { creditsArray } from '../../config/Constants';
 
 const styles = {
   rootContainer: {
@@ -25,28 +26,7 @@ class MoreTab extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [
-        // {
-        //   name: 'React',
-        //   link: 'https://reactjs.org/',
-        //   licence: 'MIT',
-        // },
-        // {
-        //   name: 'Unsplash',
-        //   link: 'https://unsplash.com/',
-        //   licence: 'MIT',
-        // },
-        {
-          name: 'Irene Davila (Background Image)',
-          link: 'https://unsplash.com/photos/9Y5Wk7favpE',
-          licence: 'MIT',
-        },
-        // {
-        //   name: 'React Native Web',
-        //   link: 'https://github.com/necolas/react-native-web',
-        //   licence: 'MIT',
-        // },
-      ],
+      data: creditsArray,
     };
   }
 

@@ -33,3 +33,56 @@ export const GA_EVENT_ACTION_FULLSCREEN = 'Clicked Fullscreen';
 export const GA_EVENT_ACTION_REPEAT = 'Clicked Repeat';
 
 export const COL_MUSIC_DATA = 'musicdata';
+
+export const creditsArray = [
+  // {
+  //   name: 'React',
+  //   link: 'https://reactjs.org/',
+  //   licence: 'MIT',
+  // },
+  // {
+  //   name: 'Unsplash',
+  //   link: 'https://unsplash.com/',
+  //   licence: 'MIT',
+  // },
+  // {
+  //   name: 'React Native Web',
+  //   link: 'https://github.com/necolas/react-native-web',
+  //   licence: 'MIT',
+  // },
+  {
+    name: 'Irene Davila (Background Image)',
+    link: 'https://unsplash.com/photos/9Y5Wk7favpE',
+    licence: 'MIT',
+  },
+  {
+    name: 'Ales Krivec (Background Image)',
+    link: 'https://unsplash.com/photos/dRQhhIdaCBU',
+    licence: 'MIT',
+  },
+  {
+    name: 'Johannes Ludwig (Background Image)',
+    link: 'https://unsplash.com/photos/8dejZGw3Hec',
+    licence: 'MIT',
+  },
+  {
+    name: 'Joseph Barrientos (Background Image)',
+    link: 'https://unsplash.com/photos/xcC5ozHk_N8',
+    licence: 'MIT',
+  },
+  {
+    name: 'Pablo García Saldaña (Background Image)',
+    link: 'https://unsplash.com/photos/Y-MGVIkpyFw',
+    licence: 'MIT',
+  },
+  {
+    name: 'pine watt (Background Image)',
+    link: 'https://unsplash.com/photos/2Hzmz15wGik',
+    licence: 'MIT',
+  },
+  {
+    name: 'Yuriy Garnaev (Background Image)',
+    link: 'https://unsplash.com/photos/kNIDFv5ee_g',
+    licence: 'MIT',
+  },
+];
