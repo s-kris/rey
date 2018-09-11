@@ -94,10 +94,18 @@ class SearchResultItem extends React.Component {
             <img src={this.props.thumbnailUrl} alt="My awesome" width="121" height="75" />
           </View>
         )}
-        <Text className="title font" onClick={() => this._onClickPlay()} numberOfLines={1}>
-          {/* {this._formatLabel(this.props.name)} */}
-          {this.props.name}
-        </Text>
+        <View
+          style={{
+            height: this.props.showImage ? 75 : 35,
+            flex: 1,
+          }}
+          onClick={() => this._onClickPlay()}
+        >
+          <Text className="title font" numberOfLines={1}>
+            {/* {this._formatLabel(this.props.name)} */}
+            {this.props.name}
+          </Text>
+        </View>
         <View className="actions-container">
           <ReactSVG
             path={playIcon}

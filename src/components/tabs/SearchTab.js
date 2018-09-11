@@ -115,7 +115,7 @@ class SearchTab extends React.Component {
           if (getYoutubeId(searchTerm) === CONST_INVALID_URL) {
             this._fetchVideos(searchTerm, YOUTUBE_SEARCH_RESULTS_MAX);
           } else {
-            // enterted search term is youtube link and so render top 1 result
+            // entered search term is youtube link and so render top 1 result
             this._fetchVideos(searchTerm, 1);
           }
         }
