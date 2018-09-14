@@ -38,6 +38,7 @@ class SaveButton extends React.Component {
           {/* <AlertBox message="save now or not" yexText="yes" noText="close" onClickNo={() => this.closeModal()} /> */}
         </Modal>
         <ReactSVG
+          title="Save to playlist"
           path={saveIcon}
           evalScripts="always"
           svgClassName="action-icon"

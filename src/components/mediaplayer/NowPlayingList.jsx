@@ -75,8 +75,8 @@ class NowPlayingList extends React.Component {
               }}
             /> */}
             <SaveButton dataToSave={musicStore.getNowPlayingList()} />
-
             <ReactSVG
+              title="Clear nowplaying"
               path={deleteIcon}
               evalScripts="always"
               svgClassName="action-icon-delete"

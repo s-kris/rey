@@ -34,6 +34,7 @@ class EditPlaylistItem extends React.Component {
         </Text>
         <View className="actions-container">
           <ReactSVG
+            title="Delete"
             path={deleteIcon}
             evalScripts="always"
             svgClassName="action-icon-delete"

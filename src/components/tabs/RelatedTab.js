@@ -3,7 +3,8 @@ import { View, Text, FlatList } from 'react-native-web';
 import { view } from 'react-easy-state';
 import axios from 'axios';
 
-import { YOUTUBE_API_KEY, KEY_PREF_SHOW_THUMBS } from './../../config/Constants';
+import { KEY_PREF_SHOW_THUMBS } from './../../config/Constants';
+import { YOUTUBE_API_KEY } from './../../config/youtube';
 import './../../styles/input.css';
 import SearchResultItem from '../listItems/SearchResultItem';
 import { accentColor } from '../../config/Colors';
