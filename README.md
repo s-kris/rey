@@ -40,7 +40,7 @@ Create 'youtube.js' in ./src/config/ with your youtube data api key
 
 youtube.js
 ```bash
-export const YOUTUBE_API_KEY = 'AIzaSyAmtLV5ptk_N-gavZjoAFRCkny7qccvrDM';
+export const YOUTUBE_API_KEY = 'YOUR_YOUTUBE_API_KEY';
 ```
 
 ## Run locally
@@ -56,3 +56,6 @@ npm start
 npm run build
 
 ```
+
+##License
+GNU General Public License v3.0
