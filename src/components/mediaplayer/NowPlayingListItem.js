@@ -97,6 +97,7 @@ class NowPlayingListItem extends React.Component {
           {isActive && <Loader height={20} width={40} barGap={2} barWidth={2} color={accentColor} loading={isActive} />}
           <View style={styles.actionsContainer}>
             <ReactSVG
+              title="Add to queue"
               path={queueIcon}
               evalScripts="always"
               svgClassName="action-icon"
@@ -114,6 +115,7 @@ class NowPlayingListItem extends React.Component {
             /> */}
             <SaveButton dataToSave={[track]} />
             <ReactSVG
+              title="Remove from queue"
               path={deleteIcon}
               evalScripts="always"
               svgClassName="action-icon-delete"

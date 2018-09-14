@@ -108,6 +108,7 @@ class SearchResultItem extends React.Component {
         </View>
         <View className="actions-container">
           <ReactSVG
+            title="Play now"
             path={playIcon}
             evalScripts="always"
             svgClassName="action-icon"
@@ -117,6 +118,7 @@ class SearchResultItem extends React.Component {
             }}
           />
           <ReactSVG
+            title="Add to queue"
             path={queueIcon}
             evalScripts="always"
             svgClassName="action-icon"
@@ -125,7 +127,11 @@ class SearchResultItem extends React.Component {
               this._onClickQueue();
             }}
           />
-          <SaveButton dataToSave={this._formatDataToSave()} svgStyle={{ fill: primaryColorLight }} />
+          <SaveButton
+            title="Save to playlist"
+            dataToSave={this._formatDataToSave()}
+            svgStyle={{ fill: primaryColorLight }}
+          />
         </View>
       </View>
     );

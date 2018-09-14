@@ -134,6 +134,7 @@ class PlaylistItem extends React.Component {
         </Text>
         <View className="actions-container">
           <ReactSVG
+            title="Play now"
             path={playIcon}
             evalScripts="always"
             svgClassName="action-icon"
@@ -143,6 +144,7 @@ class PlaylistItem extends React.Component {
             }}
           />
           <ReactSVG
+            title="Add to queue"
             path={queueIcon}
             evalScripts="always"
             svgClassName="action-icon"
@@ -153,6 +155,7 @@ class PlaylistItem extends React.Component {
           />
 
           <ReactSVG
+            title="Edit playlist"
             path={editIcon}
             evalScripts="always"
             svgClassName="action-icon"
@@ -162,6 +165,7 @@ class PlaylistItem extends React.Component {
             }}
           />
           <ReactSVG
+            title="Delete"
             path={deleteIcon}
             evalScripts="always"
             svgClassName="action-icon-delete"

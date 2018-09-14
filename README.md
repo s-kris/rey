@@ -36,6 +36,13 @@ export const fbaseConfig = {
 };
 ```
 
+Create 'youtube.js' in ./src/config/ with your youtube data api key
+
+youtube.js
+```bash
+export const YOUTUBE_API_KEY = 'AIzaSyAmtLV5ptk_N-gavZjoAFRCkny7qccvrDM';
+```
+
 ## Run locally
 
 ```bash
