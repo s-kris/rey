@@ -38,7 +38,8 @@ export const getYoutubeId = url => {
   // eslint-disable-next-line
   const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
   const match = url.match(regExp);
-  if (match && match[2].length === 11) {
+  //  if (match && match[2].length === 11) { youtube video id might be of variable length, hence removing
+  if (match && match[2]) {
     return match[2];
   }
   return CONST_INVALID_URL;
