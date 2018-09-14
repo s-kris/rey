@@ -4,12 +4,12 @@ import { view } from 'react-easy-state';
 import axios from 'axios';
 
 import {
-  YOUTUBE_API_KEY,
   YOUTUBE_SEARCH_RESULTS_MAX,
   SEARCH_MIN_LETTERS,
   CONST_INVALID_URL,
   KEY_PREF_SHOW_THUMBS,
 } from './../../config/Constants';
+import { YOUTUBE_API_KEY } from './../../config/youtube';
 import './../../styles/input.css';
 import SearchResultItem from '../listItems/SearchResultItem';
 import WhatAShame from '../WhatAShame';

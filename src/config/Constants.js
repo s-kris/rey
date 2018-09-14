@@ -1,5 +1,4 @@
 export const borderRadiusLarge = 0;
-export const YOUTUBE_API_KEY = 'AIzaSyCFa1cvEKwfEd4sNIF9i_3R4jMdwp7oRT0';
 export const YOUTUBE_SEARCH_RESULTS_MAX = 25;
 
 export const CONTROLS_TIMEOUT_DURATION = 5000;
