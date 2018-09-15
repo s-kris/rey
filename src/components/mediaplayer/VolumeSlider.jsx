@@ -18,7 +18,7 @@ class VolumeSlider extends Component {
   };
 
   componentDidMount() {
-    this.props.media.setVolume(getDataFromStorage(KEY_VOLUME_LEVEL) || 0.5);
+    if (this.props.media) this.props.media.setVolume(getDataFromStorage(KEY_VOLUME_LEVEL) || 0.5);
   }
 
   onSliderChange = value => {
