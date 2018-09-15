@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { withMediaProps } from 'react-media-player';
-import Scale from './Scale';
 
 import { primaryColorLight } from './../../config/Colors';
+import Scale from './Scale';
 
 class MuteUnmute extends Component {
   componentDidMount() {

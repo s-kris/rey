@@ -1,8 +1,7 @@
 import store from 'store';
 
 export const saveDataToStorage = (key, data) => {
-  const parsedData = JSON.parse(JSON.stringify(data)); // added due to data being proxy labelled in console.log
-  store.set(key, parsedData);
+  store.set(key, data);
 };
 
 export const getDataFromStorage = key => {

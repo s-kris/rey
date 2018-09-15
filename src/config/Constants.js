@@ -14,6 +14,7 @@ export const KEY_NOW_PLAYING_LIST = 'keyfornowplayinglist';
 export const KEY_PLAYLISTS = 'keyforplaylists';
 export const KEY_DELETE_ACCOUNT_FLAG = 'keyfordeleteaccountflag';
 export const KEY_PREF_SHOW_THUMBS = 'keyforprefshowthumbs';
+export const KEY_VOLUME_LEVEL = 'keyforvolumelevel';
 
 export const GA_ID = 'UA-120975343-1';
 
@@ -30,6 +31,7 @@ export const GA_EVENT_ACTION_SONG_ADDED_TO_PLAYLIST = 'Song added to Playlist';
 export const GA_EVENT_ACTION_PLAYLIST_CREATED = 'Playlist Created';
 export const GA_EVENT_ACTION_FULLSCREEN = 'Clicked Fullscreen';
 export const GA_EVENT_ACTION_REPEAT = 'Clicked Repeat';
+export const GA_EVENT_ACTION_VOLUME_WRITER = 'Opened Volume Writer';
 
 export const COL_MUSIC_DATA = 'musicdata';
 
