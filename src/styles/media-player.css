@@ -61,14 +61,14 @@
 }
 .media-controls--full .media-control-group--seek{
     width:100%;
-    margin:12px 0
+    margin:12px 0;
 }
 .media-row{
     display:flex;
     flex-direction: row;
-    justify-content:space-between;
+    justify-content:space-around;
     width:100%;
-    max-width: 350px;
+    max-width: 500px;
 }
 .media-control-group{
     display:flex;

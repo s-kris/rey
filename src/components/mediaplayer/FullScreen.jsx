@@ -2,11 +2,17 @@ import React, { Component } from 'react';
 import { withMediaProps } from 'react-media-player';
 import ReactGA from 'react-ga';
 
-import { GA_EVENT_CAT_PLAYER, GA_EVENT_ACTION_FULLSCREEN, CONTROLS_TIMEOUT_DURATION } from '../../config/Constants';
+import {
+  GA_EVENT_CAT_PLAYER,
+  GA_EVENT_ACTION_FULLSCREEN,
+  CONTROLS_TIMEOUT_DURATION,
+  KEY_VOLUME_LEVEL,
+} from '../../config/Constants';
 import { primaryColorLight } from './../../config/Colors';
 import musicStore from '../../stores/musicStore';
 import playerStore from '../../stores/playerStore';
 import { getRandomNumber } from '../../utils/utils';
+import { saveDataToStorage } from '../../api/storage';
 
 const mod = (num, max) => ((num % max) + max) % max;
 let isFullscreen = false;
@@ -17,7 +23,9 @@ class Fullscreen extends Component {
 
     document.onkeydown = event => {
       const { id } = document.activeElement;
-      if (id !== 'searchTextInput' && id !== 'playlistNameInput') {
+      let volumeLevel;
+
+      if (id !== 'searchTextInput' && id !== 'playlistNameInput' && id !== 'impositionTextArea') {
         const { media } = this.props;
         if (!event) event = window.event;
         let code = event.keyCode;
@@ -34,16 +42,22 @@ class Fullscreen extends Component {
           case 38:
             // Key up.
             event.preventDefault();
-            if (media.volume <= 0.9) {
-              media.setVolume(media.volume + 0.1);
+            volumeLevel = media.volume + 0.1;
+            if (volumeLevel > 1) {
+              volumeLevel = 1;
             }
+            media.setVolume(volumeLevel);
+            saveDataToStorage(KEY_VOLUME_LEVEL, volumeLevel);
             break;
           case 40:
             // Key down.
             event.preventDefault();
-            if (media.volume >= 0.2) {
-              media.setVolume(media.volume - 0.1);
+            volumeLevel = media.volume - 0.1;
+            if (volumeLevel < 0) {
+              volumeLevel = 0;
             }
+            media.setVolume(volumeLevel);
+            saveDataToStorage(KEY_VOLUME_LEVEL, volumeLevel);
             break;
           case 32:
             // key space

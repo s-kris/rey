@@ -35,7 +35,6 @@ class SaveButton extends React.Component {
           classNames={{ overlay: 'custom-overlay', modal: 'custom-modal' }}
         >
           <SaveAsPlaylist closeModal={() => this.closeModal()} dataToSave={this.props.dataToSave} />
-          {/* <AlertBox message="save now or not" yexText="yes" noText="close" onClickNo={() => this.closeModal()} /> */}
         </Modal>
         <ReactSVG
           title="Save to playlist"

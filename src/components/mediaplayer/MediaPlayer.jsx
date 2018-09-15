@@ -4,14 +4,15 @@ import { Media, Player, controls } from 'react-media-player';
 import { view } from 'react-easy-state';
 import ReactGA from 'react-ga';
 
+import VolumeSlider from './VolumeSlider';
 import PlayPause from './PlayPause';
-import MuteUnmute from './MuteUnmute';
 import Repeat from './Repeat';
 import FullScreen from './FullScreen';
 import { GA_EVENT_CAT_PLAYER, GA_EVENT_ACTION_REPEAT } from '../../config/Constants';
 import playerStore from '../../stores/playerStore';
 import { showToast } from '../../utils/utils';
 import Shuffle from './Shuffle';
+import MuteUnmute from './MuteUnmute';
 
 const { CurrentTime, Progress, SeekBar, Duration } = controls;
 
@@ -65,52 +66,51 @@ class MediaPlayer extends Component {
             <View className="media-player-element" onClick={() => mediaProps.playPause()}>
               <Player src={src} loop={repeatTrack} autoPlay={autoPlay} onEnded={this._handleEnded} />
             </View>
-            {
-              <View
-                className="media-controls media-controls--full"
-                style={{
-                  visibility: playerStore.showControls ? 'visible' : 'hidden',
-                }}
-              >
-                <View className="media-row" style={{ width: '100%' }}>
-                  <CurrentTime className="media-control media-control--current-time" />
-                  <View style={{ width: '60%', justifyContent: 'center' }}>
-                    {currentTrack && (
-                      <Text className="font" numberOfLines={1}>
-                        {/* {this._formatLabel(currentTrack)} */}
-                        {currentTrack}
-                      </Text>
-                    )}
-                  </View>
-                  <Duration className="media-control media-control--duration" />
+            <View
+              className="media-controls media-controls--full"
+              style={{
+                visibility: playerStore.showControls ? 'visible' : 'hidden',
+              }}
+            >
+              <View className="media-row" style={{ width: '100%' }}>
+                <CurrentTime className="media-control media-control--current-time" />
+                <View style={{ width: '60%', justifyContent: 'center' }}>
+                  {currentTrack && (
+                    <Text className="font" numberOfLines={1}>
+                      {/* {this._formatLabel(currentTrack)} */}
+                      {currentTrack}
+                    </Text>
+                  )}
                 </View>
-                <View className="media-control-group media-control-group--seek">
-                  <Progress className="media-control media-control--progress" />
-                  <SeekBar className="media-control media-control--seekbar" />
+                <Duration className="media-control media-control--duration" />
+              </View>
+              <View className="media-control-group media-control-group--seek">
+                <Progress className="media-control media-control--progress" />
+                <SeekBar className="media-control media-control--seekbar" />
+              </View>
+              <View className="media-row">
+                <View className="media-control-group">
+                  <PrevTrack className="media-control media-control--prev-track" onClick={this._handlePrevTrack} />
+                  <PlayPause className="media-control media-control--play-pause" />
+                  <NextTrack className="media-control media-control--next-track" onClick={this._handleNextTrack} />
                 </View>
-                <View className="media-row">
-                  <View className="media-control-group">
-                    <MuteUnmute className="media-control media-control--mute-unmute" />
-                  </View>
-                  <View className="media-control-group">
-                    <PrevTrack className="media-control media-control--prev-track" onClick={this._handlePrevTrack} />
-                    <PlayPause className="media-control media-control--play-pause" />
-                    <NextTrack className="media-control media-control--next-track" onClick={this._handleNextTrack} />
-                  </View>
-                  <View className="media-control-group">
-                    <Repeat
-                      className="media-control media-control--repeat"
-                      isActive={repeatTrack}
-                      onClick={this._handleRepeatTrack}
-                    />
-                    <Shuffle />
-                  </View>
-                  <View className="media-control-group">
-                    <FullScreen className="media-control media-control--repeat" />
-                  </View>
+                <View className="media-control-group">
+                  <Repeat
+                    className="media-control media-control--repeat"
+                    isActive={repeatTrack}
+                    onClick={this._handleRepeatTrack}
+                  />
+                  <Shuffle />
+                  <MuteUnmute className="media-control media-control--mute-unmute" />
+                  {/* <Volume
+                    className="media-control media-control--volume"
+                    style={{ width: 65, margin: 0, padding: 0 }}
+                  /> */}
+                  <VolumeSlider />
+                  <FullScreen className="media-control media-control--repeat" />
                 </View>
               </View>
-            }
+            </View>
           </View>
         )}
       </Media>
