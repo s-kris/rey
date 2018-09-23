@@ -6,7 +6,7 @@ import { withMediaProps } from 'react-media-player';
 import Modal from 'react-responsive-modal';
 
 import { primaryColorLight, accentColor } from '../../config/Colors';
-import { getDataFromStorage, saveDataToStorage } from '../../api/storage';
+import { saveDataToStorage } from '../../api/storage';
 import { KEY_VOLUME_LEVEL } from '../../config/Constants';
 import VolumeWriter from './VolumeWriter';
 
@@ -18,7 +18,8 @@ class VolumeSlider extends Component {
   };
 
   componentDidMount() {
-    if (this.props.media) this.props.media.setVolume(getDataFromStorage(KEY_VOLUME_LEVEL) || 0.5);
+    // react-media-player throws error because video is not initialised here and no hook is provided for player.ready
+    // this.props.media.setVolume(getDataFromStorage(KEY_VOLUME_LEVEL) || 0.5);
   }
 
   onSliderChange = value => {
