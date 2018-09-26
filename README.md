@@ -57,5 +57,5 @@ npm run build
 
 ```
 
-##License
+## License
 GNU General Public License v3.0
