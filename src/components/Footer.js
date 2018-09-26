@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native-web';
 
 import TwitterIcon from './../assets/images/twitter-icon.png';
+import InstagramIcon from './../assets/images/instagram-icon.png';
 
 const styles = {
   rootContainer: {
@@ -33,14 +34,15 @@ class Footer extends React.Component {
   render() {
     return (
       <View style={styles.rootContainer}>
-        <View
-          style={styles.row}
-          onClick={() => {
-            window.open('https://twitter.com/_skris', '_blank');
-          }}
-        >
-          <Text style={styles.attributionText}>
-            Developed by _skris{'  '}
+        <View style={styles.row}>
+          <Text
+            style={styles.attributionText}
+            onClick={() => {
+              window.open('https://saikrishna.me', '_new');
+            }}
+          >
+            Developed by _skris
+            {'  '}
             {/* <a
             href="https://twitter.com/_skris?ref_src=twsrc%5Etfw"
             className="twitter-follow-button"
@@ -49,7 +51,12 @@ class Footer extends React.Component {
             @_skris
           </a> */}
           </Text>
-          <img src={TwitterIcon} style={{ cursor: 'pointer', width: 24, height: 24 }} alt="_skris" />
+          <a href="https://twitter.com/_skris" target="_new">
+            <img src={TwitterIcon} style={{ cursor: 'pointer', width: 24, height: 24 }} alt="_skris" />
+          </a>
+          <a href="https://instagram.com/saikrishna.me" target="_new">
+            <img src={InstagramIcon} style={{ cursor: 'pointer', width: 20, height: 20 }} alt="saikrishna.me" />
+          </a>
         </View>
         <View
           style={styles.row}
@@ -58,10 +65,15 @@ class Footer extends React.Component {
           }}
         >
           <Text style={styles.attributionText}>
+            {'  '}|{'  '}
+            Find on Github
             {'  '}
-            |{'  '}Find on Github{'  '}
           </Text>
-          <img src="https://cdn.iconscout.com/icon/free/png-256/github-146-569237.png" style={{ cursor: 'pointer', width: 24, height: 24 }} alt="rey" />
+          <img
+            src="https://cdn.iconscout.com/icon/free/png-256/github-146-569237.png"
+            style={{ cursor: 'pointer', width: 24, height: 24 }}
+            alt="rey"
+          />
         </View>
       </View>
     );

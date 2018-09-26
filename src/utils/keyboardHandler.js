@@ -28,7 +28,7 @@ document.onkeydown = event => {
       console.log('F');
       break;
     case 77:
-      // key N
+      // key M
       console.log('M');
       console.log(this.props);
       // this.props.media.muteUnmute();
