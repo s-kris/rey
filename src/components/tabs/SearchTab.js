@@ -44,7 +44,7 @@ class SearchTab extends React.Component {
       isLoading: false,
       data: [],
       empty: false,
-      checked: false,
+      showThumbnails: false,
       searchText: '',
     };
 
@@ -54,7 +54,7 @@ class SearchTab extends React.Component {
 
   componentDidMount() {
     this.setState({
-      checked: getDataFromStorage(KEY_PREF_SHOW_THUMBS) || false,
+      showThumbnails: getDataFromStorage(KEY_PREF_SHOW_THUMBS) || false,
     });
   }
 
@@ -150,18 +150,18 @@ class SearchTab extends React.Component {
         <View style={{ marginTop: 10, flexDirection: 'row', alignItems: 'center' }}>
           <input
             type="checkbox"
-            checked={this.state.checked}
+            checked={this.state.showThumbnails}
             onChange={() => {
-              saveDataToStorage(KEY_PREF_SHOW_THUMBS, !this.state.checked);
-              this.setState({ checked: !this.state.checked });
+              saveDataToStorage(KEY_PREF_SHOW_THUMBS, !this.state.showThumbnails);
+              this.setState({ showThumbnails: !this.state.showThumbnails });
             }}
           />
           <Text
             className="font"
             style={{ marginTop: 5, cursor: 'pointer' }}
             onClick={() => {
-              saveDataToStorage(KEY_PREF_SHOW_THUMBS, !this.state.checked);
-              this.setState({ checked: !this.state.checked });
+              saveDataToStorage(KEY_PREF_SHOW_THUMBS, !this.state.showThumbnails);
+              this.setState({ showThumbnails: !this.state.showThumbnails });
             }}
           >
             {'  '} Show thumbnails {'    '}
@@ -172,7 +172,7 @@ class SearchTab extends React.Component {
             title="Clear"
             color={accentColor}
             disabled={this.state.searchText.length === 0}
-            accessibilityLabel="Learn more about this purple button"
+            accessibilityLabel="Clear search results"
           />
         </View>
 
@@ -199,7 +199,7 @@ class SearchTab extends React.Component {
                 thumbnailUrl={item.thumbnailUrl}
                 name={item.title}
                 videoUrl={item.videoId}
-                showImage={this.state.checked}
+                showImage={this.state.showThumbnails}
               /> // item.link uses too much data
             )}
           />

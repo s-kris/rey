@@ -38,7 +38,7 @@ class RelatedTab extends React.Component {
     this.state = {
       isLoading: false,
       data: [],
-      checked: getDataFromStorage(KEY_PREF_SHOW_THUMBS) || false,
+      showThumbnails: getDataFromStorage(KEY_PREF_SHOW_THUMBS) || false,
     };
   }
 
@@ -102,18 +102,18 @@ class RelatedTab extends React.Component {
         <View style={{ marginTop: 20, marginBottom: 10, flexDirection: 'row', alignItems: 'center' }}>
           <input
             type="checkbox"
-            checked={this.state.checked}
+            checked={this.state.showThumbnails}
             onChange={() => {
-              saveDataToStorage(KEY_PREF_SHOW_THUMBS, !this.state.checked);
-              this.setState({ checked: !this.state.checked });
+              saveDataToStorage(KEY_PREF_SHOW_THUMBS, !this.state.showThumbnails);
+              this.setState({ showThumbnails: !this.state.showThumbnails });
             }}
           />
           <Text
             className="font"
             style={{ marginTop: 5, cursor: 'pointer' }}
             onClick={() => {
-              saveDataToStorage(KEY_PREF_SHOW_THUMBS, !this.state.checked);
-              this.setState({ checked: !this.state.checked });
+              saveDataToStorage(KEY_PREF_SHOW_THUMBS, !this.state.showThumbnails);
+              this.setState({ showThumbnails: !this.state.showThumbnails });
             }}
           >
             {'  '} Show thumbnails {'    '}
@@ -134,7 +134,7 @@ class RelatedTab extends React.Component {
               thumbnailUrl={item.thumbnailUrl}
               name={item.title}
               videoUrl={item.videoId}
-              showImage={this.state.checked}
+              showImage={this.state.showThumbnails}
             /> // item.link uses too much data
           )}
         />
