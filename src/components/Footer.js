@@ -3,6 +3,7 @@ import { View, Text } from 'react-native-web';
 
 import TwitterIcon from './../assets/images/twitter-icon.png';
 import InstagramIcon from './../assets/images/instagram-icon.png';
+import WebsiteIcon from './../assets/images/website-icon.png';
 
 const styles = {
   rootContainer: {
@@ -38,7 +39,7 @@ class Footer extends React.Component {
           <Text
             style={styles.attributionText}
             onClick={() => {
-              window.open('https://saikrishna.me', '_new');
+              window.open('https://saikrishna.me', '_blank');
             }}
           >
             Developed by _skris
@@ -51,10 +52,13 @@ class Footer extends React.Component {
             @_skris
           </a> */}
           </Text>
-          <a href="https://twitter.com/_skris" target="_new">
+          <a href="https://saikrishna.me" target="_blank" rel="noopener noreferrer">
+            <img src={WebsiteIcon} style={{ cursor: 'pointer', width: 20, height: 20 }} alt="saikrishna.me" />
+          </a>
+          <a href="https://twitter.com/_skris" target="_blank" rel="noopener noreferrer">
             <img src={TwitterIcon} style={{ cursor: 'pointer', width: 24, height: 24 }} alt="_skris" />
           </a>
-          <a href="https://instagram.com/saikrishna.me" target="_new">
+          <a href="https://instagram.com/saikrishna.me" target="_blank" rel="noopener noreferrer">
             <img src={InstagramIcon} style={{ cursor: 'pointer', width: 20, height: 20 }} alt="saikrishna.me" />
           </a>
         </View>

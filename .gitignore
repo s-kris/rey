@@ -37,3 +37,4 @@ packager/windows/Rey_compiler/Rey
 src/config/firebase.js
 src/config/youtube.js
 src/config/lastfm.js
+.firebase/hosting.YnVpbGQ.cache
