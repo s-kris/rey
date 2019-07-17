@@ -40,14 +40,14 @@ class NowPlayingList extends React.Component {
   }
 
   _focusNowPlayingItem = position => {
-    // showToast(position - indexOfTopItem);
-    setTimeout(() => {
-      try {
-        this.flatListRef.scrollToIndex({ animated: true, index: position });
-      } catch (e) {
-        console.log(e);
-      }
-    }, 100);
+    // // showToast(position - indexOfTopItem);
+    // setTimeout(() => {
+    //   try {
+    //     this.flatListRef.scrollToIndex({ animated: true, index: position });
+    //   } catch (e) {
+    //     console.log(e);
+    //   }
+    // }, 100);
   };
 
   render() {
@@ -115,7 +115,7 @@ class NowPlayingList extends React.Component {
                   key={item.id + index}
                   track={item}
                   position={index}
-                  // focus={() => this._focusNowPlayingItem(index)}
+                  focus={() => this._focusNowPlayingItem(index)}
                   currentTrack={currentTrack}
                   //  getItemLayout={this._getItemLayout}
                   onItemClick={() => this._handleTrackClick(item)}
