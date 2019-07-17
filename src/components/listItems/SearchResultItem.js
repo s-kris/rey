@@ -9,7 +9,7 @@ import './../../styles/song-item.css';
 import playIcon from './../../assets/images/icons/play.svg';
 import queueIcon from './../../assets/images/icons/add.svg';
 import musicStore from './../../stores/musicStore';
-import { showToast } from '../../utils/utils';
+import { showToast, parseHtmlEntities } from '../../utils/utils';
 import SaveButton from './../SaveButton';
 import { GA_EVENT_CAT_MUSIC, GA_EVENT_ACTION_SONG_SEARCH } from '../../config/Constants';
 import { primaryColorLight } from './../../config/Colors';
@@ -51,7 +51,7 @@ class SearchResultItem extends React.Component {
   _formatDataToSave = () => {
     const { name, videoUrl } = this.props;
     return [
-      // save playlist component only accepts array
+      // save playlist component accepts arrays only
       {
         src: videoUrl,
         label: this._formatLabel(name),
@@ -61,7 +61,8 @@ class SearchResultItem extends React.Component {
     ];
   };
 
-  _formatLabel = name => {
+  _formatLabel = str => {
+    const name = parseHtmlEntities(str);
     if (name.length > 75) {
       return `${name.substring(0, 75)}...`;
     }
@@ -103,7 +104,7 @@ class SearchResultItem extends React.Component {
         >
           <Text className="title font" numberOfLines={1}>
             {/* {this._formatLabel(this.props.name)} */}
-            {this.props.name}
+            {parseHtmlEntities(this.props.name)}
           </Text>
         </View>
         <View className="actions-container">
