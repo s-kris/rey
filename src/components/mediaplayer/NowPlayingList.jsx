@@ -115,7 +115,7 @@ class NowPlayingList extends React.Component {
                   key={item.id + index}
                   track={item}
                   position={index}
-                  focus={() => this._focusNowPlayingItem(index)}
+                  // focus={() => this._focusNowPlayingItem(index)}
                   currentTrack={currentTrack}
                   //  getItemLayout={this._getItemLayout}
                   onItemClick={() => this._handleTrackClick(item)}
