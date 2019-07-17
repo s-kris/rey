@@ -9,10 +9,6 @@ import musicStore from '../stores/musicStore';
 export const saveToFirebase = (collection, data, callback) => {
   const user = firebase.auth().currentUser;
   const db = firebase.firestore();
-  const settings = {
-    timestampsInSnapshots: true,
-  };
-  db.settings(settings);
 
   db.collection(collection)
     .doc(user.uid)
@@ -29,10 +25,7 @@ export const saveToFirebase = (collection, data, callback) => {
 export const getFromFirebase = (collection, callback) => {
   const user = firebase.auth().currentUser;
   const db = firebase.firestore();
-  const settings = {
-    timestampsInSnapshots: true,
-  };
-  db.settings(settings);
+
   db.collection(collection)
     .doc(user.uid)
     .get()
@@ -46,10 +39,7 @@ export const getFromFirebase = (collection, callback) => {
 
 export const deleteDataFromFirebase = (userId, callback) => {
   const db = firebase.firestore();
-  const settings = {
-    timestampsInSnapshots: true,
-  };
-  db.settings(settings);
+
   db.collection(COL_MUSIC_DATA)
     .doc(userId)
     .delete()
