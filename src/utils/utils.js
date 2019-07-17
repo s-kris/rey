@@ -87,3 +87,9 @@ export const getRandomImage = () => {
   const imagesArray = [bg1, bg2, bg3, bg4, bg5, bg6, bg7];
   return imagesArray[number];
 };
+
+export const parseHtmlEntities = str =>
+  str.replace(/&#([0-9]{1,3});/gi, (match, numStr) => {
+    const num = parseInt(numStr, 10); // read num as normal number
+    return String.fromCharCode(num);
+  });
