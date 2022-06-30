@@ -6,7 +6,6 @@
 #### Context:
 Many of us use Youtube to listen to music. But Youtube wasn't designed with music in mind. So, I created 'Rey' with simple and intuitive UI which takes youtube as data source! It is only for desktop now ( webapp and standalone app ).
 
-**Website:** https://reymusic.co
 
 **Details:**
 
